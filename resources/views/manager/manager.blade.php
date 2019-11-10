@@ -117,10 +117,37 @@
                             <li class="nav-item">
                               <a class="nav-link" href="#">Hóa đơn</a>
                             </li>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Báo cáo</a>
-                        </li>
+                            <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Đối tác</a>
+                                    <div class="dropdown-menu">
+                                      <a class="dropdown-item" href="#">Nhà cung cấp</a>
+                                      <a class="dropdown-item" href="#">Nhập hàng</a>
+                                      {{-- <a class="dropdown-item" href="#">Something else here</a>
+                                      <div class="dropdown-divider"></div>
+                                      <a class="dropdown-item" href="#">Separated link</a> --}}
+                                    </div>
+                            </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="#">Khách hàng</a>
+                            </li>
+                            <li class="nav-item">
+                                        <a class="nav-link" href="#">Nhân viên</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Báo cáo</a>
+                                    <div class="dropdown-menu">
+                                      <a class="dropdown-item" href="#">Cuối ngày</a>
+                                      <a class="dropdown-item" href="#">Hàng hóa</a>
+                                      <a class="dropdown-item" href="#">Khách hàng</a>
+                                      <a class="dropdown-item" href="#">Nhà cung cấp</a>
+                                      <a class="dropdown-item" href="#">Nhân viên</a>
+                                      <a class="dropdown-item" href="#">Hóa đơn</a>
+                                      {{-- <a class="dropdown-item" href="#">Something else here</a>
+                                      <div class="dropdown-divider"></div>
+                                      <a class="dropdown-item" href="#">Separated link</a> --}}
+                                    </div>
+                            </li>
+
                           </ul>
                           </nav>
             </div>
