@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quản lý</title>
+
+    <script src="https://unpkg.com/popper.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="{{URL::asset('all/js/bootstrap.min.js')}}"></script>
+    <link rel="stylesheet" href="{{URL::asset('all/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{URL::asset('manager/manager.css')}}"/>
+
+    <link rel="stylesheet" type='text/css' href="{{URL::asset('all/icon/css/fontawesome.min.css')}}"/>
+    <link rel="stylesheet" type='text/css' href="{{URL::asset('all/icon/css/fontawesome.css')}}"/>
+    <link rel="stylesheet" type='text/css' href="{{URL::asset('all/icon/css/brands.css')}}"/>
+    <link rel="stylesheet" type='text/css' href="{{URL::asset('all/icon/css/solid.css')}}"/>
+
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+            <div class="background-popup  d-flex align-items-center justify-content-center hide">
+                <div class="vaitro_popup">
+                    <div class="header-popup align-items-center justify-content-center">
+                        <h3 >Quản lý vai trò</h3>
+                    </div>
+                    <div class="body-popup">
+
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Tên loại tài khoản</th>
+                                        <th scope="col">Mô tả</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($list as $item)
+                                        <tr>
+                                            <th scope="row">{{$item->ma_loai_tai_khoan}}</th>
+                                            <td>{{$item->ten_loai_tai_khoan}}</td>
+                                            <td>{{$item->mo_ta}}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+                    </div>
+                </div>
+            </div>
+        <div class="row top_header">
+            <div class="col-4">
+                <img id="logo" src="{{URL::asset('all/img/logo_header.png')}}" alt="Error" height="50px">
+            </div>
+            <div class="col-8 top_header_right">
+                <!-- <div class="div_info"> -->
+                        <div class="dropdown div_info">
+                            <a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  0377158365
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#">Tài khoản</a>
+                                <a class="dropdown-item" href="#">Đăng xuất</a>
+                            </div>
+                        </div>
+                <!-- </div> -->
+                <!-- <div class="div_quanlynguoidung"> -->
+                        <div class="dropdown div_quanlynguoidung">
+                                <a class="btn" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                      Quản lý người dùng
+                                </a>
+                            </div>
+                <!-- </div> -->
+                <!-- <div class="div_hotro"> -->
+                        <div class="dropdown div_vaitro">
+                                <a class="btn" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                      Quản lý vai trò
+                                </a>
+                        </div>
+
+
+
+
+                <!-- </div> -->
+                <!-- <div class="div_chude"> -->
+                        <div class="dropdown div_hotro">
+                                <a class="btn" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                      Hỗ trợ
+                                </a>
+                        </div>
+                <!-- </div> -->
+            </div>
+        </div>
+
+        <div class="row navbar_section">
+            <div class="col-12 background-navbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <ul class="nav ">
+                            <li class="nav-item">
+                              <a class="nav-link active" href="#">Tổng quan</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hàng hóa</a>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Danh mục</a>
+                                <a class="dropdown-item" href="#">Thiết lập giá</a>
+                                {{-- <a class="dropdown-item" href="#">Something else here</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Separated link</a> --}}
+                              </div>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#">Hóa đơn</a>
+                            </li>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Báo cáo</a>
+                        </li>
+                          </ul>
+                          </nav>
+            </div>
+        </div>
+
+        <div class="row body_section" id="body">
+            <div class="col-9 left_section">
+                <div class="row left_section_1">
+                    <div class="col-12 left_section_1_inside">
+                        <h5>Kết quả bán hàng hôm nay</h5>
+                                <div class="left_section_1_block">
+                                    <div class="left_section_1_img d-flex align-items-center justify-content-center">
+                                        <i class="fas fa-dollar-sign fa-2x"></i>
+                                    </div>
+                                    <div class="left_section_1_content">
+                                        <span>0 hóa đơn</span></br>
+                                        <span>0</span></br>
+                                        <span>Doanh thu thuần</span>
+                                    </div>
+                                    <div class="vien"></div>
+                                </div>
+
+                                <div class="left_section_1_block">
+                                        <div class="left_section_1_img d-flex align-items-center justify-content-center">
+                                            <i class="fas fa-shopping-cart fa-2x"></i>
+                                        </div>
+                                        <div class="left_section_1_content">
+                                            <span>0 sản phẩm</span></br>
+                                            <span>0</span></br>
+                                            <span>Tổng số sản phẩm</span>
+                                        </div>
+                                        <div class="vien"></div>
+                                </div>
+
+                                <div class="left_section_1_block ">
+                                        <div class="left_section_1_img d-flex align-items-center justify-content-center">
+                                            <i class="fas fa-chart-line fa-2x"></i>
+                                        </div>
+                                        <div class="left_section_1_content">
+                                            <span></span></br>
+                                            <span>-67.53%</span></br>
+                                            <span>So với tháng trước</span>
+                                        </div>
+                                        <div class="vien"></div>
+                                </div>
+                    </div>
+                </div>
+                <div class="row left_section_2">
+                    <div class="col-12 left_section_2_inside">
+                        <h5>Doanh thu thuần tháng này</h5>
+                        <canvas id="doanh_thu_barchart"></canvas>
+                    </div>
+                </div>
+                <div class="row left_section_3">
+                   <div class="col-12 left_section_3_inside">
+                        <h5>Top 10 hàng hóa bán chạy tháng trước</h5>
+                        <canvas id="Top_10_hang_hoa_barchart"></canvas>
+                   </div>
+                </div>
+            </div>
+            <div class="col-3 right_section">
+                <div class="row right_section_header">
+                    <div class="col-12 ">
+                        <h5>Các hoạt động gần đây</h5>
+                    </div>
+                </div>
+                <div class="row right_section_body">
+                    <div class="col-12 ">
+                        lácl;djflsdk
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-6 mt-md-0 mt-3">
+
+          <!-- Content -->
+          <h5 class="text-uppercase">Footer Content</h5>
+          <p>Here you can use rows and columns to organize your footer content.</p>
+
+        </div>
+        <!-- Grid column -->
+
+        <hr class="clearfix w-100 d-md-none pb-3">
+
+        <!-- Grid column -->
+        <div class="col-md-3 mb-md-0 mb-3">
+
+          <!-- Links -->
+          <h5 class="text-uppercase">Links</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <a href="#!">Link 1</a>
+            </li>
+            <li>
+              <a href="#!">Link 2</a>
+            </li>
+            <li>
+              <a href="#!">Link 3</a>
+            </li>
+            <li>
+              <a href="#!">Link 4</a>
+            </li>
+          </ul>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 mb-md-0 mb-3">
+
+          <!-- Links -->
+          <h5 class="text-uppercase">Links</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <a href="#!">Link 1</a>
+            </li>
+            <li>
+              <a href="#!">Link 2</a>
+            </li>
+            <li>
+              <a href="#!">Link 3</a>
+            </li>
+            <li>
+              <a href="#!">Link 4</a>
+            </li>
+          </ul>
+
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+    </div>
+    <script src="{{URL::asset('manager/manager.js')}}"></script>
+    <script src="{{URL::asset('manager/event.js')}}"></script>
+</body>
+</html>
