@@ -62,8 +62,20 @@
                 margin-bottom: 30px;
             }
         </style>
+        <link rel="stylesheet" href="{{ URL::asset('all/css/bootstrap.min.css') }}"/>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" type='text/css' href="{{ URL::asset('all/icon/css/fontawesome.min.css')}}"/>
+        <link rel="stylesheet" type='text/css' href="{{ URL::asset('all/icon/css/fontawesome.css')}}"/>
+        <link rel="stylesheet" type='text/css' href="{{ URL::asset('all/icon/css/brands.css')}}"/>
+        <link rel="stylesheet" type='text/css' href="{{ URL::asset('all/icon/css/solid.css')}}"/>
     </head>
     <body>
+        <h1>Hello</h1>
+        <script>
+            var a=<?php echo json_encode($id); ?>;
+            alert(a);
+            </script>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">

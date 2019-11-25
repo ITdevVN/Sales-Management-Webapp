@@ -11,14 +11,24 @@
 |
 */
 
-Route::get('/', function () {
-    return "Hell World";
+//view;share dùng chung
+Route::get('/hello/{id}', function ($id) {
+    return view('welcome',['id' => $id]);
 });
 
-Route::get('admin/login','LoginController@managerLogin');
+// view::share('KhoaHoc','Laravel');
 
-Route::get('admin/getListLoaiTaiKhoan','LoaiTaiKhoanController@getListLoaiTaiKhoan');
+//Group for admin role
+Route::group(['prefix'=>'admin'],function(){
+    Route::get('login','LoginController@managerLogin');
 
-Route::get('/admin/homepage',function(){
+    Route::get('getListLoaiTaiKhoan','LoaiTaiKhoanController@getListLoaiTaiKhoan');
+
+    Route::get('homepage',function(){
     return view('manager/manager');
 });
+});
+
+
+
+

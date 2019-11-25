@@ -9,7 +9,7 @@ use App\LoaiTaiKhoan;
 class LoaiTaiKhoanController extends Controller
 {
     public function getListLoaiTaiKhoan(){
-        $listLoaiTaiKhoan=LoaiTaiKhoan::getAll();
+        $listLoaiTaiKhoan=LoaiTaiKhoan::all();
         return view('manager/manager',['list' => $listLoaiTaiKhoan]);
     }
 }

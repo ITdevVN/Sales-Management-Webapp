@@ -7,8 +7,6 @@ use DB;
 
 class LoaiTaiKhoan extends Model
 {
-    public static function getAll(){
-        $value=DB::table('LoaiTaiKhoan')->get();
-        return $value;
-    }
+    protected $table="LoaiTaiKhoan";
+
 }

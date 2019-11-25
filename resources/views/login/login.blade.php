@@ -21,7 +21,7 @@
             <div class="form-main">
                 <form>
                     <div class="header">
-                        <img class="logo rounded mx-auto d-block" src="{{ URL::asset('login/img/logo_header.png') }}" alt="Error" height="100%">
+                        <img class="logo rounded mx-auto d-block" src="{{ URL::asset('all/img/logo_header.png') }}" alt="Error" height="100%">
                     </div>
                     <div class="body">
                             <div class="form-group">
