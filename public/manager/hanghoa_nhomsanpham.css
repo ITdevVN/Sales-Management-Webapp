@@ -1,0 +1,29 @@
+input[type=checkbox] {
+    zoom: 1;
+}
+
+#h2id{
+    display:inline-block;
+}
+
+#buttondiv{
+    float: right;
+    margin-left: 900px;
+}
+
+#thanhcongcu{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+thead{
+    background-color: #DCF4FC;
+}
+
+#tablediv{
+    background-color: #FFFFFF;
+    width: 100%;
+}
+
+
+

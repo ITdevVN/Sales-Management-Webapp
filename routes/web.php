@@ -12,22 +12,34 @@
 */
 
 //view;share dùng chung
-Route::get('/hello/{id}', function ($id) {
-    return view('welcome',['id' => $id]);
-});
+// Route::get('/hello/{id}', function ($id) {
+//     return view('welcome',['id' => $id]);
+// });
 
 // view::share('KhoaHoc','Laravel');
 
 //Group for admin role
-Route::group(['prefix'=>'admin'],function(){
-    Route::get('login','LoginController@managerLogin');
+Route::prefix('admin')->group(function(){
 
-    Route::get('getListLoaiTaiKhoan','LoaiTaiKhoanController@getListLoaiTaiKhoan');
+    Route::get('homepage','HomeController@getHomeAdmin')->name('tongquan');
+    Route::get('login','LoginController@adminLogin');
+    //hang hóa
+    Route::get('hanghoa/danhmuc','HanghoaController@layDanhSachHangHoa');
+    Route::get('hanghoa/nhomsanpham','HanghoaController@layDanhSachNhomSanPham')->name('nhomsanpham');
+    Route::get('hanghoa/loaisanpham','HanghoaController@layDanhSachLoaiSanPham');
+});
 
-    Route::get('homepage',function(){
-    return view('manager/manager');
+Route::prefix('admin')->group(function(){
+
+    Route::get('homepage','HomeController@getHomeAdmin');
+
+
 });
-});
+
+
+
+
+
 
 
 
