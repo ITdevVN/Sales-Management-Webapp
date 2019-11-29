@@ -33,10 +33,9 @@ h5{
     font-family: Arial, Helvetica, sans-serif !important;
 } */
 
-.container-fluid{
-    /* background-color: rgb(238,238,238); */
-    background-color: rgb(200, 200, 200);
-}
+/* .container-fluid{
+    background-color: #EEEEEE !important;
+} */
 
 ul{
     list-style: none;

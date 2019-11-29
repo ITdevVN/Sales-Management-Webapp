@@ -19,7 +19,10 @@ class HangHoaController extends Controller
         return view('admin/hanghoa_nhomsanpham',['listNhomSanPham'=>$listNhomSanPham]);
     }
 
-    public function layDanhSachLoaiSanPham(){
-
+    public function themNhomSanPham(Request $request){
+        // $check=DB::select('call themNhomHang(?)',array($tensanpham));
+        // return $check;
+        $a=$request->name;
+        return $a;
     }
 }
