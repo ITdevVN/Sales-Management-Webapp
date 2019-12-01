@@ -2,6 +2,7 @@
 
 @section('head')
 <link rel="stylesheet" href="{{URL::asset('manager/hanghoa_nhomsanpham.css')}}"/>
+<script src="{{URL::asset('manager/hanghoa_nhomsanpham.js')}}"></script>
 @stop
 
 @section('body')
@@ -31,9 +32,11 @@
         <div id="popup-sua-body">
                 <form>
                     <div class="form-group">
-                        <label for="tenNhomHang">Nhập tên nhóm hàng</label>
-                        <input type="text" class="form-control" id="tenNhomHang" aria-describedby="emailHelp">
-                          </div>
+                        <label for="maNhomHang">Mã nhóm hàng</label>
+                        <input type="text" disabled class="form-control" id="maNhomHangsua" aria-describedby="emailHelp">
+                        <label for="tenNhomHang">Tên nhóm hàng</label>
+                        <input type="text" class="form-control" id="tenNhomHangsua" aria-describedby="emailHelp">
+                    </div>
                 </form>
             </div>
                 <div id="popup-body-button" class="float-right mb-3">
@@ -57,11 +60,11 @@
 </div>
 
 <div id="tablediv">
-<table class="table table-hover table-striped">
+<table id="main-table" class="table table-hover table-striped">
     <thead>
       <tr>
         <th scrope="col">
-            <input type="checkbox" aria-label="Checkbox for following text input">
+            <input type="checkbox" id="checkall" aria-label="Checkbox for following text input">
         </th>
         <th scope="col">ID</th>
         <th scope="col">Tên nhóm hàng</th>
@@ -71,10 +74,10 @@
     @for($i=0;$i<count($listNhomSanPham);$i++)
     <tr>
         <th>
-        <input type="checkbox" aria-label="Checkbox for following text input">
+        <input type="checkbox" id="check{{$i}}" class="checkbox-group" aria-label="Checkbox for following text input">
         </th>
-        <td>{{$listNhomSanPham[$i]->ma_nhom_hang}}</td>
-        <td>{{$listNhomSanPham[$i]->ten_nhom_hang}}</td>
+        <td class="ma_nhom_hang">{{$listNhomSanPham[$i]->ma_nhom_hang}}</td>
+        <td class="ten_nhom_hang">{{$listNhomSanPham[$i]->ten_nhom_hang}}</td>
     </tr>
     @endfor
     </tbody>
@@ -84,5 +87,5 @@
 @stop
 
 @section('footer')
-<script src="{{URL::asset('manager/hanghoa_nhomsanpham.js')}}"></script>
+
 @stop

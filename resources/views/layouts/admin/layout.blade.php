@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quản lý</title>
-    @yield('head')
+
 
     <script src="https://unpkg.com/popper.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -17,6 +17,7 @@
     <link rel="stylesheet" type='text/css' href="{{URL::asset('all/icon/css/fontawesome.css')}}"/>
     <link rel="stylesheet" type='text/css' href="{{URL::asset('all/icon/css/brands.css')}}"/>
     <link rel="stylesheet" type='text/css' href="{{URL::asset('all/icon/css/solid.css')}}"/>
+    @yield('head')
 
 
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/> -->
