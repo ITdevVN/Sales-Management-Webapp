@@ -8,6 +8,7 @@
 
 
     <script src="https://unpkg.com/popper.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> --}}
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="{{URL::asset('all/js/bootstrap.min.js')}}"></script>
     <link rel="stylesheet" href="{{URL::asset('all/css/bootstrap.min.css')}}"/>
@@ -245,6 +246,7 @@
     </div>
     <script src="{{URL::asset('manager/manager.js')}}"></script>
     <script src="{{URL::asset('manager/event.js')}}"></script>
+    @yield('script')
     @yield('footer')
 </body>
 </html>

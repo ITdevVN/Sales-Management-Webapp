@@ -2,7 +2,6 @@
 
 @section('head')
 <link rel="stylesheet" href="{{URL::asset('manager/hanghoa_nhomsanpham.css')}}"/>
-<script src="{{URL::asset('manager/hanghoa_nhomsanpham.js')}}"></script>
 @stop
 
 @section('body')
@@ -14,34 +13,34 @@
         <div id="popup-them-body">
             <form>
                 <div class="form-group">
-                    <label for="tenNhomHang">Nhập tên nhóm hàng</label>
-                    <input type="text" class="form-control" id="tenNhomHang" aria-describedby="emailHelp">
+                    <label for="tenNhomHangthem">Nhập tên nhóm hàng</label>
+                    <input type="text" class="form-control" id="tenNhomHangthem" aria-describedby="emailHelp">
                 </div>
             </form>
         </div>
         <div id="popup-body-button" class="float-right mb-3">
-            <button type="button" class="btn btn-success btnLuu">Lưu</button>
-            <button type="button" class="btn btn-danger btnHuy">Hủy bỏ</button>
+            <button type="button" class="btn btn-success" id="btnLuuThem">Lưu</button>
+            <button type="button" class="btn btn-danger btnHuyThem">Hủy bỏ</button>
         </div>
 
 </div>
-</br>
-</br>
+<br>
+<br>
 <div id="popup-sua" class="hide">
         <div id="popup-sua-header">Sửa nhóm hàng hóa</div>
         <div id="popup-sua-body">
                 <form>
                     <div class="form-group">
-                        <label for="maNhomHang">Mã nhóm hàng</label>
+                        <label for="maNhomHangsua">Mã nhóm hàng</label>
                         <input type="text" disabled class="form-control" id="maNhomHangsua" aria-describedby="emailHelp">
-                        <label for="tenNhomHang">Tên nhóm hàng</label>
+                        <label for="tenNhomHangsua">Tên nhóm hàng</label>
                         <input type="text" class="form-control" id="tenNhomHangsua" aria-describedby="emailHelp">
                     </div>
                 </form>
             </div>
                 <div id="popup-body-button" class="float-right mb-3">
-                <button type="button" class="btn btn-success btnLuu">Lưu</button>
-                <button type="button" class="btn btn-danger btnHuy">Hủy bỏ</button>
+                <button type="button" class="btn btn-success btnLuuSua">Lưu</button>
+                <button type="button" class="btn btn-danger btnHuySua">Hủy bỏ</button>
                 </div>
 
     </div>
@@ -87,5 +86,28 @@
 @stop
 
 @section('footer')
-
+<script src="{{URL::asset('manager/hanghoa_nhomsanpham.js')}}"></script>
 @stop
+
+{{-- @section('script')
+    <script>
+        $(document).ready(function(){
+            $('#btnLuuThem').click(function(){
+            var tenNhomHang=$('#tenNhomHangthem').val(); //lấy giá trị từ textbox người dùng nhập
+           // $('#tenNhomHangthem').val(""); //trả giá trị về null cho textbox
+            alert("Luu");
+            $('#background-popup').addClass('hide'); //ẩn cửa sổ thêm
+            $('#popup-them').addClass('hide'); //ẩn cửa sổ thêm
+            $.ajax({ //ajax đưa đến controller
+                type:"GET",
+                url:'nhomsanpham/them',
+                data:{'tenNhomHang':tenNhomHang}
+            }).done(function(res){
+                $('#tablediv').fadeOut();
+                    $('#tablediv').fadeIn();
+                    $('#tablediv').html(res);
+            })
+        })
+        });
+    </script>
+@endsection --}}

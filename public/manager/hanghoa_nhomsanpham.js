@@ -1,47 +1,50 @@
 
 $(document).ready(function(){
+    alert("helllo")
 
-
-    $('#checkall').click(function(){
+    $('#checkall').on('click',function(){
+        alert("Function when click checkall");
         if ($(this).prop("checked")==true)
             $('.checkbox-group').prop('checked',true);
         else{
             $('.checkbox-group').prop('checked',false);
         }
-    })
+    });
+
 
     //Event for Adding
-    $('.thembutton').click(function(){
+    $('.thembutton').on('click',function(){
         $('#background-popup').removeClass('hide');
         $('#popup-them').removeClass('hide');
+        alert("Hiển thị cửa sổ");
 
-        $('.btnLuu').click(function(){
-            var tenNhomHang=$('#tenNhomHang').val();
-
-            $.ajax({
+        $('#btnLuuThem').click(function(){
+            var tenNhomHang=$('#tenNhomHangthem').val(); //lấy giá trị từ textbox người dùng nhập
+           // $('#tenNhomHangthem').val(""); //trả giá trị về null cho textbox
+            alert("Luu");
+            // $('#background-popup').addClass('hide'); //ẩn cửa sổ thêm
+            // $('#popup-them').addClass('hide'); //ẩn cửa sổ thêm
+            $.ajax({ //ajax đưa đến controller
                 type:"GET",
                 url:'nhomsanpham/them',
-                data:{'tenNhomHang':tenNhomHang},
-                success: function(res){
-                    // $('#tablediv').html(res).delay(0);
-                    $('#tablediv').fadeOut();
+                data:{'tenNhomHang':tenNhomHang}
+            }).done(function(res){
+                $('#tablediv').fadeOut();
                     $('#tablediv').fadeIn();
                     $('#tablediv').html(res);
-                }
             })
-            $('#tenNhomHang').val("");
-            $('#background-popup').addClass('hide');
-            $('#popup-them').addClass('hide');
         })
 
-        $('.btnHuy').click(function(){
+        $('#btnHuyThem').click(function(){
             $('#background-popup').addClass('hide');
             $('#popup-them').addClass('hide');
         })
     });
+
+
     //Event for Editing
 
-    $('.suabutton').click(function(){
+    $('#suabutton').click(function(){
         //kiểm tra liệu người dùng đã check hay chưa
         // if ($('.checkbox-group').prop("checked")==true){
 
@@ -61,27 +64,27 @@ $(document).ready(function(){
             });
 
 
-        $('.btnLuu').click(function(){
+        $('#btnLuuSua').click(function(){
             //lấy giá trị mới từ người dùng nhập
             thongTinNhomCanXoa.push($('#maNhomHangsua').val());
             thongTinNhomCanXoa.push($('#tenNhomHangsua').val());
             $.ajax({
                 type:"GET",
                 url:'nhomsanpham/sua',
-                data:{'thongTinNhomCanXoa':thongTinNhomCanXoa},
-                success: function(res){
-                    // $('#tablediv').html(res).delay(0);
-                    $('#tablediv').fadeOut();
+                data:{'thongTinNhomCanXoa':thongTinNhomCanXoa}
+            }).done(function(res){
+                $('#tablediv').fadeOut();
                     $('#tablediv').fadeIn();
                     $('#tablediv').html(res);
-                }
             })
+
+
             $('#tenNhomHang').val("");
             $('#background-popup').addClass('hide');
             $('#popup-them').addClass('hide');
         })
 
-        $('.btnHuy').click(function(){
+        $('.btnHuySua').click(function(){
             $('#background-popup').addClass('hide');
             $('#popup-sua').addClass('hide');
         })
@@ -98,13 +101,12 @@ $(document).ready(function(){
                 type:"GET",
                 url:'nhomsanpham/xoatatca',
                 data:"",
-                success: function(res){
-                    // $('#tablediv').html(res).delay(0);
-                    $('#tablediv').fadeOut();
+            }).done(function(res){
+                $('#tablediv').fadeOut();
                     $('#tablediv').fadeIn();
                     $('#tablediv').html(res);
-                }
             })
+
             $('#background-popup').addClass('hide');
             $('#popup-them').addClass('hide');
             //truong hop xoa tung dong
@@ -119,13 +121,12 @@ $(document).ready(function(){
                         type:"GET",
                         url:'nhomsanpham/xoa',
                         data:{'listCheckBoxXoa':listCheckBoxXoa},
-                        success: function(res){
-                            // $('#tablediv').html(res).delay(0);
-                            $('#tablediv').fadeOut();
+                    }).done(function(res){
+                        $('#tablediv').fadeOut();
                             $('#tablediv').fadeIn();
                             $('#tablediv').html(res);
-                        }
-                    });
+                    })
+
                 }
             });
 

@@ -20,8 +20,11 @@ use Illuminate\Http\Request;
 //Group for admin role
 Route::prefix('admin')->group(function(){
 
+
     Route::get('homepage','HomeController@getHomeAdmin')->name('tongquan');
-    Route::get('login','LoginController@adminLogin');
+    //Trang login cho admin
+    Route::get('login','LoginController@adminLogin'); //gọi trang login hiển thị lên
+    Route::post('login','LoginController@PostAdminLogin'); //xử lý
     //Hàng hóa / Nhóm sản phẩm
     Route::get('hanghoa/danhmuc','HanghoaController@layDanhSachHangHoa');
     Route::get('hanghoa/nhomsanpham','HanghoaController@layDanhSachNhomSanPham')->name('nhomsanpham');

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Đăng nhập</title>
     <link rel="stylesheet" href="{{ URL::asset('all/css/bootstrap.min.css') }}"/>
-    <link rel="stylesheet" href="{{ URL::asset('login/login.css')}}"/>
+    <link rel="stylesheet" href="{{ URL::asset('login/AdminLogin.css')}}"/>
 
     <link rel="stylesheet" type='text/css' href="{{ URL::asset('all/icon/css/fontawesome.min.css')}}"/>
     <link rel="stylesheet" type='text/css' href="{{ URL::asset('all/icon/css/fontawesome.css')}}"/>
@@ -19,25 +19,38 @@
     <div class="login-container container-fluid d-flex align-items-center justify-content-center" >
         <div class="login-form row">
             <div class="form-main">
-                <form>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        @foreach($errors->all() as $err)
+                            <li>{{$err}} </li>
+                        @endforeach
+                    </div>
+                @endif
+                @if(session('Thông báo'))
+                    <div class="alert alert-success">
+                        {{session('Thông báo')}}
+                    </div>
+                @endif
+                <form action="login" method="POST">
+                    @csrf()
                     <div class="header">
                         <img class="logo rounded mx-auto d-block" src="{{ URL::asset('all/img/logo_header.png') }}" alt="Error" height="100%">
                     </div>
                     <div class="body">
                             <div class="form-group">
                                     <h3 >Đăng nhập</h3>
-                                    <label for="username">Tên đăng nhập</label>
-                                    <input type="text" class="form-control rounded-pill" id="username" aria-describedby="emailHelp" placeholder="username">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control rounded-pill" name="email" aria-describedby="email">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="password">Mật khẩu</label>
-                                    <input type="password" class="form-control rounded-pill" id="password" placeholder="123456">
+                                    <input type="password" class="form-control rounded-pill" name="password" aria-describedby="password">
                                 </div>
 
                                 <div class="option text-center">
                                         <div class="form-group form-check d-inline-block">
-                                            <input type="checkbox" class="form-check-input" id="check">
+                                            <input type="checkbox" class="form-check-input" name="remember">
                                             <label class="form-check-label" for="check">Duy trì đăng nhập</label>
                                         </div>
                                         &nbsp;
@@ -64,5 +77,8 @@
                 Hỗ trợ: 0377158365
         </div>
     </div>
+    {{-- <script scr="{{URL::asset('all/js/jquery-3.4.1.min.js')}}"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="{{URL::asset('login/AdminLogin.js')}}"></script>
 </body>
 </html>
