@@ -105,7 +105,7 @@
                     <nav class="navbar navbar-expand-lg navbar-light">
                         <ul class="nav ">
                             <li class="nav-item">
-                            <a class="nav-link active" href="#">Tổng quan</a>
+                            <a class="nav-link active" href="{{route('tongquan')}}">Tổng quan</a>
                             </li>
                             <li class="nav-item dropdown">
                               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hàng hóa</a>
@@ -147,6 +147,18 @@
                                       <a class="dropdown-item" href="#">Nhà cung cấp</a>
                                       <a class="dropdown-item" href="#">Nhân viên</a>
                                       <a class="dropdown-item" href="#">Hóa đơn</a>
+                                      {{-- <a class="dropdown-item" href="#">Something else here</a>
+                                      <div class="dropdown-divider"></div>
+                                      <a class="dropdown-item" href="#">Separated link</a> --}}
+                                    </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Quản lý trang web</a>
+                                    <div class="dropdown-menu">
+                                      <a class="dropdown-item" href="#">Sản phẩm bán chạy</a>
+                                      <a class="dropdown-item" href="#">Sản phẩm nổi bật</a>
+                                      <a class="dropdown-item" href="#">Khuyến mãi</a>
                                       {{-- <a class="dropdown-item" href="#">Something else here</a>
                                       <div class="dropdown-divider"></div>
                                       <a class="dropdown-item" href="#">Separated link</a> --}}
@@ -244,9 +256,6 @@
   </footer>
   <!-- Footer -->
     </div>
-    <script src="{{URL::asset('manager/manager.js')}}"></script>
-    <script src="{{URL::asset('manager/event.js')}}"></script>
-    @yield('script')
     @yield('footer')
 </body>
 </html>

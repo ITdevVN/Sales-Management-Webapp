@@ -7,6 +7,7 @@
 @section('body')
 <div id="background-popup" class="hide d-flex align-items-center justify-content-center">
 
+{{-- Các popup Thêm,Sửa --}}
 <div id="popup-them" class="hide">
     <div id="popup-them-header">Thêm nhóm hàng hóa</div>
 
@@ -20,7 +21,7 @@
         </div>
         <div id="popup-body-button" class="float-right mb-3">
             <button type="button" class="btn btn-success" id="btnLuuThem">Lưu</button>
-            <button type="button" class="btn btn-danger btnHuyThem">Hủy bỏ</button>
+            <button type="button" class="btn btn-danger" id="btnHuyThem">Hủy bỏ</button>
         </div>
 
 </div>
@@ -39,8 +40,8 @@
                 </form>
             </div>
                 <div id="popup-body-button" class="float-right mb-3">
-                <button type="button" class="btn btn-success btnLuuSua">Lưu</button>
-                <button type="button" class="btn btn-danger btnHuySua">Hủy bỏ</button>
+                <button type="button" class="btn btn-success" id="btnLuuSua">Lưu</button>
+                <button type="button" class="btn btn-danger" id="btnHuySua">Hủy bỏ</button>
                 </div>
 
     </div>
@@ -48,14 +49,18 @@
 
 
 <div id="thanhcongcu">
-    <div id="h2id">
+    <div id="h2id" class="d-inline-block">
         <h2>Nhóm hàng hóa</h2>
     </div>
-        <div id="buttondiv">
-            <button type="button" class="btn btn-success thembutton">Thêm mới</button>
-            <button type="button" class="btn btn-warning suabutton">Sửa</button>
-            <button type="button" class="btn btn-danger xoabutton">Xóa</button>
-        </div>
+    <div class="form-group input-group-text col-lg-6 d-inline-block">
+        <input type="text" class="form-control" id="timkiem" aria-describedby="emailHelp" placeholder="Tìm kiếm...">
+        <small id="emailHelp" class="form-text text-muted">Tìm kiếm theo tên nhóm hàng</small>
+    </div>
+    <div id="buttondiv" class="d-inline-block">
+            <button type="button" class="btn btn-success" id="thembutton">Thêm mới</button>
+            <button type="button" class="btn btn-warning" id="suabutton">Sửa</button>
+            <button type="button" class="btn btn-danger" id="xoabutton">Xóa</button>
+    </div>
 </div>
 
 <div id="tablediv">

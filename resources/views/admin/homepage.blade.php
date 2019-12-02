@@ -73,3 +73,7 @@
 
 @stop
 
+@section('footer')
+<script src="{{URL::asset('manager/manager.js')}}"></script>
+<script src="{{URL::asset('manager/event.js')}}"></script>
+@stop

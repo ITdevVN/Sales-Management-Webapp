@@ -10,6 +10,4 @@ class HomeController extends Controller
     public function getHomeAdmin(){
         return view('admin/homepage');
     }
-
-    //Client
 }

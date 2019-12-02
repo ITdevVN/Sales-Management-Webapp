@@ -26,27 +26,25 @@ Route::prefix('admin')->group(function(){
     Route::get('login','LoginController@adminLogin'); //gọi trang login hiển thị lên
     Route::post('login','LoginController@PostAdminLogin'); //xử lý
     //Hàng hóa / Nhóm sản phẩm
-    Route::get('hanghoa/danhmuc','HanghoaController@layDanhSachHangHoa');
-    Route::get('hanghoa/nhomsanpham','HanghoaController@layDanhSachNhomSanPham')->name('nhomsanpham');
-    Route::get('hanghoa/nhomsanpham/them','HangHoaController@themNhomSanPham');
-    Route::get('hanghoa/nhomsanpham/xoatatca','HangHoaController@xoaTatCaNhomSanPham');
-    Route::get('hanghoa/nhomsanpham/xoa','HangHoaController@XoaNhomSanPham');
-    Route::get('hanghoa/nhomsanpham/sua','HangHoaController@suaNhomSanPham');
-
-
-
+    Route::get('hanghoa/danhmuc','NhomHangController@layDanhSachHangHoa');
+    Route::get('hanghoa/nhomsanpham','NhomHangController@layDanhSachNhomSanPham')->name('nhomsanpham');
+    Route::get('hanghoa/nhomsanpham/them','NhomHangController@themNhomSanPham');
+    Route::get('hanghoa/nhomsanpham/xoatatca','NhomHangController@xoaTatCaNhomSanPham');
+    Route::get('hanghoa/nhomsanpham/xoa','NhomHangController@XoaNhomSanPham');
+    Route::get('hanghoa/nhomsanpham/sua','NhomHangController@suaNhomSanPham');
+    Route::get('hanghoa/nhomsanpham/timkiem','NhomHangController@timKiemNhomHangTheoTen');
 
 
     //Hàng hóa/ Loại sản phẩm
     Route::get('hanghoa/loaisanpham','HanghoaController@layDanhSachLoaiSanPham');
 });
 
-// Route::prefix('admin')->group(function(){
-
-//     Route::get('homepage','HomeController@getHomeAdmin');
 
 
-// });
+Route::prefix('client')->group(function(){
+
+    Route::get('homepage','HomepageClientController@getHomeClient');
+});
 
 
 
