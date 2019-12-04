@@ -290,7 +290,7 @@
 					<div class="actions">
 						<figure class="liquid">
                             {{-- Đây là hình ảnh hiển thị đầu tiên --}}
-                        <img src="{{URL::asset($listSanPhamBanChay[$i]->hinh_anh)}}" alt="product1">
+                        <img src="{{URL::asset($listSanPhamBanChay[$i]->hinh_anh1)}}" alt="product1">
 						</figure>
 						<div>
 							<a href="#qv-p1" class="button quick-view" data-effect="mfp-3d-unfold">
@@ -307,7 +307,7 @@
 									<div class="product-photo">
 										<figure class="liquid">
                                             {{-- Đây là hình ảnh hiển thị đầu tiên --}}
-											<img src="{{URL::asset($listSanPhamBanChay[$i]->hinh_anh)}}" alt="product-image">
+											<img src="{{URL::asset($listSanPhamBanChay[$i]->hinh_anh1)}}" alt="product-image">
 										</figure>
 									</div>
 									<ul class="picture-views">
@@ -315,7 +315,7 @@
 										<!-- VIEW -->
 										<li class="selected">
 											<figure class="liquid">
-												<img src="{{URL::asset($listSanPhamBanChay[$i]->hinh_anh)}}" alt="picture-view">
+												<img src="{{URL::asset($listSanPhamBanChay[$i]->hinh_anh1)}}" alt="picture-view">
 											</figure>
 										</li>
 										<!-- /VIEW -->
@@ -323,7 +323,7 @@
 										<!-- VIEW -->
 										<li>
 											<figure class="liquid">
-												<img src="{{URL::asset($listSanPhamBanChay[$i]->hinh_anh)}}" alt="picture-view">
+												<img src="{{URL::asset($listSanPhamBanChay[$i]->hinh_anh1)}}" alt="picture-view">
 											</figure>
 										</li>
 										<!-- /VIEW -->

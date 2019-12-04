@@ -48,15 +48,15 @@
 </div>
 
 
-<div id="thanhcongcu">
-    <div id="h2id" class="d-inline-block">
-        <h2>Nhóm hàng hóa</h2>
+<div id="thanhcongcu" class="d-flex align-items-center justify-content-center">
+    <div class="d-inline-block ">
+        <h2 class="mr-5">Nhóm hàng hóa</h2>
     </div>
-    <div class="form-group input-group-text col-lg-6 d-inline-block">
+    <div class="form-group input-group-text col-lg-6 d-inline-block mr-5">
         <input type="text" class="form-control" id="timkiem" aria-describedby="emailHelp" placeholder="Tìm kiếm...">
         <small id="emailHelp" class="form-text text-muted">Tìm kiếm theo tên nhóm hàng</small>
     </div>
-    <div id="buttondiv" class="d-inline-block">
+    <div id="buttondiv">
             <button type="button" class="btn btn-success" id="thembutton">Thêm mới</button>
             <button type="button" class="btn btn-warning" id="suabutton">Sửa</button>
             <button type="button" class="btn btn-danger" id="xoabutton">Xóa</button>

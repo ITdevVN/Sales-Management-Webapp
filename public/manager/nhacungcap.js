@@ -10,7 +10,6 @@ $(document).ready(function(){
     //     }
     // });
 
-
     //Event for Adding
     $('#thembutton').on('click',function(){
         $('#background-popup').removeClass('hide');
@@ -18,14 +17,20 @@ $(document).ready(function(){
     });
 
     $('#btnLuuThem').click(function(){
-        var tenNhomHang=$('#tenNhomHangthem').val(); //lấy giá trị từ textbox người dùng nhập
-       $('#tenNhomHangthem').val(""); //trả giá trị về null cho textbox
+        var tenNhaCungCap=$('#tenNhaCungCapThem').val(); //lấy giá trị từ textbox người dùng nhập
+        var soDienThoai=$('#sodienthoaiThem').val();
+        var email=$('#emailThem').val();
+        var diachi=$('#diachiThem').val();
+       $('#tenNhaCungCapThem').val(""); //trả giá trị về null cho textbox
+       $('#sodienthoaiThem').val("");
+       $('#emailThem').val("");
+       $('#diachiThem').val("");
         $('#background-popup').addClass('hide'); //ẩn cửa sổ thêm
         $('#popup-them').addClass('hide'); //ẩn cửa sổ thêm
         $.ajax({ //ajax đưa đến controller
             type:"GET",
-            url:'nhomsanpham/them',
-            data:{'tenNhomHang':tenNhomHang}
+            url:'nhacungcap/them',
+            data:{'tenNhaCungCap':tenNhaCungCap,'soDienThoai':soDienThoai,'email':email,'diachi':diachi}
         }).done(function(res){
             $('#tablediv').fadeOut();
                 $('#tablediv').fadeIn();
@@ -53,12 +58,18 @@ $(document).ready(function(){
 
         $('.checkbox-group').each(function(){
             if ($(this).prop("checked")==true){
-                var number_of_Id=$(this).attr("id").match(/\d+/);
-                var ID=$('#main-table').find(".ma_nhom_hang").eq(number_of_Id).text();
-                var tenNhomHang=$('#main-table').find(".ten_nhom_hang").eq(number_of_Id).text();
+                var number_of_Id=$(this).attr("id").match(/\d+/); //lấy ra id của nút tick
+                var maNhaCungcap=$('#main-table').find(".ma_nha_cung_cap").eq(number_of_Id).text(); //lấy ra thuộc tính id theo vị trí
+                var tenNhaCungCap=$('#main-table').find(".ten_nha_cung_cap").eq(number_of_Id).text();
+                var soDienThoai=$('#main-table').find(".so_dien_thoai").eq(number_of_Id).text();
+                var email=$('#main-table').find(".email").eq(number_of_Id).text();
+                var diaChi=$('#main-table').find(".dia_chi").eq(number_of_Id).text();
                         //Hiển thị trên popup
-                $('#maNhomHangsua').val(ID);
-                $('#tenNhomHangsua').val(tenNhomHang);
+                $('#maNhaCungCapSua').val(maNhaCungcap);
+                $('#tenNhaCungCapSua').val(tenNhaCungCap);
+                $('#sodienthoaiSua').val(soDienThoai);
+                $('#emailSua').val(email);
+                $('#diachiSua').val(diaChi);
                     }
         });
        }else{
@@ -71,12 +82,15 @@ $(document).ready(function(){
         $('#background-popup').addClass('hide');
         $('#popup-sua').addClass('hide');
         //lấy giá trị mới từ người dùng nhập
-        thongTinCanSua.push($('#maNhomHangsua').val());
-        thongTinCanSua.push($('#tenNhomHangsua').val());
+        thongTinCanSua.push($('#maNhaCungCapSua').val());
+        thongTinCanSua.push($('#tenNhaCungCapSua').val());
+        thongTinCanSua.push($('#sodienthoaiSua').val());
+        thongTinCanSua.push($('#emailSua').val());
+        thongTinCanSua.push($('#diachiSua').val());
         $('#tenNhomHangsua').val("");
         $.ajax({
             type:"GET",
-            url:'nhomsanpham/sua',
+            url:'nhacungcap/sua',
             data:{'thongTinCanSua':thongTinCanSua}
         }).done(function(res){
             $('#tablediv').fadeOut();
@@ -97,12 +111,11 @@ $(document).ready(function(){
 
     $('#xoabutton').click(function(){
         //xet 2 truong hop
-        // if ( $('input[type=checkbox]:checked').not('#checkall').length>=1){
         if ($('#checkall').prop("checked")==true){
 
             $.ajax({
                 type:"GET",
-                url:'nhomsanpham/xoatatca',
+                url:'nhacungcap/xoatatca',
                 data:"",
             }).done(function(res){
                 $('#tablediv').fadeOut();
@@ -118,11 +131,11 @@ $(document).ready(function(){
             $('.checkbox-group').each(function(){
                 if ($(this).prop("checked")==true){
                     var number_of_Id=$(this).attr("id").match(/\d+/);
-                    var ID=$('#main-table').find(".ma_nhom_hang").eq(number_of_Id).text();
+                    var ID=$('#main-table').find(".ma_nha_cung_cap").eq(number_of_Id).text();
                     listCheckBoxXoa.push(ID);
                     $.ajax({
                         type:"GET",
-                        url:'nhomsanpham/xoa',
+                        url:'nhacungcap/xoa',
                         data:{'listCheckBoxXoa':listCheckBoxXoa},
                     }).done(function(res){
                         $('#tablediv').fadeOut();
@@ -134,22 +147,23 @@ $(document).ready(function(){
             });
 
          }
-        // }else{
-        //     $('#tablediv').prepend('<div class="alert alert-danger">Vui lòng chọn ít nhất 1 dòng để xóa</div>');
-        // }
+
     });
 
     $('#timkiem').change(function(){
+        var loaiTimKiem=$('#SelectForm').find(":selected").val();
         var keyWord=$('#timkiem').val();
         $.ajax({
             type:"GET",
-            url:'nhomsanpham/timkiem',
-            data:{'keyWord':keyWord}
+            url:'nhacungcap/timkiem',
+            data:{'keyWord':keyWord,'loaiTimKiem':loaiTimKiem}
         }).done(function(res){
             $('#tablediv').fadeOut();
                 $('#tablediv').fadeIn();
                 $('#tablediv').html(res);
         })
-    })
+    });
+
+    //Validate
 
 })
