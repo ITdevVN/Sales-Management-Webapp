@@ -43,11 +43,27 @@ Route::prefix('admin')->group(function(){
     Route::get('nhacungcap/xoa','NhaCungCapController@xoaNhaCungCap');
     Route::get('nhacungcap/xoatatca','NhaCungCapController@xoaTatCaNhaCungCap');
     Route::get('nhacungcap/timkiem','NhaCungCapController@timKiemNhaCungCap');
-    //validate
-    Route::post('nhacungcap/them/validate','NhaCungCapController@themNhaCungCapValidate')->name('nhacungcap.validate.them');
+
+    //Sản phẩm
+    Route::get('sanpham','SanPhamController@hienThiDanhSachSanPham')->name('sanpham');
+    Route::post('sanpham/them','SanPhamController@themSanPham')->name('sanpham.them');
+    Route::get('sanpham/sua','SanPhamController@suaSanPham');
+    Route::get('sanpham/xoa','SanPhamController@xoaSanPham');
+    Route::get('sanpham/xoatatca','SanPhamController@xoaTatCaSanPham');
+    Route::get('sanpham/timkiem','SanPhamController@timKiemSanPham');
+    Route::get('sanpham/laychitietsanpham','SanPhamController@layChiTietSanPhamTheoID');
 
     //Hàng hóa/ Loại sản phẩm
     Route::get('hanghoa/loaisanpham','HanghoaController@layDanhSachLoaiSanPham');
+
+    //Quản lý khuyến mãi
+    Route::get('khuyenmai','KhuyenMaiController@hienThiDanhSachKhuyenMai')->name('khuyenmai'); //Hoàn thành
+    Route::POST('khuyenmai/them','KhuyenMaiController@themKhuyenMai')->name('khuyenmai.them'); //Hoàn thành
+    Route::post('khuyenmai/sua','KhuyenMaiController@suaThongTinKhuyenMai')->name('khuyenmai.sua');
+    Route::get('khuyenmai/xoa','KhuyenMaiController@xoaKhuyenMai'); // Hoàn thành
+    Route::get('khuyenmai/xoatatca','KhuyenMaiController@xoaTatCaKhuyenMai');
+    Route::get('khuyenmai/timkiem','KhuyenMaiController@timKiem');
+    Route::get('khuyenmai/laytheoid','KhuyenMaiController@layThongTinKhuyenMaiTheoID')->name('khuyenmai.layID');// Hoàn thành
 
 });
 
@@ -55,7 +71,9 @@ Route::prefix('admin')->group(function(){
 
 Route::prefix('client')->group(function(){
 
-    Route::get('homepage','HomepageClientController@getHomeClient');
+    Route::get('homepage','HomepageClientController@hienThiTopSanPhamBanChay');
+    Route::get('homepage/list-item-popup','HomepageClientController@layChiTietSanPham');
+
 });
 
 

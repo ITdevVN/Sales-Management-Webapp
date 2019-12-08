@@ -102,15 +102,6 @@ class NhaCungCapController extends Controller
     }
 
     public function themNhaCungCap(Request $request){
-        //Kiểm tra ràng buột điều kiện
-
-        // $validator = Validator::make($request->all(),[
-        //     'tenNhaCungCap' => 'required',
-        //     'soDienThoai' => 'required|email',
-        //     'diachi' => 'required',
-        //     'diaChiThem'=>'required',
-        // ])->validate();
-        //
         $check=DB::select('call themNhaCungCap(?,?,?,?)',array($request->tenNhaCungCap,
         $request->soDienThoai, $request->email, $request->diachi));
          $result=$check[0]->rows_count;

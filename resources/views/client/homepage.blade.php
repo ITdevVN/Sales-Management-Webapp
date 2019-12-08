@@ -286,6 +286,16 @@
 
 				<!-- PRODUCT -->
             <li id="{{$listSanPhamBanChay[$i]->ma_san_pham}}" class="list-item">
+
+                <!-- PIN -->
+					<div class="pin circle" id="giamgia">
+                            <h6>Sale!</h6>
+                            <h6 class="percent important">20%</h6>
+                            <h6>off</h6>
+                        </div>
+                        <!-- /PIN -->
+
+
 					<!-- ACTIONS -->
 					<div class="actions">
 						<figure class="liquid">
@@ -299,7 +309,18 @@
 									<use xlink:href="#svg-quickview"></use>
 								</svg>
 								<!-- /SVG QUICKVIEW -->
-							</a>
+                            </a>
+
+
+
+
+
+
+
+
+
+
+
 							<!-- QUICK VIEW POPUP -->
 							<div id="qv-p1" class="product-quick-view mfp-with-anim mfp-hide">
 								<!-- PRODUCT PICTURES -->
@@ -315,7 +336,7 @@
 										<!-- VIEW -->
 										<li class="selected">
 											<figure class="liquid">
-												<img src="{{URL::asset($listSanPhamBanChay[$i]->hinh_anh1)}}" alt="picture-view">
+												<img src="{{URL::asset($listSanPhamBanChay[$i]->hinh_anh2)}}" alt="picture-view">
 											</figure>
 										</li>
 										<!-- /VIEW -->
@@ -323,7 +344,7 @@
 										<!-- VIEW -->
 										<li>
 											<figure class="liquid">
-												<img src="{{URL::asset($listSanPhamBanChay[$i]->hinh_anh1)}}" alt="picture-view">
+												<img src="{{URL::asset($listSanPhamBanChay[$i]->hinh_anh3)}}" alt="picture-view">
 											</figure>
 										</li>
 										<!-- /VIEW -->
@@ -333,9 +354,9 @@
 
 								<!-- PRODUCT DESCRIPTION -->
 								<div class="product-description">
-                                <a href="#"><p class="highlighted category">{{$listSanPhamBanChay[$i]->ten_nhom_hang}}</p></a>
+                                <a href="#"><p class="highlighted category" id="tennhomhang_quickview"></p></a>
                                     {{-- Đây là tiêu đề cửa sổ hiển thị lên --}}
-                                <a href="#"><h6>{{$listSanPhamBanChay[$i]->ten_san_pham}}</h6></a>
+                                <a href="#"><h6 id="tensanpham_quickview"></h6></a>
 									<!-- RATING -->
 									<ul class="rating big">
 										<li class="filled">
@@ -375,27 +396,11 @@
 										</li>
 									</ul>
 									<!-- /RATING -->
-                                <p>{{$listSanPhamBanChay[$i]->thong_tin_san_pham}}</p>
-                                <p class="highlighted current">{{number_format($listSanPhamBanChay[$i]->gia_ban)}}</p>
+                                <p id="thongtinsanpham_quickview"></p>
+                                <p class="highlighted current" id="giaban_quickview"></p>
 									<p class="highlighted previous">90.25</p>
-									<h5 class="stock">Trạng thái:
-                                        <!-- SVG CHECK -->
-                                        @if($listSanPhamBanChay[$i]->ton_kho==0)
-                                        <svg class="svg-plus">
-                                                <use xlink:href="#svg-plus"></use>
-                                            </svg>
-                                        @else
-                                        <svg class="svg-check">
-                                                <use xlink:href="#svg-check"></use>
-                                            </svg>
-                                        @endif
+									<h5 id="tonkho_quickview" class="stock">
 
-                                        <!-- /SVG CHECK -->
-                                        @if($listSanPhamBanChay[$i]->ton_kho==0)
-                                    <span class="not-available">{{$listSanPhamBanChay[$i]->trang_thai}}</span>
-                                        @else
-                                        <span class="available">{{$listSanPhamBanChay[$i]->trang_thai}}</span>
-                                        @endif
 									</h5>
 									{{-- <h5>Select Size:</h5>
 									<form class="westeros-form">
@@ -451,30 +456,19 @@
 											</svg>
 											<!-- /SVG WISHLIST -->
                                         </a>
-                                        @if ($listSanPhamBanChay[$i]->ton_kho>0)
-										<a href="#" class="button cart-add">
-											<!-- SVG PLUS -->
-											<svg class="svg-plus">
-												<use xlink:href="#svg-plus"></use>
-											</svg>
-											<!-- /SVG PLUS -->
-											Thêm vào giỏ
+
+										<a href="#" id="themgiohang_hethang_quickview">
+
                                         </a>
-                                        @else
-                                        <a href="#" class="button no-stock">
-                                                <!-- SVG PLUS -->
-                                                <svg class="svg-plus">
-                                                    <use xlink:href="#svg-plus"></use>
-                                                </svg>
-                                                <!-- /SVG PLUS -->
-                                                Hết hàng
-                                            </a>
-                                        @endif
+
 									</div>
 								</div>
 								<!-- /PRODUCT DESCRIPTION -->
 							</div>
                             <!-- /QUICK VIEW POPUP -->
+
+
+
 
 
 
@@ -548,12 +542,14 @@
 							<!-- /RATING -->
 						</div>
 						<div class="clearfix">
-							<a href="#"><h6>{{$listSanPhamBanChay[$i]->ten_san_pham}}</h6></a>
+                            <a href="#"><h6>{{$listSanPhamBanChay[$i]->ten_san_pham}}</h6></a>
+                            <p class="highlighted previous">{{number_format(5000)}}</p>
 						</div>
 						<div class="clearfix">
                         <p>{{$listSanPhamBanChay[$i]->ten_loai}}</p>
                             {{-- Giá bán hiển thị ở ngoài --}}
                         <p class="highlighted current">{{number_format($listSanPhamBanChay[$i]->gia_ban)}}</p>
+
 						</div>
 
                         <!-- CART OPTIONS -->
@@ -604,24 +600,43 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			</ul>
 			<!-- /PRODUCT LIST -->
 		</section>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	<!-- /PRODUCT SHOWCASE -->
@@ -962,4 +977,6 @@
 <script src="{{URL::asset('client/js/menu.js')}}"></script>
 <!-- Home -->
 <script src="{{URL::asset('client/js/home.js')}}"></script>
+<!-- Sử lý phần hiển thị popup -->
+<script src="{{URL::asset('client/js/quickview.js')}}"></script>
 @stop

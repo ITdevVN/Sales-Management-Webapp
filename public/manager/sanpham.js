@@ -1,41 +1,44 @@
 
 $(document).ready(function(){
 
-    // $('#checkall').on('click',function(){
-    //     alert("Function when click checkall");
-    //     if ($(this).prop("checked")==true)
-    //         $('.checkbox-group').prop('checked',true);
-    //     else{
-    //         $('.checkbox-group').prop('checked',false);
-    //     }
-    // });
-
     //Event for Adding
     $('#thembutton').on('click',function(){
         $('#background-popup').removeClass('hide');
         $('#popup-them').removeClass('hide');
     });
 
-    $('#btnLuuThem').click(function(){
-        var tenNhaCungCap=$('#tenNhaCungCapThem').val(); //lấy giá trị từ textbox người dùng nhập
-        var soDienThoai=$('#sodienthoaiThem').val();
-        var email=$('#emailThem').val();
-        var diachi=$('#diachiThem').val();
-       $('#tenNhaCungCapThem').val(""); //trả giá trị về null cho textbox
-       $('#sodienthoaiThem').val("");
-       $('#emailThem').val("");
-       $('#diachiThem').val("");
-        $('#background-popup').addClass('hide'); //ẩn cửa sổ thêm
-        $('#popup-them').addClass('hide'); //ẩn cửa sổ thêm
-        $.ajax({ //ajax đưa đến controller
-            type:"GET",
-            url:'nhacungcap/them',
-            data:{'tenNhaCungCap':tenNhaCungCap,'soDienThoai':soDienThoai,'email':email,'diachi':diachi}
-        }).done(function(res){
-            $('#tablediv').fadeOut();
-                $('#tablediv').fadeIn();
-                $('#tablediv').html(res);
-        })
+    $('#form').submit(function(e){
+       // var postData = new FormData($("#uploadForm")[0]);
+        var route=$('#form').data('route');
+        $.ajax({
+            type: "post",
+            url: route,
+            data: new FormData(this),
+            dataType: 'JSON',
+            contentType: false,
+            cache:false,
+            processData: false,
+            success: function(res){
+                $('#tablediv').html(res.output);
+                //Thêm phần báo lỗi erros
+                $('#errors').html("<div class=\"alert alert-danger\"><ul id=\"itemdiv\"></ul></div>");
+                $.each(res.errors,function(index,value){
+                    $('#itemdiv').append("<li>"+value+"</li>");
+                });
+            //    // alert(res.result);
+            //     if (res.result==0){
+            //         alert("result=0");
+            //     }else{
+            //         $('#background-popup').addClass('hide');
+            //         $('#popup-them').addClass('hide');
+            //     }
+            },
+            error: function(res){
+                alert("Xuất hiện lỗi: "+res);
+            }
+
+        });
+        e.preventDefault();
     });
 
 
@@ -59,17 +62,30 @@ $(document).ready(function(){
         $('.checkbox-group').each(function(){
             if ($(this).prop("checked")==true){
                 var number_of_Id=$(this).attr("id").match(/\d+/); //lấy ra id của nút tick
-                var maNhaCungcap=$('#main-table').find(".ma_nha_cung_cap").eq(number_of_Id).text(); //lấy ra thuộc tính id theo vị trí
-                var tenNhaCungCap=$('#main-table').find(".ten_nha_cung_cap").eq(number_of_Id).text();
-                var soDienThoai=$('#main-table').find(".so_dien_thoai").eq(number_of_Id).text();
-                var email=$('#main-table').find(".email").eq(number_of_Id).text();
-                var diaChi=$('#main-table').find(".dia_chi").eq(number_of_Id).text();
+                var masanpham=$('#main-table').find(".ma_san_pham").eq(number_of_Id).text(); //lấy ra thuộc tính id theo vị trí
                         //Hiển thị trên popup
-                $('#maNhaCungCapSua').val(maNhaCungcap);
-                $('#tenNhaCungCapSua').val(tenNhaCungCap);
-                $('#sodienthoaiSua').val(soDienThoai);
-                $('#emailSua').val(email);
-                $('#diachiSua').val(diaChi);
+                // $('#maNhaCungCapSua').val(maNhaCungcap);
+                // $('#tenNhaCungCapSua').val(tenNhaCungCap);
+                // $('#sodienthoaiSua').val(soDienThoai);
+                // $('#emailSua').val(email);
+                // $('#diachiSua').val(diaChi);
+                // $('#tenNhomHangsua').val("");
+                $.ajax({
+                    type:"GET",
+                    url:'sanpham/laychitietsanpham',
+                    data:{'masanpham':masanpham}
+                }).done(function(res){
+                    $('#masanphamsua').val(res[0]);
+                    $('#tensanphamsua').val(res[1]);
+                    $('#masanphamsua').val(res[2]);
+                    $('#masanphamsua').val(res[3]);
+                    $('#tensanphamsua').val(res[4]);
+                    $('#masanphamsua').val(res[6]);
+                    $('#giavonsua').val(res[7]);
+                    $('#giabansua').val(res[8]);
+                    $('#tonkhosua').val(res[9]);
+                    $('#textareasua').val(res[11]);
+                })
                     }
         });
        }else{
@@ -107,15 +123,13 @@ $(document).ready(function(){
 
 
     //Event for Deleting
-
-
     $('#xoabutton').click(function(){
         //xet 2 truong hop
         if ($('#checkall').prop("checked")==true){
 
             $.ajax({
                 type:"GET",
-                url:'nhacungcap/xoatatca',
+                url:'sanpham/xoatatca',
                 data:"",
             }).done(function(res){
                 $('#tablediv').fadeOut();
@@ -131,11 +145,11 @@ $(document).ready(function(){
             $('.checkbox-group').each(function(){
                 if ($(this).prop("checked")==true){
                     var number_of_Id=$(this).attr("id").match(/\d+/);
-                    var ID=$('#main-table').find(".ma_nha_cung_cap").eq(number_of_Id).text();
+                    var ID=$('#main-table').find(".ma_san_pham").eq(number_of_Id).text();
                     listCheckBoxXoa.push(ID);
                     $.ajax({
                         type:"GET",
-                        url:'nhacungcap/xoa',
+                        url:'sanpham/xoa',
                         data:{'listCheckBoxXoa':listCheckBoxXoa},
                     }).done(function(res){
                         $('#tablediv').fadeOut();

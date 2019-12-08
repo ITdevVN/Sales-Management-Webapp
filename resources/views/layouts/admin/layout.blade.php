@@ -108,9 +108,9 @@
                             <a class="nav-link active" href="{{route('tongquan')}}">Tổng quan</a>
                             </li>
                             <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hàng hóa</a>
+                              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
                               <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Danh mục</a>
+                              <a class="dropdown-item" href="{{route('sanpham')}}">Danh mục</a>
                                 <a class="dropdown-item" href="#">Thiết lập giá</a>
                               <a class="dropdown-item" href="{{route('nhomsanpham')}}">Nhóm sản phẩm</a>
                                 <a class="dropdown-item" href="#">Loại sản phẩm</a>
@@ -122,6 +122,9 @@
                             <li class="nav-item">
                               <a class="nav-link" href="#">Hóa đơn</a>
                             </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="{{route('khuyenmai')}}">Khuyến mãi</a>
+                                  </li>
                             <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Đối tác</a>
                                     <div class="dropdown-menu">
@@ -153,17 +156,7 @@
                                     </div>
                             </li>
 
-                            <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Quản lý trang web</a>
-                                    <div class="dropdown-menu">
-                                      <a class="dropdown-item" href="#">Sản phẩm bán chạy</a>
-                                      <a class="dropdown-item" href="#">Sản phẩm nổi bật</a>
-                                      <a class="dropdown-item" href="#">Khuyến mãi</a>
-                                      {{-- <a class="dropdown-item" href="#">Something else here</a>
-                                      <div class="dropdown-divider"></div>
-                                      <a class="dropdown-item" href="#">Separated link</a> --}}
-                                    </div>
-                            </li>
+
 
                           </ul>
                           </nav>
