@@ -7,6 +7,7 @@
 @section('body')
 <div id="background-popup" class="hide d-flex align-items-center justify-content-center">
 {{-- Các popup Thêm,Sửa --}}
+<div id="messagethem" ></div>
 <div id="popup-them" class="hide">
     <div id="messagethem"></div>
     <div id="popup-them-header">Thêm chương trình khuyến mãi</div>
@@ -14,35 +15,35 @@
             @csrf
             <div id="popup-them-body">
                 <div class="form-group row">
-                    <label for="them_tenkhuyenmai" class="col-sm-5 col-form-label font-weight-bold" >Tên khuyến mãi</label>
+                    <label for="them_tenkhuyenmai" class="col-form-label font-weight-bold" >Tên khuyến mãi</label>
                     <div class="col-sm-7">
                         <input type="text" class="form-control" name="them_tenkhuyenmai" id="them_tenkhuyenmai" aria-describedby="emailHelp">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group row">
                         <label for="them_noidung" class="font-weight-bold">Nội dung</label>
                         <textarea class="form-control" name="them_noidung" id="them_noidung" rows="3"></textarea>
                       </div>
                 <div class="form-group row">
-                    <label for="them_batdau" class="col-sm-5 col-form-label font-weight-bold">Ngày bắt đầu</label>
+                    <label for="them_batdau" class="col-form-label font-weight-bold">Ngày bắt đầu</label>
                     <div class="col-sm-7">
                         <input type="date" class="form-control" name="them_batdau" id="them_batdau" aria-describedby="emailHelp">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="them_ngayketthuc" class="col-sm-5 col-form-label font-weight-bold">Ngày kết thúc</label>
+                    <label for="them_ngayketthuc" class="col-form-label font-weight-bold">Ngày kết thúc</label>
                     <div class="col-sm-7">
                         <input type="date" class="form-control" name="them_ngayketthuc" id="them_ngayketthuc" aria-describedby="emailHelp">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="them_tile" class="col-sm-5 col-form-label font-weight-bold">Tỉ lệ khuyến mãi</label>
+                    <label for="them_tile" class="col-form-label font-weight-bold">Tỉ lệ khuyến mãi</label>
                     <div class="col-sm-7">
                         <input type="text" class="form-control" name="them_tile" id="them_tile" aria-describedby="emailHelp">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="mr-sm-2 font-weight-bold" for="them_maloai">Chọn loại hàng</label>
+                    <label class="font-weight-bold" for="them_maloai">Loại sản phẩm</label>
                     <select class="custom-select mr-sm-2" id="them_maloai" name="them_maloai">
                         @foreach($listLoaiSanPham as $item)
                         <option value="{{$item->ma_loai}}">{{$item->ten_loai}}</option>
@@ -63,49 +64,48 @@
         </form>
     </div>
 
-
+    <div id="messagesua"></div>
     <div id="popup-sua" class="hide">
-            <div id="messagesua"></div>
             <div id="popup-sua-header">Sửa thông tin chương trình khuyến mãi</div>
                 <form id="formsua" data-route="{{route('khuyenmai.sua')}}" method="POST">
                     @csrf
                     <div id="popup-sua-body">
                         <div class="form-group row">
-                                    <label for="sua_makhuyenmai" class="col-sm-5 col-form-label font-weight-bold" >Mã khuyến mãi</label>
+                                    <label for="sua_makhuyenmai" class="col-form-label font-weight-bold" >Mã khuyến mãi</label>
                                     <div class="col-sm-7">
                                         <input readonly type="text" class="form-control" name="sua_makhuyenmai" id="sua_makhuyenmai" aria-describedby="emailHelp">
                                     </div>
                                 </div>
                         <div class="form-group row">
-                            <label for="sua_tenkhuyenmai" class="col-sm-5 col-form-label font-weight-bold" >Tên khuyến mãi</label>
+                            <label for="sua_tenkhuyenmai" class="col-form-label font-weight-bold" >Tên khuyến mãi</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" name="sua_tenkhuyenmai" id="sua_tenkhuyenmai" aria-describedby="emailHelp">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group row">
                                 <label for="sua_noidung" class="font-weight-bold">Nội dung</label>
                                 <textarea class="form-control" name="sua_noidung" id="sua_noidung" rows="3"></textarea>
                               </div>
                         <div class="form-group row">
-                            <label for="sua_batdau" class="col-sm-5 col-form-label">Ngày bắt đầu</label>
+                            <label for="sua_batdau" class="col-form-label">Ngày bắt đầu</label>
                             <div class="col-sm-7">
                                 <input type="date" class="form-control" name="sua_batdau" id="sua_batdau" aria-describedby="emailHelp">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="sua_ngayketthuc" class="col-sm-5 col-form-label">Ngày kết thúc</label>
+                            <label for="sua_ngayketthuc" class="col-form-label">Ngày kết thúc</label>
                             <div class="col-sm-7">
                                 <input type="date" class="form-control" name="sua_ngayketthuc" id="sua_ngayketthuc" aria-describedby="emailHelp">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="sua_tile" class="col-sm-5 col-form-label">Tỉ lệ khuyến mãi</label>
+                            <label for="sua_tile" class="col-form-label">Tỉ lệ khuyến mãi</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" name="sua_tile" id="sua_tile" aria-describedby="emailHelp">
                             </div>
                         </div>
-                        <div class="col-auto my-1">
-                            <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                        <div class="form-group row">
+                            <label class="font-weight-bold" for="inlineFormCustomSelect">Loại sản phẩm</label>
                             <select class="custom-select mr-sm-2" id="sua_maloai" name="sua_maloai">
                                 @foreach($listLoaiSanPham as $item)
                                 <option value="{{$item->ma_loai}}">{{$item->ten_loai}}</option>
@@ -113,7 +113,7 @@
                             </select>
                         </div>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="sua_file" id="sua_file">
+                            <input type="file" class="custom-file form-group row" name="sua_file" id="sua_file">
                             <label class="custom-file-label" for="customFile">Chọn tệp hình ảnh</label>
                         </div>
                     </div>
@@ -158,6 +158,7 @@
 
 
 <div id="tablediv">
+<div id="result"></div>
 <table id="main-table" class="table table-hover table-striped">
     <thead>
       <tr>

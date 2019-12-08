@@ -90,3 +90,15 @@ thead{
     overflow-y: scroll;
 }
 
+#messagethem{
+    z-index: 3;
+    position: absolute;
+
+}
+
+
+#messagesua{
+    z-index: 3;
+    position: absolute;
+}
+

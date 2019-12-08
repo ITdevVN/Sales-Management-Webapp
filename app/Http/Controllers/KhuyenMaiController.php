@@ -13,7 +13,7 @@ class KhuyenMaiController extends Controller
     public function reloadTable($string){
         $list=DB::select('call hienThiDanhSachKhuyenMai()');
         $output='
-        <div class="alert alert-success">'.$string.' thành công</div>
+        <div id="alert" class="alert alert-success">'.$string.' thành công</div>
         ';
         $output .='<table id="main-table" class="table table-hover table-striped">
         <thead>
@@ -118,12 +118,12 @@ class KhuyenMaiController extends Controller
 
     public function suaThongTinKhuyenMai(Request $request){
         $validator= Validator::make($request->all(),[
-            // 'sua_tenkhuyenmai'=>'required|max:255',
-            // 'sua_noidung'=>'required',
-            // 'sua_file'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
-            // 'sua_batdau'=>'required',
-            // 'sua_ngayketthuc'=>'required',
-            // 'sua_tile'=>'required'
+            'sua_tenkhuyenmai'=>'required|max:255',
+            'sua_noidung'=>'required',
+            'sua_file'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'sua_batdau'=>'required',
+            'sua_ngayketthuc'=>'required',
+            'sua_tile'=>'required'
         ]);
 
 

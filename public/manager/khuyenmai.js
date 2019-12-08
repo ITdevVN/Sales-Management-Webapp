@@ -1,14 +1,24 @@
 
 $(document).ready(function(){
 
+
+    $('#messagethem').click(function(){
+        $('#messagethem').fadeOut();
+    })
+
+    $('#messagesua').click(function(){
+        $('#messagesua').fadeOut();
+    })
+
+
     //Event for Adding
     $('#thembutton').on('click',function(){
         $('#background-popup').removeClass('hide');
         $('#popup-them').removeClass('hide');
     });
 
-    $('#formthem').submit(function(e){
 
+    $('#formthem').submit(function(e){
         var route=$('#formthem').data('route'); //lấy url chuyển tới controller khi click submit
         $.ajax({
             type: "POST",
@@ -25,8 +35,19 @@ $(document).ready(function(){
                 $('#tablediv').html(res.output);
                 $('#background-popup').addClass('hide');
                 $('#popup-them').addClass('hide');
+
+                $('#them_tenkhuyenmai').val("");
+                $('#them_noidung').val("");
+                $('#them_batdau').val("");
+                $('#them_ngayketthuc').val("");
+                $('#them_tile').val("");
+                $('#them_maloai').val("");
+                $('#them_file').val("");
+                $('#messagethem').fadeOut();
+                $('#alert').delay(5).fadeTo("slow",0.6);
                 }else{
-                    $('#messagethem').html("<div class=\"alert alert-danger ScrollStyle\"><ul id=\"itemdiv\"></ul></div>");
+                    $('#messagethem').fadeIn();
+                    $('#messagethem').html("<div class=\"alert alert-danger \"><ul id=\"itemdiv\"></ul></div>");
                     $.each(res.message,function(index,value){
                         $('#itemdiv').append("<li>"+value+"</li>");
                     });
@@ -44,6 +65,15 @@ $(document).ready(function(){
     $('#btnHuyThem').click(function(){
         $('#background-popup').addClass('hide');
         $('#popup-them').addClass('hide');
+        $('#them_tenkhuyenmai').val("");
+        $('#them_noidung').val("");
+        $('#them_batdau').val("");
+        $('#them_ngayketthuc').val("");
+        $('#them_tile').val("");
+        $('#them_maloai').val("");
+        $('#them_file').val("");
+        $('#messagethem').fadeOut();
+
     });
 
 
@@ -84,7 +114,7 @@ $(document).ready(function(){
             }
         });
        }else{
-           $('#tablediv').prepend('<div class="alert alert-danger">Vui lòng chọn 1 dòng để chỉnh sửa</div>');
+           $('#result').html('<div class="alert alert-danger">Vui lòng chọn 1 dòng để chỉnh sửa</div>');
        }
     });
 
@@ -107,8 +137,18 @@ $(document).ready(function(){
                 $('#tablediv').html(res.output);
                 $('#background-popup').addClass('hide');
                 $('#popup-sua').addClass('hide');
+
+                $('#sua_tenkhuyenmai').val("");
+                $('#sua_noidung').val("");
+                $('#sua_batdau').val("");
+                $('#sua_ngayketthuc').val("");
+                $('#sua_tile').val("");
+                $('#sua_maloai').val("");
+                $('#sua_file').val("");
+                $('#messagesua').fadeOut();
                 }else{
-                    $('#messagesua').html("<div class=\"alert alert-danger ScrollStyle\"><ul id=\"itemdiv\"></ul></div>");
+                    $('#messagesua').fadeIn();
+                    $('#messagesua').html("<div class=\"alert alert-danger\"><ul id=\"itemdiv\"></ul></div>");
                     $.each(res.message,function(index,value){
                         $('#itemdiv').append("<li>"+value+"</li>");
                     });
@@ -126,10 +166,20 @@ $(document).ready(function(){
     $('#btnHuysua').click(function(){
         $('#background-popup').addClass('hide');
         $('#popup-sua').addClass('hide');
+
+        $('#sua_tenkhuyenmai').val("");
+        $('#sua_noidung').val("");
+        $('#sua_batdau').val("");
+        $('#sua_ngayketthuc').val("");
+        $('#sua_tile').val("");
+        $('#sua_maloai').val("");
+        $('#sua_file').val("");
+        $('#messagesua').fadeOut();
     });
 
     //Event for Deleting
     $('#xoabutton').click(function(){
+        if (($('input[type=checkbox]:checked').not('#checkall').length<2) && ($('input[type=checkbox]:checked').not('#checkall').length>=1)){
         //xet 2 truong hop
         if ($('#checkall').prop("checked")==true){
 
@@ -166,7 +216,9 @@ $(document).ready(function(){
             });
 
          }
-
+        }else{
+            $('#result').html('<div class="alert alert-danger">Chọn ít nhất 1 dòng để xóa</div>');
+        }
     });
 
     $('#timkiem').change(function(){
