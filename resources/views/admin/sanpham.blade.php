@@ -44,10 +44,14 @@
                         <input type="file" class="custom-file-input" name="them_file1" id="them_file1">
                         <label class="custom-file-label" for="customFile">Hình ảnh 1</label>
                     </div>
+                <br>
+                <br>
                 <div class="custom-file form-group row" >
                     <input type="file" class="custom-file-input" name="them_file2" id="them_file2">
                     <label class="custom-file-label" for="customFile">Hình ảnh 2</label>
                 </div>
+            <br>
+            <br>
                 <div class="custom-file form-group row" >
                         <input type="file" class="custom-file-input" name="them_file3" id="them_file3">
                         <label class="custom-file-label" for="customFile">Hình ảnh 3</label>
@@ -78,7 +82,7 @@
                 </div>
                 <div class="form-group row">
                         <label for="them_chitietsanpham" class="font-weight-bold">Chi tiết sản phẩm</label>
-                        <textarea class="form-control" name="them_chitietsanpham" id="them_chitietsanpham" rows="2"></textarea>
+                        <textarea class="form-control" name="them_chitietsanpham" id="them_chitietsanpham" rows="4"></textarea>
                 </div>
             </div>
             {{-- Đóng div bên phải --}}
@@ -126,7 +130,7 @@
                                 <label class="col-4 font-weight-bold" for="sua_trangthai">Trạng thái</label>
                                     <div class="col-8">
                                         <select name="sua_trangthai" class="custom-select mr-sm-2" id="sua_trangthai">
-                                                <option value="Có thể kinh doanh">Có thể kinh doanh</option>
+                                                <option value="Được phép kinh doanh">Được phép kinh doanh</option>
                                                 <option value="Không kinh doanh">Không kinh doanh</option>
                                         </select>
                                     </div>
@@ -135,10 +139,14 @@
                                 <input type="file" class="custom-file-input" name="sua_file1" id="sua_file1">
                                 <label class="custom-file-label" for="customFile">Hình ảnh 1</label>
                             </div>
+                            <br>
+                <br>
                         <div class="custom-file form-group row" >
                             <input type="file" class="custom-file-input" name="sua_file2" id="sua_file2">
                             <label class="custom-file-label" for="customFile">Hình ảnh 2</label>
                         </div>
+                        <br>
+                <br>
                         <div class="custom-file form-group row" >
                                 <input type="file" class="custom-file-input" name="sua_file3" id="sua_file3">
                                 <label class="custom-file-label" for="customFile">Hình ảnh 3</label>
@@ -169,7 +177,7 @@
                         </div>
                         <div class="form-group row">
                                 <label for="sua_chitietsanpham" class="font-weight-bold">Chi tiết sản phẩm</label>
-                                <textarea class="form-control" name="sua_chitietsanpham" id="sua_chitietsanpham" rows="2"></textarea>
+                                <textarea class="form-control" name="sua_chitietsanpham" id="sua_chitietsanpham" rows="6"></textarea>
                         </div>
                     </div>
                     {{-- Đóng div bên phải --}}

@@ -64,7 +64,7 @@ Route::prefix('admin')->group(function(){
     Route::get('sanpham/xoa','SanPhamController@xoaSanPham');
     Route::get('sanpham/xoatatca','SanPhamController@xoaTatCaSanPham');
     Route::get('sanpham/timkiem','SanPhamController@timKiemSanPham');
-    Route::get('sanpham/laychitietsanpham','SanPhamController@layChiTietSanPhamTheoID');
+    Route::get('sanpham/laychitietsanpham','SanPhamController@layThongTinSanPhamTheoID');
 
 });
 

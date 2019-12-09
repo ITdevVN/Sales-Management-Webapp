@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Quotation;
 use Validator;
 
 class SanPhamController extends Controller
 {
     public function reloadTable($string){
-        $list=DB::select('call hienThiDanhSachKhuyenMai()');
+        $list=DB::select('call hienThiDanhSachSanPham()');
         $output='
         <div id="alert" class="alert alert-success">'.$string.' thành công</div>
         ';
@@ -74,7 +75,7 @@ class SanPhamController extends Controller
 
 
         if($validator->passes()){ //Nếu đã xét Validation thành công thì
-            $image1=$request1->file('them_file1');
+            $image1=$request->file('them_file1');
             $new_name1=rand().'.'.$image1->getClientOriginalExtension();
             $image1->move(public_path('client/images/items/'),$new_name1);
             $image2=$request->file('them_file2');
@@ -92,9 +93,9 @@ class SanPhamController extends Controller
                 $request->them_giavon,
                 $request->them_tonkho,
                 $request->them_trangthai,
-                'client/images/banners/'.$new_name1,
-                'client/images/banners/'.$new_name2,
-                'client/images/banners/'.$new_name3,
+                'client/images/items/'.$new_name1,
+                'client/images/items/'.$new_name2,
+                'client/images/items/'.$new_name3,
                 $request->them_maloai
             ));
 
@@ -113,17 +114,21 @@ class SanPhamController extends Controller
 
     }
 
-    public function layThongTinKhuyenMaiTheoID(Request $request){
+    public function layThongTinSanPhamTheoID(Request $request){
 
-        $chitiet=DB::select('call layThongTinKhuyenMaiTheoID(?)',array($request->ID));
-        $output[0]=$chitiet[0]->ma_khuyen_mai;
-        $output[1]=$chitiet[0]->ten_khuyen_mai;
-        $output[2]=$chitiet[0]->noi_dung;
-        $output[3]=$chitiet[0]->hinh_anh;
-        $output[4]=$chitiet[0]->bat_dau;
-        $output[5]=$chitiet[0]->ket_thuc;
-        $output[6]=$chitiet[0]->ti_le_khuyen_mai;
-        $output[7]=$chitiet[0]->ma_loai;
+        $chitiet=DB::select('call layThongTinSanPhamTheoID(?)',array($request->ID));
+        $output[0]=$chitiet[0]->ma_san_pham;
+        $output[1]=$chitiet[0]->hinh_anh1;
+        $output[2]=$chitiet[0]->hinh_anh2;
+        $output[3]=$chitiet[0]->hinh_anh3;
+        $output[4]=$chitiet[0]->ten_san_pham;
+        $output[5]=$chitiet[0]->ten_nhom_hang;
+        $output[6]=$chitiet[0]->ma_loai;
+        $output[7]=$chitiet[0]->gia_von;
+        $output[8]=$chitiet[0]->gia_ban;
+        $output[9]=$chitiet[0]->ton_kho;
+        $output[10]=$chitiet[0]->trang_thai;
+        $output[11]=$chitiet[0]->thong_tin_san_pham;
         return $output;
     }
 

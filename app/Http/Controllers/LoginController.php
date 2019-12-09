@@ -31,7 +31,7 @@ class LoginController extends Controller
         return "dung roi".$result[0]->email." ".$result[0]->mat_khau;
         }
         else{
-            return "loi oi";
+            return "loi roi";
         }
     }
 

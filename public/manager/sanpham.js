@@ -65,6 +65,8 @@ $(document).ready(function(){
 
 
     $('#btnHuyThem').click(function(){
+        $('#background-popup').addClass('hide');
+        $('#popup-them').addClass('hide');
         $('#them_tensanpham').val("");
                 $('#them_chitietsanpham').val("");
                 $('#them_giaban').val("");
@@ -94,18 +96,18 @@ $(document).ready(function(){
 
                 $.ajax({
                     type: "GET",
-                    url: 'khuyenmai/laytheoid',
+                    url: 'sanpham/laychitietsanpham',
                     data: {'ID':ID}, // gửi dữ liệu từ form qua controller
 
                     success: function(res){
-                        $('#sua_makhuyenmai').val(res[0]);
-                        $('#sua_tenkhuyenmai').val(res[1]);
-                        $('#sua_noidung').val(res[2]);
-                        $('#sua_file').val(res[3]);
-                        $('#sua_batdau').val(res[4]);
-                        $('#sua_ngayketthuc').val(res[5]);
-                        $('#sua_tile').val(res[6]);
-                        $('#sua_maloai').val(res[7]);
+                        $('#sua_masanpham').val(res[0]);
+                        $('#sua_tensanpham').val(res[4]);
+                        $('#sua_maloai').val(res[6]);
+                        $('#sua_giaban').val(res[7]);
+                        $('#sua_giavon').val(res[8]);
+                        $('#sua_tonkho').val(res[9]);
+                        $('#sua_trangthai').val(res[10]);
+                        $('#sua_chitietsanpham').val(res[11]);
                     },
                     error: function(res){
                         alert("Xuất hiện lỗi: "+res);
