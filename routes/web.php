@@ -22,9 +22,10 @@ Route::prefix('admin')->group(function(){
 
 
     Route::get('homepage','HomeController@getHomeAdmin')->name('tongquan');
+
     //Trang login cho admin
     Route::get('login','LoginController@adminLogin'); //gọi trang login hiển thị lên
-    Route::post('login','LoginController@PostAdminLogin'); //xử lý
+    Route::post('login','LoginController@PostAdminLogin')->name('checklogin'); //xử lý
 
 
     Route::get('hanghoa/danhmuc','NhomHangController@layDanhSachHangHoa');
@@ -57,9 +58,9 @@ Route::prefix('admin')->group(function(){
     Route::get('khuyenmai/laytheoid','KhuyenMaiController@layThongTinKhuyenMaiTheoID')->name('khuyenmai.layID');// Hoàn thành
 
     //Sản phẩm
-    Route::get('sanpham','SanPhamController@hienThiDanhSachSanPham')->name('sanpham');
+    Route::get('sanpham','SanPhamController@hienThiDanhSachSanPham')->name('sanpham'); //Hoàn thành
     Route::post('sanpham/them','SanPhamController@themSanPham')->name('sanpham.them');
-    Route::post('sanpham/sua','SanPhamController@suaSanPham');
+    Route::post('sanpham/sua','SanPhamController@suaSanPham')->name('sanpham.sua');
     Route::get('sanpham/xoa','SanPhamController@xoaSanPham');
     Route::get('sanpham/xoatatca','SanPhamController@xoaTatCaSanPham');
     Route::get('sanpham/timkiem','SanPhamController@timKiemSanPham');

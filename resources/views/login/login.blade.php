@@ -31,7 +31,7 @@
                         {{session('Thông báo')}}
                     </div>
                 @endif
-                <form action="login" method="POST">
+                <form action="{{route('checklogin')}}" method="POST">
                     @csrf()
                     <div class="header">
                         <img class="logo rounded mx-auto d-block" src="{{ URL::asset('all/img/logo_header.png') }}" alt="Error" height="100%">
@@ -61,7 +61,7 @@
                                 <div class="form-group">
                                     <span id="btn_quanly">
                                     <i class="icon_quanly fas fa-user-cog fa-2x" ></i>
-                                    <input class="button btn btn-success rounded-pill" type="submit" value="Quản lý" name="quanly">
+                                    <input class="button btn btn-success rounded-pill" type="submit" value="Đăng nhập" name="dangnhap">
                                     </span>
                                     <span id="btn_banhang">
                                         <i class="icon_banhang fas fa-shopping-cart fa-2x"></i>

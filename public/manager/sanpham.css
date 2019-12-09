@@ -86,7 +86,19 @@ thead{
 
 .ScrollStyle
 {
-    max-height: 500px;
+    max-height: 50px;
     overflow-y: scroll;
+}
+
+#messagethem{
+    z-index: 3;
+    position: absolute;
+
+}
+
+
+#messagesua{
+    z-index: 3;
+    position: absolute;
 }
 

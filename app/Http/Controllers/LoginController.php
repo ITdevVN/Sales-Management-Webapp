@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 
 class LoginController extends Controller
 {
@@ -24,14 +25,16 @@ class LoginController extends Controller
             'password.min'=>'Password phải ít nhất 6 ký tự',
             'password.max'=>'Password không quá 32 ký tự'
         ]);
-
-        $remember= $request->has('remember') ?true:false;
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password],$remember)){
-            return redirect('/');
-        }else{
-            return redirect()->back()->with('Thông báo','Đăng nhập thất bại');
+        $soluong=DB::select('call kiemTraSoLuongTaiKhoan(?,?)',array($request->email,$request->password));
+        if ($soluong[0]->so_luong>=1){
+        $result=DB::select('call xuLyDangNhap(?,?)',array($request->email,$request->password));
+        return "dung roi".$result[0]->email." ".$result[0]->mat_khau;
+        }
+        else{
+            return "loi oi";
         }
     }
+
 
     //Client
 }

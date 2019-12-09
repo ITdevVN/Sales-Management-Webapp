@@ -1,37 +1,59 @@
 
 $(document).ready(function(){
 
+
+    $('#messagethem').click(function(){
+        $('#messagethem').fadeOut();
+    })
+
+    $('#messagesua').click(function(){
+        $('#messagesua').fadeOut();
+    })
+
+
     //Event for Adding
     $('#thembutton').on('click',function(){
         $('#background-popup').removeClass('hide');
         $('#popup-them').removeClass('hide');
     });
 
-    $('#form').submit(function(e){
-       // var postData = new FormData($("#uploadForm")[0]);
-        var route=$('#form').data('route');
+
+    $('#formthem').submit(function(e){
+        var route=$('#formthem').data('route'); //lấy url chuyển tới controller khi click submit
         $.ajax({
-            type: "post",
+            type: "POST",
             url: route,
-            data: new FormData(this),
+            data: new FormData(this), // gửi dữ liệu từ form qua controller
             dataType: 'JSON',
             contentType: false,
             cache:false,
             processData: false,
             success: function(res){
+                if (res.flag==1){
+                $('#tablediv').fadeOut();
+                $('#tablediv').fadeIn();
                 $('#tablediv').html(res.output);
-                //Thêm phần báo lỗi erros
-                $('#errors').html("<div class=\"alert alert-danger\"><ul id=\"itemdiv\"></ul></div>");
-                $.each(res.errors,function(index,value){
-                    $('#itemdiv').append("<li>"+value+"</li>");
-                });
-            //    // alert(res.result);
-            //     if (res.result==0){
-            //         alert("result=0");
-            //     }else{
-            //         $('#background-popup').addClass('hide');
-            //         $('#popup-them').addClass('hide');
-            //     }
+                $('#background-popup').addClass('hide');
+                $('#popup-them').addClass('hide');
+
+                $('#them_tensanpham').val("");
+                $('#them_chitietsanpham').val("");
+                $('#them_giaban').val("");
+                $('#them_giavon').val("");
+                $('#them_tonkho').val("");
+                $('#them_trangthai').val("");
+                $('#them_file1').val("");
+                $('#them_file2').val("");
+                $('#them_file3').val("");
+                $('#messagethem').fadeOut();
+                $('#alert').delay(5).fadeTo("slow",0.6);
+                }else{
+                    $('#messagethem').fadeIn();
+                    $('#messagethem').html("<div class=\"alert alert-danger \"><ul id=\"itemdiv\"></ul></div>");
+                    $.each(res.message,function(index,value){
+                        $('#itemdiv').append("<li>"+value+"</li>");
+                    });
+                }
             },
             error: function(res){
                 alert("Xuất hiện lỗi: "+res);
@@ -43,8 +65,17 @@ $(document).ready(function(){
 
 
     $('#btnHuyThem').click(function(){
-        $('#background-popup').addClass('hide');
-        $('#popup-them').addClass('hide');
+        $('#them_tensanpham').val("");
+                $('#them_chitietsanpham').val("");
+                $('#them_giaban').val("");
+                $('#them_giavon').val("");
+                $('#them_tonkho').val("");
+                $('#them_trangthai').val("");
+                $('#them_file1').val("");
+                $('#them_file2').val("");
+                $('#them_file3').val("");
+        $('#messagethem').fadeOut();
+
     });
 
 
@@ -52,89 +83,116 @@ $(document).ready(function(){
 
     $('#suabutton').click(function(){
         //kiểm tra liệu người dùng đã check hay chưa
-        //($('input[type=checkbox]').is(':checked')) &&
        if (($('input[type=checkbox]:checked').not('#checkall').length<2) && ($('input[type=checkbox]:checked').not('#checkall').length>=1)){
 
         $('#background-popup').removeClass('hide');
         $('#popup-sua').removeClass('hide');
 
-
         $('.checkbox-group').each(function(){
             if ($(this).prop("checked")==true){
-                var number_of_Id=$(this).attr("id").match(/\d+/); //lấy ra id của nút tick
-                var masanpham=$('#main-table').find(".ma_san_pham").eq(number_of_Id).text(); //lấy ra thuộc tính id theo vị trí
-                        //Hiển thị trên popup
-                // $('#maNhaCungCapSua').val(maNhaCungcap);
-                // $('#tenNhaCungCapSua').val(tenNhaCungCap);
-                // $('#sodienthoaiSua').val(soDienThoai);
-                // $('#emailSua').val(email);
-                // $('#diachiSua').val(diaChi);
-                // $('#tenNhomHangsua').val("");
+                var ID=parseInt($(this).attr("id").match(/\d+/)); //lấy ra id của nút tick
+
                 $.ajax({
-                    type:"GET",
-                    url:'sanpham/laychitietsanpham',
-                    data:{'masanpham':masanpham}
-                }).done(function(res){
-                    $('#masanphamsua').val(res[0]);
-                    $('#tensanphamsua').val(res[1]);
-                    $('#masanphamsua').val(res[2]);
-                    $('#masanphamsua').val(res[3]);
-                    $('#tensanphamsua').val(res[4]);
-                    $('#masanphamsua').val(res[6]);
-                    $('#giavonsua').val(res[7]);
-                    $('#giabansua').val(res[8]);
-                    $('#tonkhosua').val(res[9]);
-                    $('#textareasua').val(res[11]);
-                })
+                    type: "GET",
+                    url: 'khuyenmai/laytheoid',
+                    data: {'ID':ID}, // gửi dữ liệu từ form qua controller
+
+                    success: function(res){
+                        $('#sua_makhuyenmai').val(res[0]);
+                        $('#sua_tenkhuyenmai').val(res[1]);
+                        $('#sua_noidung').val(res[2]);
+                        $('#sua_file').val(res[3]);
+                        $('#sua_batdau').val(res[4]);
+                        $('#sua_ngayketthuc').val(res[5]);
+                        $('#sua_tile').val(res[6]);
+                        $('#sua_maloai').val(res[7]);
+                    },
+                    error: function(res){
+                        alert("Xuất hiện lỗi: "+res);
                     }
+
+                });
+
+            }
         });
        }else{
-           $('#tablediv').prepend('<div class="alert alert-danger">Vui lòng chọn 1 dòng để chỉnh sửa</div>');
+           $('#result').html('<div class="alert alert-danger">Vui lòng chọn 1 dòng để chỉnh sửa</div>');
        }
     });
 
-    $('#btnLuuSua').click(function(){
-        var thongTinCanSua=[];
-        $('#background-popup').addClass('hide');
-        $('#popup-sua').addClass('hide');
-        //lấy giá trị mới từ người dùng nhập
-        thongTinCanSua.push($('#maNhaCungCapSua').val());
-        thongTinCanSua.push($('#tenNhaCungCapSua').val());
-        thongTinCanSua.push($('#sodienthoaiSua').val());
-        thongTinCanSua.push($('#emailSua').val());
-        thongTinCanSua.push($('#diachiSua').val());
-        $('#tenNhomHangsua').val("");
+    //Xử lý Sửa
+    $('#formsua').submit(function(e){
+
+        var route=$('#formsua').data('route'); //lấy url chuyển tới controller khi click submit
         $.ajax({
-            type:"GET",
-            url:'nhacungcap/sua',
-            data:{'thongTinCanSua':thongTinCanSua}
-        }).done(function(res){
-            $('#tablediv').fadeOut();
+            type: "POST",
+            url: route,
+            data: new FormData(this), // gửi dữ liệu từ form qua controller
+            dataType: 'JSON',
+            contentType: false,
+            cache:false,
+            processData: false,
+            success: function(res){
+                if (res.flag==1){
+                $('#tablediv').fadeOut();
                 $('#tablediv').fadeIn();
-                $('#tablediv').html(res);
-        })
+                $('#tablediv').html(res.output);
+                $('#background-popup').addClass('hide');
+                $('#popup-sua').addClass('hide');
+
+                $('#sua_tenkhuyenmai').val("");
+                $('#sua_noidung').val("");
+                $('#sua_batdau').val("");
+                $('#sua_ngayketthuc').val("");
+                $('#sua_tile').val("");
+                $('#sua_maloai').val("");
+                $('#sua_file').val("");
+                $('#messagesua').fadeOut();
+                }else{
+                    $('#messagesua').fadeIn();
+                    $('#messagesua').html("<div class=\"alert alert-danger\"><ul id=\"itemdiv\"></ul></div>");
+                    $.each(res.message,function(index,value){
+                        $('#itemdiv').append("<li>"+value+"</li>");
+                    });
+                }
+            },
+            error: function(res){
+                alert("Xuất hiện lỗi: "+res);
+            }
+
+        });
+        e.preventDefault();
     });
 
-        $('#btnHuySua').click(function(){
-            $('#background-popup').addClass('hide');
-            $('#popup-sua').addClass('hide');
-        });
 
+    $('#btnHuysua').click(function(){
+        $('#background-popup').addClass('hide');
+        $('#popup-sua').addClass('hide');
 
+        $('#sua_tenkhuyenmai').val("");
+        $('#sua_noidung').val("");
+        $('#sua_batdau').val("");
+        $('#sua_ngayketthuc').val("");
+        $('#sua_tile').val("");
+        $('#sua_maloai').val("");
+        $('#sua_file').val("");
+        $('#messagesua').fadeOut();
+    });
 
     //Event for Deleting
     $('#xoabutton').click(function(){
+        if (($('input[type=checkbox]:checked').not('#checkall').length<2) && ($('input[type=checkbox]:checked').not('#checkall').length>=1)){
         //xet 2 truong hop
         if ($('#checkall').prop("checked")==true){
 
             $.ajax({
                 type:"GET",
-                url:'sanpham/xoatatca',
+                url:'khuyenmai/xoatatca',
                 data:"",
             }).done(function(res){
                 $('#tablediv').fadeOut();
-                    $('#tablediv').fadeIn();
-                    $('#tablediv').html(res);
+                $('#tablediv').fadeIn();
+                $('#tablediv').html(res);
             })
 
             $('#background-popup').addClass('hide');
@@ -144,13 +202,12 @@ $(document).ready(function(){
             var listCheckBoxXoa=[];
             $('.checkbox-group').each(function(){
                 if ($(this).prop("checked")==true){
-                    var number_of_Id=$(this).attr("id").match(/\d+/);
-                    var ID=$('#main-table').find(".ma_san_pham").eq(number_of_Id).text();
+                    var ID=parseInt($(this).attr("id").match(/\d+/));
                     listCheckBoxXoa.push(ID);
                     $.ajax({
                         type:"GET",
-                        url:'sanpham/xoa',
-                        data:{'listCheckBoxXoa':listCheckBoxXoa},
+                        url:'khuyenmai/xoa',
+                        data:{'ID':ID},
                     }).done(function(res){
                         $('#tablediv').fadeOut();
                             $('#tablediv').fadeIn();
@@ -161,7 +218,9 @@ $(document).ready(function(){
             });
 
          }
-
+        }else{
+            $('#result').html('<div class="alert alert-danger">Chọn ít nhất 1 dòng để xóa</div>');
+        }
     });
 
     $('#timkiem').change(function(){

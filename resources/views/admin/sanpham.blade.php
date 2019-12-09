@@ -1,101 +1,190 @@
 @extends('layouts/admin/layout')
 
 @section('head')
-<meta name="csrf-token" content="{{ csrf_token() }}"/>
 <link rel="stylesheet" href="{{URL::asset('manager/sanpham.css')}}"/>
 @stop
 
 @section('body')
 <div id="background-popup" class="hide d-flex align-items-center justify-content-center">
 {{-- Các popup Thêm,Sửa --}}
-<div id="popup-them" class="hide ScrollStyle" >
-    <div id="errors"></div>
+<div id="messagethem" ></div>
+<div id="popup-them" class="hide w-75">
+    <div id="messagethem"></div>
     <div id="popup-them-header">Thêm sản phẩm</div>
-        <div id="popup-them-body" class="mr-5">
-            <form id="form" method="post" data-route="{{route('sanpham.them')}}">
-                @csrf
-                        <div id="content-left" class="col-6 d-inline-block">
-                                        <div class="form-group row">
-                                            <label for="tenSanPhamThem" class="col-sm-5 col-form-label font-weight-bold" >Tên sản phẩm</label>
-                                            <div class="col-sm-7">
-                                                <input type="text" class="form-control" name="tenSanPhamThem" id="tenSanPhamThem">
+        <form id="formthem" data-route="{{route('sanpham.them')}}" method="POST">
+            @csrf
+            <div id="popup-them-body">
+                <div class="col-6 d-inline-block">
+                <div class="form-group row">
+                    <label for="them_tensanpham" class="col-4 col-form-label font-weight-bold" >Tên sản phẩm</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="them_tensanpham" id="them_tensanpham" aria-describedby="emailHelp">
+                    </div>
+                </div>
+                <div class="form-group row">
+                        <label class="font-weight-bold col-4" for="them_maloai">Loại sản phẩm</label>
+                        <div class="col-8">
+                        <select class="custom-select mr-sm-2" id="them_maloai" name="them_maloai">
+                            @foreach($listLoaiSanPham as $item)
+                            <option value="{{$item->ma_loai}}">{{$item->ten_loai}}</option>
+                            @endforeach
+                        </select>
+                        </div>
+                </div>
+                <div class="form-group row">
+                        <label class="col-4 font-weight-bold" for="them_trangthai">Trạng thái</label>
+                            <div class="col-8">
+                                <select name="them_trangthai" class="custom-select mr-sm-2" id="them_trangthai">
+                                        <option value="Có thể kinh doanh">Có thể kinh doanh</option>
+                                        <option value="Không kinh doanh">Không kinh doanh</option>
+                                </select>
+                            </div>
+                </div>
+                <div class="custom-file form-group row" >
+                        <input type="file" class="custom-file-input" name="them_file1" id="them_file1">
+                        <label class="custom-file-label" for="customFile">Hình ảnh 1</label>
+                    </div>
+                <div class="custom-file form-group row" >
+                    <input type="file" class="custom-file-input" name="them_file2" id="them_file2">
+                    <label class="custom-file-label" for="customFile">Hình ảnh 2</label>
+                </div>
+                <div class="custom-file form-group row" >
+                        <input type="file" class="custom-file-input" name="them_file3" id="them_file3">
+                        <label class="custom-file-label" for="customFile">Hình ảnh 3</label>
+                </div>
 
-                                            </div>
-                                        </div>
 
-                                        <div class="form-group row">
-                                                <label class="col-sm-5 col-form-label font-weight-bold" for="loaiSanPham">Loại sản phẩm</label>
-                                                <div class="col-sm-7">
-                                                        <select name="loaiSanPhamThem" class="custom-select mr-sm-2" id="loaiSanPhamthem">
-                                                            @foreach($listLoaiSanPham as $item)
-                                                        <option value="{{$item->ma_loai}}">{{$item->ten_loai}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                </div>
-                                        </div>
+            </div>
+            {{-- Đóng div bên trái --}}
+            <div class="col-6 float-right">
 
-                                        <div class="form-group row">
-                                                <label class="col-sm-5 col-form-label font-weight-bold" for="inlineFormCustomSelect">Trạng thái</label>
-                                                <div class="col-sm-7">
-                                                        <select name="trangthaithem" class="custom-select mr-sm-2" id="trangthaithem">
-                                                                <option value="Có thể kinh doanh">Có thể kinh doanh</option>
-                                                                <option value="Không kinh doanh">Không kinh doanh</option>
-                                                        </select>
-                                                </div>
-                                        </div>
+                <div class="form-group row">
+                    <label for="them_giavon" class="col-4 col-form-label font-weight-bold">Giá vốn</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="them_giavon" id="them_giavon" aria-describedby="emailHelp">
+                    </div>
+                </div>
+                <div class="form-group row">
+                        <label for="them_giaban" class="col-4 col-form-label font-weight-bold">Giá bán</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="them_giaban" id="them_giaban" aria-describedby="emailHelp">
+                        </div>
+                </div>
+                <div class="form-group row">
+                        <label for="them_tonkho" class="col-4 col-form-label font-weight-bold">Tồn kho</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="them_tonkho" id="them_tonkho" aria-describedby="emailHelp">
+                        </div>
+                </div>
+                <div class="form-group row">
+                        <label for="them_chitietsanpham" class="font-weight-bold">Chi tiết sản phẩm</label>
+                        <textarea class="form-control" name="them_chitietsanpham" id="them_chitietsanpham" rows="2"></textarea>
+                </div>
+            </div>
+            {{-- Đóng div bên phải --}}
+            </div>
+            {{-- Đóng thẻ div của body --}}
+            <div id="popup-body-button" class="float-right  mb-3 mt-2">
+                <button type="submit" class="btn btn-success" id="btnLuuThem">Lưu</button>
+                <button type="button" class="btn btn-danger" id="btnHuyThem">Hủy bỏ</button>
+            </div>
 
-                                        <div class="form-group row">
-                                            <label for="file1Them" class="col-sm-5 col-form-label font-weight-bold">Hình ảnh 1</label>
-                                            <input name="file1Them" type="file" class="form-control-file col-sm-7" id="file1Them">
-                                        </div>
+        </form>
+    </div>
 
-                                        <div class="form-group row">
-                                                <label for="file2Them" class="col-sm-5 col-form-label font-weight-bold">Hình ảnh 2</label>
-                                                <input name="file2Them" type="file" class="form-control-file col-sm-7" id="file2Them">
+    <div id="messagesua"></div>
+    <div id="popup-sua" class="hide w-75">
+            <div id="messagesua"></div>
+            <div id="popup-sua-header">Thêm sản phẩm</div>
+                <form id="formsua" data-route="{{route('sanpham.sua')}}" method="POST">
+                    @csrf
+                    <div id="popup-sua-body">
+                        <div class="col-6 d-inline-block">
+                                <div class="form-group row">
+                                        <label for="sua_masanpham" class="col-4 col-form-label font-weight-bold" >Mã sản phẩm</label>
+                                        <div class="col-sm-7">
+                                            <input readonly type="text" class="form-control" name="sua_masanpham" id="sua_masanpham" aria-describedby="emailHelp">
                                         </div>
-                                        <div class="form-group row">
-                                                <label for="file3Them" class="col-sm-5 col-form-label font-weight-bold">Hình ảnh 3</label>
-                                                <input name="file3Them" type="file" class="form-control-file col-sm-7" id="file3Them">
-                                        </div>
+                                    </div>
+                        <div class="form-group row">
+                            <label for="sua_tensanpham" class="col-4 col-form-label font-weight-bold" >Tên sản phẩm</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="sua_tensanpham" id="sua_tensanpham" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                                <label class="font-weight-bold col-4" for="sua_maloai">Loại sản phẩm</label>
+                                <div class="col-8">
+                                <select class="custom-select mr-sm-2" id="sua_maloai" name="sua_maloai">
+                                    @foreach($listLoaiSanPham as $item)
+                                    <option value="{{$item->ma_loai}}">{{$item->ten_loai}}</option>
+                                    @endforeach
+                                </select>
+                                </div>
+                        </div>
+                        <div class="form-group row">
+                                <label class="col-4 font-weight-bold" for="sua_trangthai">Trạng thái</label>
+                                    <div class="col-8">
+                                        <select name="sua_trangthai" class="custom-select mr-sm-2" id="sua_trangthai">
+                                                <option value="Có thể kinh doanh">Có thể kinh doanh</option>
+                                                <option value="Không kinh doanh">Không kinh doanh</option>
+                                        </select>
+                                    </div>
+                        </div>
+                        <div class="custom-file form-group row" >
+                                <input type="file" class="custom-file-input" name="sua_file1" id="sua_file1">
+                                <label class="custom-file-label" for="customFile">Hình ảnh 1</label>
+                            </div>
+                        <div class="custom-file form-group row" >
+                            <input type="file" class="custom-file-input" name="sua_file2" id="sua_file2">
+                            <label class="custom-file-label" for="customFile">Hình ảnh 2</label>
+                        </div>
+                        <div class="custom-file form-group row" >
+                                <input type="file" class="custom-file-input" name="sua_file3" id="sua_file3">
+                                <label class="custom-file-label" for="customFile">Hình ảnh 3</label>
                         </div>
 
 
-                        <div id="content-right" class="col-6 float-right">
-                                        <div class="form-group row ml-4">
-                                            <label for="giavonthem" class="col-sm-6 col-form-label font-weight-bold" >Giá vốn</label>
-                                            <div class="col-sm-6">
-                                                <input type="number" class="form-control" name="giavonthem" id="giavonthem" >
-                                            </div>
-                                        </div>
-                                        <div class="form-group row ml-4">
-                                            <label for="giabanthem" class="col-sm-6 col-form-label font-weight-bold" >Giá bán</label>
-                                            <div class="col-sm-6">
-                                                <input type="number" class="form-control" name="giabanthem" id="giabanthem">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row ml-4">
-                                            <label for="tonkhothem" class="col-sm-6 col-form-label font-weight-bold">Tồn kho</label>
-                                            <div class="col-sm-6">
-                                                <input type="number" class="form-control" name="tonkhothem" id="tonkhothem" >
-                                            </div>
-                                        </div>
-                                        <div class="form-group row ml-5">
-                                            <label for="textareathem" class="font-weight-bold">Nhập thông tin chi tiết của sản phẩm</label>
-                                            <textarea name="textareathem" class="form-control" id="textareathem" rows="4" cols="25"></textarea>
-                                        </div>
-                        </div>
+                    </div>
+                    {{-- Đóng div bên trái --}}
+                    <div class="col-6 float-right">
 
-                         <div id="popup-body-button" class="float-right mb-3">
-                            <button type="submit" class="btn btn-success" id="btnLuuThem">Lưu</button>
-                            <button type="button" class="btn btn-danger" id="btnHuyThem">Hủy bỏ</button>
+                        <div class="form-group row">
+                            <label for="sua_giavon" class="col-4 col-form-label font-weight-bold">Giá vốn</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="sua_giavon" id="sua_giavon" aria-describedby="emailHelp">
+                            </div>
                         </div>
-            </form>
-        </div>
+                        <div class="form-group row">
+                                <label for="sua_giaban" class="col-4 col-form-label font-weight-bold">Giá bán</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="sua_giaban" id="sua_giaban" aria-describedby="emailHelp">
+                                </div>
+                        </div>
+                        <div class="form-group row">
+                                <label for="sua_tonkho" class="col-4 col-form-label font-weight-bold">Tồn kho</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="sua_tonkho" id="sua_tonkho" aria-describedby="emailHelp">
+                                </div>
+                        </div>
+                        <div class="form-group row">
+                                <label for="sua_chitietsanpham" class="font-weight-bold">Chi tiết sản phẩm</label>
+                                <textarea class="form-control" name="sua_chitietsanpham" id="sua_chitietsanpham" rows="2"></textarea>
+                        </div>
+                    </div>
+                    {{-- Đóng div bên phải --}}
+                    </div>
+                    {{-- Đóng thẻ div của body --}}
+                    <div id="popup-body-button" class="float-right mb-3 mt-2">
+                        <button type="submit" class="btn btn-success" id="btnLuusua">Lưu</button>
+                        <button type="button" class="btn btn-danger" id="btnHuysua">Hủy bỏ</button>
+                    </div>
+
+                </form>
+            </div>
+
 </div>
 
-
-
-</div>
 
 
 <div id="thanhcongcu" class="d-flex align-items-center justify-content-center">
@@ -106,11 +195,11 @@
             <div class="my-1 col-4 d-inline-block">
 
                     <select class="custom-select mr-sm-2" id="SelectForm">
-                      <option selected value="tensanpham">Tên sản phẩm</option>
-                      <option value="masanpham">Mã sản phẩm</option>
-                      <option value="nhomhang">Nhóm hàng</option>
-                      <option value="loaihang">Loại hàng</option>
-                      <option value="trangthai">Trạng thái</option>
+                      <option selected value="tennhacungcap">Tên sản phẩm</option>
+                      <option value="manhacungcap">Mã khuyến mãi</option>
+                      <option value="sodienthoai">Nội dung</option>
+                      <option value="email">Tỉ lệ</option>
+                      <option value="diachi">Tên nhóm hàng</option>
                     </select>
             </div>
         <input type="text" class="form-control col-8 d-inline-block" id="timkiem" aria-describedby="emailHelp" placeholder="Tìm kiếm...">
@@ -125,6 +214,7 @@
 
 
 <div id="tablediv">
+<div id="result"></div>
 <table id="main-table" class="table table-hover table-striped">
     <thead>
       <tr>
@@ -134,31 +224,29 @@
         <th scope="col">Mã sản phẩm</th>
         <th scope="col">Hình ảnh</th>
         <th scope="col">Tên sản phẩm</th>
-        <th scope="col">Nhóm hàng</th>
-        <th scope="col">Loại hàng</th>
         <th scope="col">Giá vốn</th>
         <th scope="col">Giá bán</th>
         <th scope="col">Tồn kho</th>
         <th scope="col">Trạng thái</th>
+        <th scope="col">Loại sản phẩm</th>
+        <th scope="col">Nhóm hàng</th>
       </tr>
     </thead>
     <tbody>
-    @for($i=0;$i<count($listSanPham);$i++)
+    @for($i=0;$i<count($list);$i++)
     <tr>
         <th>
-        <input type="checkbox" id="check{{$i}}" class="checkbox-group" aria-label="Checkbox for following text input">
+        <input type="checkbox" id="check{{$list[$i]->ma_san_pham}}" class="checkbox-group" aria-label="Checkbox for following text input">
         </th>
-        <td class="ma_san_pham">{{$listSanPham[$i]->ma_san_pham}}</td>
-        <td class="hinh_anh">
-            <img src="{{URL::asset($listSanPham[$i]->hinh_anh1)}}" height="80px">
-        </td>
-        <td class="ten_san_pham">{{$listSanPham[$i]->ten_san_pham}}</td>
-        <td class="ten_nhom_hang">{{$listSanPham[$i]->ten_nhom_hang}}</td>
-        <td class="ten_loai">{{$listSanPham[$i]->ten_loai}}</td>
-        <td class="gia_von">{{number_format($listSanPham[$i]->gia_von)}}</td>
-        <td class="gia_ban">{{number_format($listSanPham[$i]->gia_ban)}}</td>
-        <td class="ton_kho">{{$listSanPham[$i]->ton_kho}}</td>
-        <td class="trang_thai">{{$listSanPham[$i]->trang_thai}}</td>
+        <td >{{$list[$i]->ma_san_pham}}</td>
+        <td ><img src="{{URL::asset($list[$i]->hinh_anh1)}}" height="80px"/></td>
+        <td >{{$list[$i]->ten_san_pham}}</td>
+        <td >{{$list[$i]->gia_von}}</td>
+        <td >{{$list[$i]->gia_ban}}</td>
+        <td >{{$list[$i]->ton_kho}}</td>
+        <td >{{$list[$i]->trang_thai}}</td>
+        <td >{{$list[$i]->ten_loai}}</td>
+        <td >{{$list[$i]->ten_nhom_hang}}</td>
     </tr>
     @endfor
     </tbody>

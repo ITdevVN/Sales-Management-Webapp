@@ -3,29 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use DB;
-use App\Quotation;
 use Validator;
 
 class SanPhamController extends Controller
 {
-
-    public function reloadTableJQuery($result){
-        $listSanPham=DB::select('CALL hienThiDanhSachSanPham()');
-        if($result==0){ //không có dòng nào ảnh hưởng
-            $output='
-            <div class="popup-alert alert alert-danger">
-                Thất bại
-            </div>';
-        }else if($result>=1){
-            $output='
-            <div class="alert alert-success">
-            Thành công
-        </div>
-            ';
-        }
-        $output .= '<table id="main-table" class="table table-hover table-striped">
+    public function reloadTable($string){
+        $list=DB::select('call hienThiDanhSachKhuyenMai()');
+        $output='
+        <div id="alert" class="alert alert-success">'.$string.' thành công</div>
+        ';
+        $output .='<table id="main-table" class="table table-hover table-striped">
         <thead>
           <tr>
             <th scrope="col">
@@ -34,218 +22,161 @@ class SanPhamController extends Controller
             <th scope="col">Mã sản phẩm</th>
             <th scope="col">Hình ảnh</th>
             <th scope="col">Tên sản phẩm</th>
-            <th scope="col">Nhóm hàng</th>
-            <th scope="col">Loại hàng</th>
             <th scope="col">Giá vốn</th>
             <th scope="col">Giá bán</th>
             <th scope="col">Tồn kho</th>
             <th scope="col">Trạng thái</th>
-          </tr>
-        </thead>
-        <tbody>';
-        for($i=0;$i<count($listSanPham);$i++){
-            $output .= '<tr>
-                <th>
-                <input type="checkbox" id="check'.$i.'" class="checkbox-group" aria-label="Checkbox for following text input">
-                </th>
-                <td class="ma_san_pham">'.$listSanPham[$i]->ma_san_pham.'</td>
-                <td class="hinh_anh"><img src="http://localhost:82/DoAnWeb/public/'.$listSanPham[$i]->hinh_anh1.'" height="80px"> </td>
-                <td class="ten_san_pham">'.$listSanPham[$i]->ten_san_pham.'</td>
-                <td class="ten_nhom_hang">'.$listSanPham[$i]->ten_nhom_hang.'</td>
-                <td class="ten_loai">'.$listSanPham[$i]->ten_loai.'</td>
-                <td class="gia_von">'.number_format($listSanPham[$i]->gia_von).'</td>
-                <td class="gia_ban">'.number_format($listSanPham[$i]->gia_ban).'</td>
-                <td class="ton_kho">'.$listSanPham[$i]->ton_kho.'</td>
-                <td class="trang_thai">'.$listSanPham[$i]->trang_thai.'</td>
-            </tr>';
-        }
-        $output .= '</tbody></table>';
-        return $output;
-    }
-
-    public function reloadKetQuaTimKiem($listSanPham){
-        $output='';
-        if(count($listSanPham)==0){ //không có dòng nào ảnh hưởng
-            $output='
-            <div class="popup-alert alert alert-danger">
-                Không dòng nào được tìm thấy
-            </div>';
-        }
-        $output .= '<table id="main-table" class="table table-hover table-striped">
-        <thead>
-          <tr>
-            <th scrope="col">
-                <input type="checkbox" id="checkall" aria-label="Checkbox for following text input">
-            </th>
-            <th scope="col">Mã sản phẩm</th>
-            <th scope="col">Hình ảnh</th>
-            <th scope="col">Tên sản phẩm</th>
+            <th scope="col">Loại sản phẩm</th>
             <th scope="col">Nhóm hàng</th>
-            <th scope="col">Loại hàng</th>
-            <th scope="col">Giá vốn</th>
-            <th scope="col">Giá bán</th>
-            <th scope="col">Tồn kho</th>
-            <th scope="col">Trạng thái</th>
           </tr>
         </thead>
         <tbody>';
-        for($i=0;$i<count($listSanPham);$i++){
-            $output .= '<tr>
-                <th>
-                <input type="checkbox" id="check'.$i.'" class="checkbox-group" aria-label="Checkbox for following text input">
-                </th>
-                <td class="ma_san_pham">'.$listSanPham[$i]->ma_san_pham.'</td>
-                <td class="hinh_anh">'.$listSanPham[$i]->hinh_anh1.'</td>
-                <td class="ten_san_pham">'.$listSanPham[$i]->ten_san_pham.'</td>
-                <td class="ten_nhom_hang">'.$listSanPham[$i]->ten_nhom_hang.'</td>
-                <td class="ten_loai">'.$listSanPham[$i]->ten_loai.'</td>
-                <td class="gia_von">'.number_format($listSanPham[$i]->gia_von).'</td>
-                <td class="gia_ban">'.number_format($listSanPham[$i]->gia_ban).'</td>
-                <td class="ton_kho">'.$listSanPham[$i]->ton_kho.'</td>
-                <td class="trang_thai">'.$listSanPham[$i]->trang_thai.'</td>
-            </tr>';
+        for($i=0;$i<count($list);$i++){
+        $output .='
+        <tr>
+        <th>
+        <input type="checkbox" id="check'.$list[$i]->ma_san_pham.'" class="checkbox-group" aria-label="Checkbox for following text input">
+        </th>
+        <td >'.$list[$i]->ma_san_pham.'</td>
+        <td ><img src="'.url('/').'/'.$list[$i]->hinh_anh1.'" height="80px"/></td>
+        <td >'.$list[$i]->ten_san_pham.'</td>
+        <td >'.$list[$i]->gia_von.'</td>
+        <td >'.$list[$i]->gia_ban.'</td>
+        <td >'.$list[$i]->ton_kho.'</td>
+        <td >'.$list[$i]->trang_thai.'</td>
+        <td >'.$list[$i]->ten_loai.'</td>
+        <td >'.$list[$i]->ten_nhom_hang.'</td>
+        </tr>';
         }
-        $output .= '</tbody></table>';
-        return $output;
+       $output .= '</tbody>
+      </table>';
+      return $output;
     }
 
     public function hienThiDanhSachSanPham(){
-        $listSanPham=DB::select('CALL hienThiDanhSachSanPham()');
+        $list=DB::select('call hienThiDanhSachSanPham()');
         $listLoaiSanPham=DB::select('call hienThiDanhSachLoaiSanPham()');
-        return view('admin/sanpham',['listSanPham'=>$listSanPham,'listLoaiSanPham'=>$listLoaiSanPham]);
+        return view('admin/sanpham',['list'=>$list,'listLoaiSanPham'=>$listLoaiSanPham]);
     }
-
-    public function layChiTietSanPhamTheoID(Request $request){
-        $ChiTietSanPham=DB::select('call hienThiSanPhamTheoID(?)',array($request->masanpham));
-        $response[0]=$ChiTietSanPham[0]->ma_san_pham;
-        $response[1]=$ChiTietSanPham[0]->hinh_anh1;
-        $response[2]=$ChiTietSanPham[0]->hinh_anh2;
-        $response[3]=$ChiTietSanPham[0]->hinh_anh3;
-        $response[4]=$ChiTietSanPham[0]->ten_san_pham;
-        $response[5]=$ChiTietSanPham[0]->ten_nhom_hang;
-        $response[6]=$ChiTietSanPham[0]->ten_loai;
-        $response[7]=$ChiTietSanPham[0]->gia_von;
-        $response[8]=$ChiTietSanPham[0]->gia_ban;
-        $response[9]=$ChiTietSanPham[0]->ton_kho;
-        $response[10]=$ChiTietSanPham[0]->trang_thai;
-        $response[11]=$ChiTietSanPham[0]->thong_tin_san_pham;
-        return $response;
-    }
-
 
     public function themSanPham(Request $request){
-
-        $validation=Validator::make($request->all(),[
-            'tenSanPhamThem'=>'required|max:255',
-            'file1Them'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'file2Them'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'file3Them'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'giavonthem'=>'required',
-            'giabanthem'=>'required',
-            'tonkhothem'=>'required'
+        //Check by Validator
+        $validator= Validator::make($request->all(),[
+            'them_tensanpham'=>'required|max:255',
+            'them_maloai'=>'required',
+            'them_trangthai'=>'required',
+            'them_file1'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'them_giavon'=>'required',
+            'them_giaban'=>'required',
+            'them_tonkho'=>'required',
+            'them_chitietsanpham'=>'required|max:2048'
         ]);
 
-        if($validation->passes()){
-            $image1=$request->file('file1Them');
-            $image2=$request->file('file2Them');
-            $image3=$request->file('file3Them');
-            $new_name1=$request->tenSanPhamThem.'_'.rand().'.'.$image1->getClientOriginalExtension();
-            $new_name2=$request->tenSanPhamThem.'_'.rand().'.'.$image2->getClientOriginalExtension();
-            $new_name3=$request->tenSanPhamThem.'_'.rand().'.'.$image3->getClientOriginalExtension();
-            $image1->move(public_path('client/images/items'),$new_name1);
-            $image2->move(public_path('client/images/items'),$new_name2);
-            $image3->move(public_path('client/images/items'),$new_name3);
 
-           // ---------Lưu dữ liệu xuống cơ sở dữ liệu
-            $check=DB::select('call themSanPham(?,?,?,?,?,?,?,?,?)',array($request->tenSanPhamThem,
-            $request->textareathem, $request->giabanthem, $request->giavonthem,
-            $request->trangthaithem,'client/images/items/'.$new_name1,
-            'client/images/items/'.$new_name2,
-            'client/images/items/'.$new_name3,
-            $request->loaiSanPhamThem));
-            $result=$check[0]->rows_count;
-            //-------Kiểm tra kết quả trả về là 0 hay 1 và hiển thị lên bảng
-            $output="";
-             $listSanPham=DB::select('CALL hienThiDanhSachSanPham()');
-             if($result==0){
-                $output='
-                <div class="popup-alert alert alert-danger">
-                    Thất bại
-                </div>';
-            }else if($result>=1){
-                $output='
-                <div class="alert alert-success">
-                Thành công
-            </div>
-                ';
-            }
-            $output .= '<table id="main-table" class="table table-hover table-striped">
-            <thead>
-              <tr>
-                <th scrope="col">
-                    <input type="checkbox" id="checkall" aria-label="Checkbox for following text input">
-                </th>
-                <th scope="col">Mã sản phẩm</th>
-            <th scope="col">Hình ảnh</th>
-            <th scope="col">Tên sản phẩm</th>
-            <th scope="col">Nhóm hàng</th>
-            <th scope="col">Loại hàng</th>
-            <th scope="col">Giá vốn</th>
-            <th scope="col">Giá bán</th>
-            <th scope="col">Tồn kho</th>
-            <th scope="col">Trạng thái</th>
-              </tr>
-            </thead>
-            <tbody>';
-            for($i=0;$i<count($listSanPham);$i++){
-                $output .= '<tr>
-                    <th>
-                    <input type="checkbox" id="check'.$i.'" class="checkbox-group" aria-label="Checkbox for following text input">
-                    </th>
-                    <td class="ma_san_pham">'.$listSanPham[$i]->ma_san_pham.'</td>
-                    <td class="hinh_anh"><img src="http://localhost:82/DoAnWeb/public/'.$listSanPham[$i]->hinh_anh1.'" height="80px"> </td>
-                    <td class="ten_san_pham">'.$listSanPham[$i]->ten_san_pham.'</td>
-                    <td class="ten_nhom_hang">'.$listSanPham[$i]->ten_nhom_hang.'</td>
-                    <td class="ten_loai">'.$listSanPham[$i]->ten_loai.'</td>
-                    <td class="gia_von">'.number_format($listSanPham[$i]->gia_von).'</td>
-                    <td class="gia_ban">'.number_format($listSanPham[$i]->gia_ban).'</td>
-                    <td class="ton_kho">'.$listSanPham[$i]->ton_kho.'</td>
-                    <td class="trang_thai">'.$listSanPham[$i]->trang_thai.'</td>
-                </tr>';
-            }
-            $output .= '</tbody></table>';
+        if($validator->passes()){ //Nếu đã xét Validation thành công thì
+            $image1=$request1->file('them_file1');
+            $new_name1=rand().'.'.$image1->getClientOriginalExtension();
+            $image1->move(public_path('client/images/items/'),$new_name1);
+            $image2=$request->file('them_file2');
+            $new_name2=rand().'.'.$image2->getClientOriginalExtension();
+            $image2->move(public_path('client/images/items/'),$new_name2);
+            $image3=$request->file('them_file3');
+            $new_name3=rand().'.'.$image3->getClientOriginalExtension();
+            $image3->move(public_path('client/images/items/'),$new_name3);
 
-            return response()->json([
-                'class_name' => 'alert-success',
-                'errors' =>'',
-                 'output' =>$output
-               //  'result'=>$result
-            ]);
+            //Lưu xuống cơ sở dữ liệu
+            DB::select('call themSanPham(?,?,?,?,?,?,?,?,?,?)',array(
+                $request->them_tensanpham,
+                $request->them_chitietsanpham,
+                $request->them_giaban,
+                $request->them_giavon,
+                $request->them_tonkho,
+                $request->them_trangthai,
+                'client/images/banners/'.$new_name1,
+                'client/images/banners/'.$new_name2,
+                'client/images/banners/'.$new_name3,
+                $request->them_maloai
+            ));
+
+                 $output=$this->reloadTable('Thêm');
+                return response()->json([
+                    'flag' =>1,
+                    'output' =>$output
+                ]);
+
         }else{
-
             return response()->json([
-                'errors' => $validation->errors()->all(),
-                'class_name' => 'alert-danger',
-                 'output' =>$output
-              //   'result'=>$result
+                'flag' =>0,
+                'message' => $validator->errors()->all()
             ]);
         }
 
     }
 
+    public function layThongTinKhuyenMaiTheoID(Request $request){
 
-    public function xoaTatCaSanPham(){
-        $check=DB::select('call xoaTatCaSanPham()');
-        $result=$check[0]->rows_count;
-        return $this->reloadTableJQuery($result);
+        $chitiet=DB::select('call layThongTinKhuyenMaiTheoID(?)',array($request->ID));
+        $output[0]=$chitiet[0]->ma_khuyen_mai;
+        $output[1]=$chitiet[0]->ten_khuyen_mai;
+        $output[2]=$chitiet[0]->noi_dung;
+        $output[3]=$chitiet[0]->hinh_anh;
+        $output[4]=$chitiet[0]->bat_dau;
+        $output[5]=$chitiet[0]->ket_thuc;
+        $output[6]=$chitiet[0]->ti_le_khuyen_mai;
+        $output[7]=$chitiet[0]->ma_loai;
+        return $output;
     }
 
+    public function suaThongTinKhuyenMai(Request $request){
+        $validator= Validator::make($request->all(),[
+            'sua_tenkhuyenmai'=>'required|max:255',
+            'sua_noidung'=>'required',
+            'sua_file'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'sua_batdau'=>'required',
+            'sua_ngayketthuc'=>'required',
+            'sua_tile'=>'required'
+        ]);
 
-    public function xoaSanPham(Request $request){
-        for($i=0;$i<count($request->listCheckBoxXoa);$i++){
-            $check=DB::select('call xoaSanPham(?)',array($request->listCheckBoxXoa[$i]));
+
+        if($validator->passes()){ //Nếu đã xét Validation thành công thì
+            $image=$request->file('sua_file');
+            $new_name=rand().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('client/images/banners/'),$new_name);
+
+            //Lưu xuống cơ sở dữ liệu
+            DB::select('call suaThongTinKhuyenMai(?,?,?,?,?,?,?,?)',array(
+                $request->sua_makhuyenmai,
+                $request->sua_tenkhuyenmai,
+                $request->sua_noidung,
+                'client/images/banners/'.$new_name,
+                $request->sua_batdau,
+                $request->sua_ngayketthuc,
+                $request->sua_tile,
+                $request->sua_maloai
+            ));
+
+                 $output=$this->reloadTable('Cập nhật');
+                return response()->json([
+                    'flag' =>1,
+                    'output' =>$output
+                ]);
+
+        }else{
+            return response()->json([
+                'flag' =>0,
+                'message' => $validator->errors()->all()
+            ]);
         }
-        $result=$check[0]->rows_count;
-        return $this->reloadTableJQuery($result);
+
+    }
+
+    public function xoaKhuyenMai(Request $request){
+        DB::select('call xoaKhuyenMai(?)',array($request->ID));
+        return $this->reloadTable('Xóa');
+    }
+
+    public function xoaTatCaKhuyenMai(){
+        DB::select('call xoaTatCaKhuyenMai()');
+        return $this->reloadTable('Xóa');
     }
 }
