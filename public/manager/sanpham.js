@@ -11,7 +11,7 @@ $(document).ready(function(){
     })
 
 
-    //Event for Adding
+    //Sự kiện thêm
     $('#thembutton').on('click',function(){
         $('#background-popup').removeClass('hide');
         $('#popup-them').removeClass('hide');
@@ -101,6 +101,9 @@ $(document).ready(function(){
 
                     success: function(res){
                         $('#sua_masanpham').val(res[0]);
+                        // $('#sua_file1').val(res[1]);
+                        // $('#sua_file2').val(res[2]);
+                        // $('#sua_file3').val(res[3]);
                         $('#sua_tensanpham').val(res[4]);
                         $('#sua_maloai').val(res[6]);
                         $('#sua_giaban').val(res[7]);
@@ -142,13 +145,6 @@ $(document).ready(function(){
                 $('#background-popup').addClass('hide');
                 $('#popup-sua').addClass('hide');
 
-                $('#sua_tenkhuyenmai').val("");
-                $('#sua_noidung').val("");
-                $('#sua_batdau').val("");
-                $('#sua_ngayketthuc').val("");
-                $('#sua_tile').val("");
-                $('#sua_maloai').val("");
-                $('#sua_file').val("");
                 $('#messagesua').fadeOut();
                 }else{
                     $('#messagesua').fadeIn();
@@ -170,14 +166,6 @@ $(document).ready(function(){
     $('#btnHuysua').click(function(){
         $('#background-popup').addClass('hide');
         $('#popup-sua').addClass('hide');
-
-        $('#sua_tenkhuyenmai').val("");
-        $('#sua_noidung').val("");
-        $('#sua_batdau').val("");
-        $('#sua_ngayketthuc').val("");
-        $('#sua_tile').val("");
-        $('#sua_maloai').val("");
-        $('#sua_file').val("");
         $('#messagesua').fadeOut();
     });
 
@@ -189,7 +177,7 @@ $(document).ready(function(){
 
             $.ajax({
                 type:"GET",
-                url:'khuyenmai/xoatatca',
+                url:'sanpham/xoatatca',
                 data:"",
             }).done(function(res){
                 $('#tablediv').fadeOut();

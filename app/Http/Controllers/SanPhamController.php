@@ -67,6 +67,8 @@ class SanPhamController extends Controller
             'them_maloai'=>'required',
             'them_trangthai'=>'required',
             'them_file1'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'them_file2'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'them_file3'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
             'them_giavon'=>'required',
             'them_giaban'=>'required',
             'them_tonkho'=>'required',
@@ -78,13 +80,20 @@ class SanPhamController extends Controller
             $image1=$request->file('them_file1');
             $new_name1=rand().'.'.$image1->getClientOriginalExtension();
             $image1->move(public_path('client/images/items/'),$new_name1);
+            if ($request->file('them_file2')!=null){
             $image2=$request->file('them_file2');
             $new_name2=rand().'.'.$image2->getClientOriginalExtension();
             $image2->move(public_path('client/images/items/'),$new_name2);
+            }else{
+                $new_name2="";
+            }
+            if ($request->file('them_file3')!=null){
             $image3=$request->file('them_file3');
             $new_name3=rand().'.'.$image3->getClientOriginalExtension();
             $image3->move(public_path('client/images/items/'),$new_name3);
-
+            }else{
+                $new_name3="";
+            }
             //Lưu xuống cơ sở dữ liệu
             DB::select('call themSanPham(?,?,?,?,?,?,?,?,?,?)',array(
                 $request->them_tensanpham,
@@ -132,31 +141,55 @@ class SanPhamController extends Controller
         return $output;
     }
 
-    public function suaThongTinKhuyenMai(Request $request){
+    public function suaThongTinSanPham(Request $request){
         $validator= Validator::make($request->all(),[
-            'sua_tenkhuyenmai'=>'required|max:255',
-            'sua_noidung'=>'required',
-            'sua_file'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'sua_batdau'=>'required',
-            'sua_ngayketthuc'=>'required',
-            'sua_tile'=>'required'
+            'sua_tensanpham'=>'required|max:255',
+            'sua_maloai'=>'required',
+            'sua_file1'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'sua_file2'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'sua_file3'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'sua_trangthai'=>'required',
+            'sua_giavon'=>'required',
+            'sua_giaban'=>'required',
+            'sua_tonkho'=>'required',
+            'sua_chitietsanpham'=>'required|max:2048'
         ]);
 
 
         if($validator->passes()){ //Nếu đã xét Validation thành công thì
-            $image=$request->file('sua_file');
-            $new_name=rand().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('client/images/banners/'),$new_name);
-
+            if ($request->file('sua_file1')!=null){
+            $image1=$request->file('sua_file1');
+            $new_name1=rand().'.'.$image1->getClientOriginalExtension();
+            $image1->move(public_path('client/images/items/'),$new_name1);
+            }else{
+                $new_name1=substring(DB::select('call layAnhSanPham1(?)',array($request->ma_san_pham)),21);
+            }
+            if ($request->file('sua_file2')!=null){
+            $image2=$request->file('sua_file2');
+            $new_name2=rand().'.'.$image2->getClientOriginalExtension();
+            $image2->move(public_path('client/images/items/'),$new_name2);
+            }else{
+                $new_name1=substring(DB::select('call layAnhSanPham2(?)',array($request->ma_san_pham)),21);
+            }
+            if ($request->file('sua_file3')!=null){
+            $image3=$request->file('sua_file3');
+            $new_name3=rand().'.'.$image3->getClientOriginalExtension();
+            $image3->move(public_path('client/images/items/'),$new_name3);
+            }else{
+                $new_name1=substring(DB::select('call layAnhSanPham3(?)',array($request->ma_san_pham)),21);
+            }
             //Lưu xuống cơ sở dữ liệu
-            DB::select('call suaThongTinKhuyenMai(?,?,?,?,?,?,?,?)',array(
-                $request->sua_makhuyenmai,
-                $request->sua_tenkhuyenmai,
-                $request->sua_noidung,
-                'client/images/banners/'.$new_name,
-                $request->sua_batdau,
-                $request->sua_ngayketthuc,
-                $request->sua_tile,
+            DB::select('call suaThongTinSanPham(?,?,?,?,?,?,?,?,?,?,?)',array(
+                $request->sua_masanpham,
+                $request->sua_tensanpham,
+                $request->sua_chitietsanpham,
+                $request->sua_giaban,
+                $request->sua_giavon,
+                $request->sua_tonkho,
+                $request->sua_trangthai,
+                'client/images/items/'.$new_name1,
+                'client/images/items/'.$new_name2,
+                'client/images/items/'.$new_name3,
                 $request->sua_maloai
             ));
 

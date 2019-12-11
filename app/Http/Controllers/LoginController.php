@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
+use Session;
 
 class LoginController extends Controller
 {
@@ -14,7 +15,7 @@ class LoginController extends Controller
     }
 
     public function PostAdminLogin(Request $request){
-        //return dd($request);
+
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6|max:32'
@@ -28,13 +29,26 @@ class LoginController extends Controller
         $soluong=DB::select('call kiemTraSoLuongTaiKhoan(?,?)',array($request->email,$request->password));
         if ($soluong[0]->so_luong>=1){
         $result=DB::select('call xuLyDangNhap(?,?)',array($request->email,$request->password));
-        return "dung roi".$result[0]->email." ".$result[0]->mat_khau;
+        $email=$result[0]->email;
+        $mat_khau=$result[0]->mat_khau;
+        $ho_ten=$result[0]->ho_ten;
+        $ma_nhan_vien=$result[0]->ma_nhan_vien;
+
+        $request->session()->put('email',$email);
+        $request->session()->put('mat_khau',$mat_khau);
+        $request->session()->put('ho_ten',$ho_ten);
+        $request->session()->put('ma_nhan_vien',$ma_nhan_vien);
+
         }
         else{
             return "loi roi";
         }
+        return redirect()->route('tongquan');
     }
 
 
-    //Client
+    public function logOut(Request $request){
+        $request->session()->flush();
+        return redirect()->route('login');
+    }
 }

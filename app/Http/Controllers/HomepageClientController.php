@@ -9,7 +9,7 @@ class HomepageClientController extends Controller
 {
     public function hienThiTopSanPhamBanChay(){
         //Xử lý hiển thị top các sản phẩm bán chạy
-        $listSanPhamBanChay=DB::select('call hienThiSanPhamBanChay(?)',array(10));
+        $listSanPhamBanChay=DB::select('call hienThiSanPhamBanChay(?)',array(20));
         return view('client/homepage',['listSanPhamBanChay'=>$listSanPhamBanChay]);
     }
 

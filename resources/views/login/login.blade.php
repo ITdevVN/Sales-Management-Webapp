@@ -32,7 +32,7 @@
                     </div>
                 @endif
                 <form action="{{route('checklogin')}}" method="POST">
-                    @csrf()
+                    @csrf
                     <div class="header">
                         <img class="logo rounded mx-auto d-block" src="{{ URL::asset('all/img/logo_header.png') }}" alt="Error" height="100%">
                     </div>
@@ -58,15 +58,15 @@
                                         <a href="#">Quên mật khẩu</a>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group container-fluid d-flex align-items-center justify-content-center">
                                     <span id="btn_quanly">
                                     <i class="icon_quanly fas fa-user-cog fa-2x" ></i>
                                     <input class="button btn btn-success rounded-pill" type="submit" value="Đăng nhập" name="dangnhap">
                                     </span>
-                                    <span id="btn_banhang">
+                                    {{-- <span id="btn_banhang">
                                         <i class="icon_banhang fas fa-shopping-cart fa-2x"></i>
                                         <input class="button btn btn-primary rounded-pill text-right" type="button" value="Bán hàng" name="banghang">
-                                    </span>
+                                    </span> --}}
                                 </div>
                     </div>
                 </form>

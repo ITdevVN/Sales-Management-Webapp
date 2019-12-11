@@ -14,7 +14,7 @@
         <form id="formthem" data-route="{{route('sanpham.them')}}" method="POST">
             @csrf
             <div id="popup-them-body">
-                <div class="col-6 d-inline-block">
+                <div class="col-6 d-inline-block" id="div-trai">
                 <div class="form-group row">
                     <label for="them_tensanpham" class="col-4 col-form-label font-weight-bold" >Tên sản phẩm</label>
                     <div class="col-sm-7">
@@ -60,7 +60,7 @@
 
             </div>
             {{-- Đóng div bên trái --}}
-            <div class="col-6 float-right">
+            <div class="col-6 float-right" id="div-phai">
 
                 <div class="form-group row">
                     <label for="them_giavon" class="col-4 col-form-label font-weight-bold">Giá vốn</label>

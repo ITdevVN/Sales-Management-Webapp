@@ -119,7 +119,7 @@ footer{
     display: none !important;
 }
 
-.background-popup{
+#background-hienthi{
     height: 100%;
     width: 100%;
     background-color: rgba(0,0,0,.5);
@@ -132,14 +132,30 @@ footer{
     right:0;
 }
 
-.vaitro_popup{
-    height: 500px;
-    width: 800px;
-    background-color:white;
+#popup-them-hienthi{
+    background-color: #FFFFFF;
+    z-index: 2;
 }
 
-.header-popup{
-    border-bottom: 2px solid black;
+#popup-them-header-hienthi{
+    font-weight: bold;
+    background-color: #2E94DA;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
 }
 
-/* html, body {margin: 0; height: 100%; overflow: hidden} */
+#popup-them-body-hienthi{
+    background-color: #FFFFFF;
+    padding: 20px 80px 10px 80px;
+}
+
+#popup-body-button-hienthi{
+    margin-right: 30px;
+}
+
+#message_hienthi{
+    z-index: 3;
+}
+
