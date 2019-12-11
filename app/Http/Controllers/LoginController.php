@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use Session;
+use Redirect;
 
 class LoginController extends Controller
 {
@@ -41,7 +42,7 @@ class LoginController extends Controller
 
         }
         else{
-            return "loi roi";
+            return Redirect::back()->withErrors(['Đăng nhập thất bại']);
         }
         return redirect()->route('tongquan');
     }

@@ -17,10 +17,10 @@
     <div id="background-img"></div>
 
     <div class="login-container container-fluid d-flex align-items-center justify-content-center" >
-        <div class="login-form row">
+        <div class="login-form row" id="main-form">
             <div class="form-main">
                 @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div id="thongbaodangnhap" class="alert alert-danger">
                         @foreach($errors->all() as $err)
                             <li>{{$err}} </li>
                         @endforeach
