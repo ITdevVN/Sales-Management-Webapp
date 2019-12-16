@@ -11,6 +11,15 @@ $(document).ready(function(){
             $('#tennhomhang_quickview').html(res.ten_nhom_hang);
             $('#giaban_quickview').html(res.gia_ban);
             $('#thongtinsanpham_quickview').html(res.thong_tin_san_pham);
+            $('#hinhanh1_popup').attr("src","http://localhost:82/DoAnWeb/public/" +res.hinh_anh1);
+            $('#hinhanh1_figure').attr("style","background-position: center; background-image: url(\""+"http://localhost:82/DoAnWeb/public/"+res.hinh_anh1+"\"); background-repeat: no-repeat; background-size: cover;")
+            $('#hinhanh1_popup1').html("\
+            <img src=\""+"http://localhost:82/DoAnWeb/public"+"/"+res.hinh_anh1+"\" alt=\"picture-view\">\
+            ");
+            $('#hinhanh2_popup').html("\
+            <img src=\""+"http://localhost:82/DoAnWeb/public"+"/"+res.hinh_anh2+"\" alt=\"picture-view\">\
+            ");
+
             if (res.ton_kho==0){
                 $('#tonkho_quickview').html("Trạng thái: <svg class=\"svg-plus\">\
                 <use xlink:href=\"#svg-plus\"></use>\
@@ -27,23 +36,24 @@ $(document).ready(function(){
             }
 
             if (res.ton_kho==0){
-                $('#themgiohang_hethang_quickview').html("\
+                $('.themgiohang_hethang_quickview').html("\
                 <svg class=\"svg-plus\">\
                     <use xlink:href=\"#svg-plus\"></use>\
                 </svg>\
                 Hết hàng\
                 ");
-                $('#themgiohang_hethang_quickview').removeClass('cart-add');
-                $('#themgiohang_hethang_quickview').addClass('button no-stock');
+                $('.themgiohang_hethang_quickview').removeClass('cart-add');
+                $('.themgiohang_hethang_quickview').addClass('button no-stock');
             }else{
-                $('#themgiohang_hethang_quickview').html("\
+                $('.themgiohang_hethang_quickview').attr("id","cart-add-detail"+res.ma_san_pham)
+                $('.themgiohang_hethang_quickview').html("\
                 <svg class=\"svg-plus\">\
                     <use xlink:href=\"#svg-plus\"></use>\
                 </svg>\
                 Thêm vào giỏ\
                 ");
-                $('#themgiohang_hethang_quickview').removeClass('no-stock');
-                $('#themgiohang_hethang_quickview').addClass('button cart-add');
+                $('.themgiohang_hethang_quickview').removeClass('no-stock');
+                $('.themgiohang_hethang_quickview').addClass('button cart-add');
             }
 
         })

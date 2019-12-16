@@ -1,4 +1,4 @@
-@extends('layouts/client/layout')
+@extends('layouts/client/layoutChuaDangNhap')
 
 @section('header')
 <link rel="stylesheet" href="{{URL::asset('client/css/vendor/owl.carousel.css')}}">

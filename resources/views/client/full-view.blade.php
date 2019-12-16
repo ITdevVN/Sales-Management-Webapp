@@ -1,8 +1,14 @@
 @extends('layouts/client/layout')
-
 @section('header')
-	<!-- SECTION-NAV -->
-	<div id="section-nav-wrap">
+<link rel="stylesheet" href="{{URL::asset('client/css/vendor/magnific-popup.css')}}">
+	<link rel="stylesheet" href="{{URL::asset('client/css/style.css')}}">
+	<!-- favicon -->
+	<link rel="icon" href="{{URL::asset('client/favicon.ico')}}">
+@stop
+
+@section('body')
+<!-- SECTION-NAV -->
+<div id="section-nav-wrap">
 		<section id="section-nav">
 			<p>Home / Women's Section / T-Shirts / <a href="#">The Crazy Bunny</a></p>
 		</section>
@@ -1670,10 +1676,25 @@
 			<!-- /SHOP PRODUCTS -->
 		</section>
 	</div>
-	<!-- /SHOP -->
+    <!-- /SHOP -->
 
-@stop
+    @stop
 
-@section('footer')
-
-@stop
+    @section('footer')
+<!-- XM Accordion -->
+<script src="{{URL::asset('client/js/vendor/jquery.xmaccordion.min.js')}}"></script>
+<!-- XM Tab -->
+<script src="{{URL::asset('js/vendor/jquery.xmtab.min.js')}}"></script>
+<!-- Magnific Popup -->
+<script src="{{URL::asset('js/vendor/jquery.magnific-popup.min.js')}}"></script>
+<!-- imgLiquid -->
+<script src="{{URL::asset('js/vendor/imgLiquid-min.js')}}"></script>
+<!-- Header -->
+<script src="{{URL::asset('js/header.js')}}"></script>
+<!-- Menu -->
+<script src="{{URL::asset('js/menu.js')}}"></script>
+<!-- Shop -->
+<script src="{{URL::asset('js/shop.js')}}"></script>
+<!-- Full View -->
+<script src="{{URL::asset('js/full-view.js')}}"></script>
+    @stop

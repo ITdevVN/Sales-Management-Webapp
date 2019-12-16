@@ -1,0 +1,39 @@
+#background-hienthi{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,.5);
+    display: block;
+    position: fixed;
+    z-index:1;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+}
+
+#popup-them-hienthi{
+    background-color: #FFFFFF;
+    z-index: 2;
+}
+
+#popup-them-header-hienthi{
+    font-weight: bold;
+    background-color: #2E94DA;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+#popup-them-body-hienthi{
+    background-color: #FFFFFF;
+    padding: 20px 80px 10px 80px;
+}
+
+#popup-body-button-hienthi{
+    margin-right: 30px;
+}
+
+#message_hienthi{
+    z-index: 3;
+}

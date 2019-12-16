@@ -13,6 +13,16 @@ class HomepageClientController extends Controller
         return view('client/homepage',['listSanPhamBanChay'=>$listSanPhamBanChay]);
     }
 
+    public function hienThiTopSanPhamBanChay_chuaDangNhap(){
+        $listSanPhamBanChay=DB::select('call hienThiSanPhamBanChay(?)',array(20));
+        return view('client/homepageChuaDangNhap',['listSanPhamBanChay'=>$listSanPhamBanChay]);
+    }
+
+    public function dangxuat(Request $request){
+        $request->session()->flush();
+        return redirect()->route('Client.Homepage.chuadangnhap');
+    }
+
     public function layChiTietSanPham(Request $request){
         $ChiTietSanPham=DB::select('call hienThiSanPhamTheoID(?)',array($request->ma_san_pham));
         return response()->json([
@@ -29,6 +39,10 @@ class HomepageClientController extends Controller
             'trang_thai'=>$ChiTietSanPham[0]->trang_thai,
             'thong_tin_san_pham'=>$ChiTietSanPham[0]->thong_tin_san_pham
         ]);
+    }
+
+    public function hienThiChiTietSanPham(){
+        return view('client/full-view');
     }
 
 

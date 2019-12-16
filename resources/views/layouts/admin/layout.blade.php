@@ -13,12 +13,12 @@
     <script src="{{URL::asset('all/js/bootstrap.min.js')}}"></script>
     <link rel="stylesheet" href="{{URL::asset('all/css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" href="{{URL::asset('manager/manager.css')}}"/>
-
+    <link rel="stylesheet" href="{{URL::asset('manager/layout.css')}}"/>
     <link rel="stylesheet" type='text/css' href="{{URL::asset('all/icon/css/fontawesome.min.css')}}"/>
     <link rel="stylesheet" type='text/css' href="{{URL::asset('all/icon/css/fontawesome.css')}}"/>
     <link rel="stylesheet" type='text/css' href="{{URL::asset('all/icon/css/brands.css')}}"/>
     <link rel="stylesheet" type='text/css' href="{{URL::asset('all/icon/css/solid.css')}}"/>
-    <link rel="stylesheet" href="{{URL::asset('manager/layout.css')}}"/>
+    {{-- <link rel="stylesheet" href="{{URL::asset('manager/layout.css')}}"/> --}}
     @yield('head')
 
 
@@ -186,7 +186,7 @@
                               </div>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" href="#">Hóa đơn</a>
+                              <a class="nav-link" href="{{route('hoadon')}}">Hóa đơn</a>
                             </li>
                             <li class="nav-item">
                             <a class="nav-link" href="{{route('khuyenmai')}}">Khuyến mãi</a>
@@ -317,7 +317,7 @@
 
 
     </div>
-
+    <script src="{{URL::asset('manager/layout.js')}}"></script>
     @yield('footer')
 </body>
 </html>

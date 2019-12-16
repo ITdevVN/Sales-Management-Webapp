@@ -76,16 +76,36 @@ Route::group(['prefix' => 'admin','middleware'=>['checkLogin','web']], function(
         Route::get('sanpham/timkiem','SanPhamController@timKiemSanPham');
         Route::get('sanpham/laychitietsanpham','SanPhamController@layThongTinSanPhamTheoID');
   //  });
+
+  //Hóa đon
+        Route::get('hoadon','HoaDonController@hienThiDanhSachHoaDon')->name('hoadon');
+        Route::get('hoadon/setSession','DynamicPDFController@setSession')->name('hoadon.setSession');
+        Route::get('hoadon/xuatpdftatca','DynamicPDFController@xuatPDFTatCa')->name('hoadon.xuatpdftatca');
+
 });
 
 
+// Route::group(['prefix'=>'client'],function(){
+//     Route::get('login','LoginRegisterClientController@clientLogin')->name('login.client'); //gọi trang login hiển thị lên
+//     Route::post('login','LoginController@PostAdminLogin')->name('checklogin'); //xử lý
+//     Route::get('logout','LoginController@logOut')->name('logout');
+// });
+
+Route::group(['prefix' => 'client','middleware'=>['checkLoginClient','web']], function() {
+    Route::get('homepage','HomepageClientController@hienThiTopSanPhamBanChay')->name('Client.Homepage');
+    Route::get('homepage/list-item-popup','HomepageClientController@layChiTietSanPham');
+    Route::get('full-view','HomepageClientController@hienThiChiTietSanPham')->name('client.full-view');
+    Route::get('dangxuat','HomepageClientController@dangxuat')->name('client.dangxuat');
+});
 
 
 Route::prefix('client')->group(function(){
-
-    Route::get('homepage','HomepageClientController@hienThiTopSanPhamBanChay');
-    Route::get('homepage/list-item-popup','HomepageClientController@layChiTietSanPham');
-
+    Route::get('login','LoginRegisterClientController@clientLogin')->name('ClientLogin'); //Hiển thị form dang ky/dangnhap
+    Route::post('register','LoginRegisterClientController@clientRegister')->name('Client.Register'); //dang ky
+    Route::post('login/post','LoginRegisterClientController@postLoginClient')->name('Client.login'); //dangnhap
+    Route::get('homepage/c','HomepageClientController@hienThiTopSanPhamBanChay_chuaDangNhap')->name('Client.Homepage.chuadangnhap');
+    // Route::get('homepage/list-item-popup','HomepageClientController@layChiTietSanPham');
+    // Route::get('full-view','HomepageClientController@hienThiChiTietSanPham')->name('client.full-view');
 });
 
 

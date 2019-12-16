@@ -63,49 +63,11 @@
 				</div>
 				<!-- /WESTEROS DROPDOWN CONTAINER-->
 
-				<!-- WESTEROS DROPDOWN CONTAINER-->
-				<div class="westeros-dropdown-container">
-					<p class="login logged">
-						<!-- SVG LOGGED -->
-						<svg class="svg-logged">
-							<use xlink:href="#svg-logged"></use>
-						</svg>
-						<!-- /SVG LOGGED -->
-						Chào mừng
-						<a href="profile.html">{{ Session::get('ho_ten')}}</a>
-						<!-- SVG ARROW -->
-						<svg class="svg-arrow westeros-dropdown-control">
-							<use xlink:href="#svg-arrow"></use>
-						</svg>
-						<!-- /SVG ARROW -->
-					</p>
-					<!-- WESTEROS DROPDOWN -->
-					<ul class="westeros-dropdown default hide-on-click">
-						<li>
-							<a href="profile.html">
-							<!-- SVG GEAR -->
-							<svg class="svg-gear">
-								<use xlink:href="#svg-gear"></use>
-							</svg>
-							<!-- /SVG GEAR -->
-							Thông tin tài khoản
-							</a>
-						</li>
-
-						<li id="dangxuat">
-							<a href="{{route('client.dangxuat')}}">
-							<!-- SVG CART -->
-							<svg class="svg-cart">
-								<use xlink:href="#svg-cart"></use>
-							</svg>
-							<!-- /SVG CART -->
-							Đăng xuất
-							</a>
-						</li>
-					</ul>
-					<!-- /WESTEROS DROPDOWN -->
-				</div>
-				<!-- /WESTEROS DROPDOWN CONTAINER-->
+				<p class="login">
+					Chào mừng bạn đến với TheCosmo nếu đã có tài khoản vui lòng
+					<a href="{{route('ClientLogin')}}">Đăng nhập</a>, hoặc
+					<a href="{{route('ClientLogin')}}">Đăng ký</a>
+				</p>
 			</section>
 			<!-- /HEADER TOP -->
 		</div>
