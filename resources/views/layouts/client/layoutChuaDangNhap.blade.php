@@ -79,7 +79,7 @@
 				<div class="logo-container">
 					<a href="{{route('Client.Homepage')}}">
 						<figure class="logo">
-							<img src="images/logo.png" alt="logo">
+							<img src="{{URL::asset('client/images/logo.png')}}" alt="logo">
 							<figcaption>Westeros</figcaption>
 						</figure>
 					</a>

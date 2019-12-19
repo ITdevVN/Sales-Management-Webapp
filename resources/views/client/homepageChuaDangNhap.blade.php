@@ -25,7 +25,7 @@
 				</div> -->
 				<!-- <div class="moustache-shadow"></div> -->
 				<div class="moustache-monster">
-					<img src="images/moustache-monster.png" alt="monster">
+					<img src="{{URL::asset('client/images/moustache-monster.png')}}" alt="monster">
 				</div>
 				<div id="stars">
 					<div class="star small"></div>
@@ -856,7 +856,7 @@
 					<h4>Khuyến mãi</h4>
 					<h4 class="remark">20/11</h4>
 				</div>
-				<img src="images/bunny-monster.png" alt="bunny-monster">
+				<img src="{{URL::asset('client/images/bunny-monster.png')}}" alt="bunny-monster">
 				<div id="bubbles">
 					<div class="bubble small"></div>
 					<div class="bubble small x1"></div>
@@ -901,76 +901,76 @@
 				</ul>
 				<!-- /SLIDE CONTROLS -->
 
-				<!-- BRANDS LIST -->
-				<ul id="owl-brands" class="brands-list owl-carousel">
-					<!-- BRAND -->
-					<li>
-						<a href="#">
-							<img src="images/brands/gr.png" alt="brand-normal">
-							<img src="images/brands/gr-over.png" alt="brand-over">
-						</a>
-					</li>
-					<!-- /BRAND -->
+<!-- BRANDS LIST -->
+<ul id="owl-brands" class="brands-list owl-carousel">
+    <!-- BRAND -->
+    <li>
+        <a href="#">
+            <img src="{{URL::asset('client/images/brands/gr.png')}}" alt="brand-normal">
+            <img src="{{URL::asset('client/images/brands/gr-over.png')}}" alt="brand-over">
+        </a>
+    </li>
+    <!-- /BRAND -->
 
-					<!-- BRAND -->
-					<li>
-						<a href="#">
-							<img src="images/brands/tf.png" alt="brand-normal">
-							<img src="images/brands/tf-over.png" alt="brand-over">
-						</a>
-					</li>
-					<!-- /BRAND -->
+    <!-- BRAND -->
+    <li>
+        <a href="#">
+            <img src="{{URL::asset('client/images/brands/tf.png')}}" alt="brand-normal">
+            <img src="{{URL::asset('client/images/brands/tf-over.png')}}" alt="brand-over">
+        </a>
+    </li>
+    <!-- /BRAND -->
 
-					<!-- BRAND -->
-					<li>
-						<a href="#">
-							<img src="images/brands/aj.png" alt="brand-normal">
-							<img src="images/brands/aj-over.png" alt="brand-over">
-						</a>
-					</li>
-					<!-- /BRAND -->
+    <!-- BRAND -->
+    <li>
+        <a href="#">
+            <img src="{{URL::asset('client/images/brands/aj.png')}}" alt="brand-normal">
+            <img src="{{URL::asset('client/images/brands/aj-over.png')}}" alt="brand-over">
+        </a>
+    </li>
+    <!-- /BRAND -->
 
-					<!-- BRAND -->
-					<li>
-						<a href="#">
-							<img src="images/brands/vh.png" alt="brand-normal">
-							<img src="images/brands/vh-over.png" alt="brand-over">
-						</a>
-					</li>
-					<!-- /BRAND -->
+    <!-- BRAND -->
+    <li>
+        <a href="#">
+            <img src="{{URL::asset('client/images/brands/vh.png')}}" alt="brand-normal">
+            <img src="{{URL::asset('client/images/brands/vh-over.png')}}" alt="brand-over">
+        </a>
+    </li>
+    <!-- /BRAND -->
 
-					<!-- BRAND -->
-					<li>
-						<a href="#">
-							<img src="images/brands/pd.png" alt="brand-normal">
-							<img src="images/brands/pd-over.png" alt="brand-over">
-						</a>
-					</li>
-					<!-- /BRAND -->
+    <!-- BRAND -->
+    <li>
+        <a href="#">
+            <img src="{{URL::asset('client/images/brands/pd.png')}}" alt="brand-normal">
+            <img src="{{URL::asset('client/images/brands/pd-over.png')}}" alt="brand-over">
+        </a>
+    </li>
+    <!-- /BRAND -->
 
-					<!-- BRAND -->
-					<li>
-						<a href="#">
-							<img src="images/brands/gr.png" alt="brand-normal">
-							<img src="images/brands/gr-over.png" alt="brand-over">
-						</a>
-					</li>
-					<!-- /BRAND -->
+    <!-- BRAND -->
+    <li>
+        <a href="#">
+            <img src="{{URL::asset('client/images/brands/gr.png')}}" alt="brand-normal">
+            <img src="{{URL::asset('client/images/brands/gr-over.png')}}" alt="brand-over">
+        </a>
+    </li>
+    <!-- /BRAND -->
 
-					<!-- BRAND -->
-					<li>
-						<a href="#">
-							<img src="images/brands/tf.png" alt="brand-normal">
-							<img src="images/brands/tf-over.png" alt="brand-over">
-						</a>
-					</li>
-					<!-- /BRAND -->
-				</ul>
-				<!-- /BRANDS LIST -->
-			</div>
-		</section>
-	</div>
-	<!-- /BRANDS -->
+    <!-- BRAND -->
+    <li>
+        <a href="#">
+            <img src="{{URL::asset('client/images/brands/tf.png')}}" alt="brand-normal">
+            <img src="{{URL::asset('client/images/brands/tf-over.png')}}" alt="brand-over">
+        </a>
+    </li>
+    <!-- /BRAND -->
+</ul>
+<!-- /BRANDS LIST -->
+</div>
+</section>
+</div>
+<!-- /BRANDS -->
 @stop
 
 @section('footer')

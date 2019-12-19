@@ -5,18 +5,16 @@
 	<link rel="stylesheet" href="{{URL::asset('client/css/vendor/magnific-popup.css')}}">
 	<link rel="stylesheet" href="{{URL::asset('client/css/style.css')}}">
 	<link rel="stylesheet" href="{{URL::asset('client/css/custom.css')}}">
-
-
-
 @stop
 
 @section('body')
+<p hidden class="makh_hidden" id="makh{{Session::get('ma_nhan_vien')}}">Mã của khách hàng.</p>
 <!-- BANNER -->
 <div id="banner-wrap">
 		<section id="banner">
 			<div class="main-promo">
 				<h2>Chào mừng đến với<br><span>TheCosmo</span></h2>
-				<p>Mua sắm thỏa ga không lo về giá</p>
+                <p>Mua sắm thỏa ga không lo về giá</p>
 				<a href="women-shop.html" class="button secondary">Xem gian hàng</a>
 			</div>
 			<div id="banner-monster">
@@ -25,7 +23,7 @@
 				</div> -->
 				<!-- <div class="moustache-shadow"></div> -->
 				<div class="moustache-monster">
-					<img src="images/moustache-monster.png" alt="monster">
+					<img src="{{URL::asset('client/images/moustache-monster.png')}}" alt="monster">
 				</div>
 				<div id="stars">
 					<div class="star small"></div>
@@ -856,7 +854,7 @@
 					<h4>Khuyến mãi</h4>
 					<h4 class="remark">20/11</h4>
 				</div>
-				<img src="images/bunny-monster.png" alt="bunny-monster">
+				<img src="{{URL::asset('client/images/bunny-monster.png')}}" alt="bunny-monster">
 				<div id="bubbles">
 					<div class="bubble small"></div>
 					<div class="bubble small x1"></div>
@@ -906,8 +904,8 @@
 					<!-- BRAND -->
 					<li>
 						<a href="#">
-							<img src="images/brands/gr.png" alt="brand-normal">
-							<img src="images/brands/gr-over.png" alt="brand-over">
+							<img src="{{URL::asset('client/images/brands/gr.png')}}" alt="brand-normal">
+							<img src="{{URL::asset('client/images/brands/gr-over.png')}}" alt="brand-over">
 						</a>
 					</li>
 					<!-- /BRAND -->
@@ -915,8 +913,8 @@
 					<!-- BRAND -->
 					<li>
 						<a href="#">
-							<img src="images/brands/tf.png" alt="brand-normal">
-							<img src="images/brands/tf-over.png" alt="brand-over">
+							<img src="{{URL::asset('client/images/brands/tf.png')}}" alt="brand-normal">
+							<img src="{{URL::asset('client/images/brands/tf-over.png')}}" alt="brand-over">
 						</a>
 					</li>
 					<!-- /BRAND -->
@@ -924,8 +922,8 @@
 					<!-- BRAND -->
 					<li>
 						<a href="#">
-							<img src="images/brands/aj.png" alt="brand-normal">
-							<img src="images/brands/aj-over.png" alt="brand-over">
+							<img src="{{URL::asset('client/images/brands/aj.png')}}" alt="brand-normal">
+							<img src="{{URL::asset('client/images/brands/aj-over.png')}}" alt="brand-over">
 						</a>
 					</li>
 					<!-- /BRAND -->
@@ -933,8 +931,8 @@
 					<!-- BRAND -->
 					<li>
 						<a href="#">
-							<img src="images/brands/vh.png" alt="brand-normal">
-							<img src="images/brands/vh-over.png" alt="brand-over">
+							<img src="{{URL::asset('client/images/brands/vh.png')}}" alt="brand-normal">
+							<img src="{{URL::asset('client/images/brands/vh-over.png')}}" alt="brand-over">
 						</a>
 					</li>
 					<!-- /BRAND -->
@@ -942,8 +940,8 @@
 					<!-- BRAND -->
 					<li>
 						<a href="#">
-							<img src="images/brands/pd.png" alt="brand-normal">
-							<img src="images/brands/pd-over.png" alt="brand-over">
+							<img src="{{URL::asset('client/images/brands/pd.png')}}" alt="brand-normal">
+							<img src="{{URL::asset('client/images/brands/pd-over.png')}}" alt="brand-over">
 						</a>
 					</li>
 					<!-- /BRAND -->
@@ -951,8 +949,8 @@
 					<!-- BRAND -->
 					<li>
 						<a href="#">
-							<img src="images/brands/gr.png" alt="brand-normal">
-							<img src="images/brands/gr-over.png" alt="brand-over">
+							<img src="{{URL::asset('client/images/brands/gr.png')}}" alt="brand-normal">
+							<img src="{{URL::asset('client/images/brands/gr-over.png')}}" alt="brand-over">
 						</a>
 					</li>
 					<!-- /BRAND -->
@@ -960,8 +958,8 @@
 					<!-- BRAND -->
 					<li>
 						<a href="#">
-							<img src="images/brands/tf.png" alt="brand-normal">
-							<img src="images/brands/tf-over.png" alt="brand-over">
+							<img src="{{URL::asset('client/images/brands/tf.png')}}" alt="brand-normal">
+							<img src="{{URL::asset('client/images/brands/tf-over.png')}}" alt="brand-over">
 						</a>
 					</li>
 					<!-- /BRAND -->

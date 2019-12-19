@@ -117,7 +117,7 @@
 				<div class="logo-container">
 					<a href="{{route('Client.Homepage')}}">
 						<figure class="logo">
-							<img src="images/logo.png" alt="logo">
+							<img src="{{URL::asset('client/images/logo.png')}}" alt="logo">
 							<figcaption>Westeros</figcaption>
 						</figure>
 					</a>
@@ -158,9 +158,11 @@
 						</svg>
 						<!-- /SVG ARROW -->
 						<h6>Giỏ hàng</h6>
-						<p class="cart-content-short">(3)</p>
-						<p class="cart-content-long">3 item (s) -</p>
-						<p class="highlighted">235.50</p>
+                        <p class="cart-content-short">(3)</p>
+                        @if (count($listGioHang)>=1)
+						<p class="cart-content-long">{{count($listGioHang)}} sản phẩm - </p>
+                        <p class="highlighted">{{number_format($listGioHang[0]->khach_can_tra)}} VND</p>
+                        @endif
 					</div>
 					<!-- /CART CONTROL -->
 
@@ -181,49 +183,53 @@
 
 					<!-- CART -->
 					<ul class="cart westeros-dropdown" id="cart-online">
+                        @if (count($listGioHang)>=1)
+                        @foreach ($listGioHang as $item)
 						<!-- CART ITEM -->
 						<li class="item clearfix">
 							<div class="picture">
 								<figure class="liquid">
-									<img src="images/items/02.png" alt="product1">
+									<img src="{{URL::asset($item->hinh_anh1)}}" alt="product1">
 								</figure>
 							</div>
 							<div class="description">
-								<p class="highlighted category">T-Shirts</p>
-								<h6>The Crazy Bunny</h6>
+								<p class="highlighted category">{{$item->ten_loai}}</p>
+								<h6>{{$item->ten_san_pham}}</h6>
 							</div>
 							<div class="quantity">
-								<h6>1</h6>
+								<h6>{{$item->so_luong}}</h6>
 							</div>
 							<div class="price">
-								<p class="highlighted">86.00</p>
+								<p class="highlighted">{{number_format($item->gia_ban)}}</p>
 							</div>
 							<img src="images/items/remove.png" alt="remove">
 						</li>
 						<!-- /CART ITEM -->
-
+                        @endforeach
 
 						<!-- TOTAL -->
 						<li class="total clearfix">
 							<div>
-								<h6>140.000</h6>
-								<h6>10.000</h6>
-								<p class="highlighted">130.000</p>
+                                <h6>{{number_format($listGioHang[0]->tong_tien_hang)}}</h6>
+								<h6>{{number_format($listGioHang[0]->so_tien_giam)}}</h6>
+								<h6>0</h6>
+								<p class="highlighted">{{number_format($listGioHang[0]->khach_can_tra)}}</p>
 							</div>
 							<div>
-								<h6>Tạm tính</h6>
+                                <h6>Tạm tính</h6>
+								<h6>Tiền giảm</h6>
 								<h6>Phí vận chuyển</h6>
 								<h6>Thành tiền</h6>
 							</div>
-						</li>
+                        </li>
+                        @endif
 						<!-- /TOTAL -->
-
 						<!-- ORDER -->
 						<li class="order clearfix">
 							<a href="checkout.html" class="button">Thanh toán</a>
 							<a href="cart.html" class="button secondary">Chi tiết</a>
 						</li>
-						<!-- /ORDER -->
+                        <!-- /ORDER -->
 					</ul>
 					<!-- /CART -->
 				</div>
@@ -1565,6 +1571,8 @@
 
 <!-- jQuery -->
 <script src="{{URL::asset('client/js/vendor/jquery-1.11.1.min.js')}}"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script> --}}
+<script src={{URL::asset('all/js/js.cookie.min.js')}}></script>
 <script src="{{URL::asset('client/js/custom.js')}}"></script>
 <script src="{{URL::asset('client/js/cart.js')}}"></script>
 @yield('footer')

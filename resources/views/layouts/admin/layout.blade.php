@@ -8,8 +8,8 @@
 
 
     <script src="https://unpkg.com/popper.js"></script>
-    {{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> --}}
-    <script src="{{URL::asset('all/js/jquery-3.4.1.min.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    {{-- <script src="{{URL::asset('all/js/jquery-3.4.1.min.js')}}"></script> --}}
     <script src="{{URL::asset('all/js/bootstrap.min.js')}}"></script>
     <link rel="stylesheet" href="{{URL::asset('all/css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" href="{{URL::asset('manager/manager.css')}}"/>
@@ -221,7 +221,9 @@
                                       <a class="dropdown-item" href="#">Separated link</a> --}}
                                     </div>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Hiển thị trên web</a>
+                        </li>
 
 
                           </ul>
@@ -233,7 +235,7 @@
         @yield('body')
     </div>
         <!-- Footer -->
-<footer class="page-footer font-small blue pt-4">
+<footer class="page-footer font-small pt-4">
 
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left">
@@ -245,9 +247,12 @@
         <div class="col-md-6 mt-md-0 mt-3">
 
           <!-- Content -->
-          <h5 class="text-uppercase">Footer Content</h5>
-          <p>Here you can use rows and columns to organize your footer content.</p>
-
+          <h5 class="text-uppercase">Trụ sở chính</h5>
+          <p>
+            <li>Tầng 5, Tòa nhà Flemington, 182 Lê Đại Hành, P.15, Q.11, Hồ Chí Minh.</li>
+            <li>Tổng đài hỗ trợ: 1900.636.099 ( Thứ 2 đến Thứ 6 từ 8h đến 18h; Thứ 7 và Chủ nhật từ 8h00 đến 17h00 )</li>
+            <li>Số hỗ trợ ngoài giờ: 0901.866.099</li>
+            </p>
         </div>
         <!-- Grid column -->
 
@@ -308,8 +313,8 @@
     <!-- Footer Links -->
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+      <a href="https://mdbootstrap.com/education/bootstrap/"> TheCosmo.vn</a>
     </div>
     <!-- Copyright -->
   </footer>

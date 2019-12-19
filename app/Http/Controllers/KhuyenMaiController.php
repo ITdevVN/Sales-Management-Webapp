@@ -67,7 +67,7 @@ class KhuyenMaiController extends Controller
             'them_file'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
             'them_batdau'=>'required',
             'them_ngayketthuc'=>'required',
-            'them_tile'=>'required'
+            'them_file'=>'required'
         ]);
 
 
@@ -83,7 +83,7 @@ class KhuyenMaiController extends Controller
                 'client/images/banners/'.$new_name,
                 $request->them_batdau,
                 $request->them_ngayketthuc,
-                $request->them_tile,
+                $request->them_file,
                 $request->them_maloai
             ));
 
@@ -140,7 +140,7 @@ class KhuyenMaiController extends Controller
                 'client/images/banners/'.$new_name,
                 $request->sua_batdau,
                 $request->sua_ngayketthuc,
-                $request->sua_tile,
+                $request->sua_file,
                 $request->sua_maloai
             ));
 
@@ -167,5 +167,59 @@ class KhuyenMaiController extends Controller
     public function xoaTatCaKhuyenMai(){
         DB::select('call xoaTatCaKhuyenMai()');
         return $this->reloadTable('Xóa');
+    }
+
+    public function timKiem(Rquest $request){
+        return "hello";
+        // if (strcmp($request->loaiTimKiem,'tenkhuyenmai')==0){
+        //     $list=DB::select('call timKiemKhuyenMaiTheoTen(?)',array($request->keyWord));
+        //     if(count($list)==0){ //không có dòng nào ảnh hưởng
+        //         $output='
+        //         <div class="popup-alert alert alert-danger">
+        //             Không tìm thấy dòng nào
+        //         </div>';
+        //     }else if(count($list)>=1){
+        //         $output='
+        //         <div class="alert alert-success">
+        //         Các dòng tìm thấy
+        //     </div>
+        //         ';
+        //     }
+        //     $output .= '<table id="main-table" class="table table-hover table-striped">
+        //     <thead>
+        //       <tr>
+        //       <th scrope="col">
+        //       <input type="checkbox" id="checkall" aria-label="Checkbox for following text input">
+        //   </th>
+        //   <th scope="col">Mã khuyến mãi</th>
+        //   <th scope="col">Hình ảnh</th>
+        //   <th scope="col">Tên khuyến mãi</th>
+        //   <th scope="col">Nội dung</th>
+        //   <th scope="col">Bắt đầu</th>
+        //   <th scope="col">Kết thúc</th>
+        //   <th scope="col">Tỉ lệ</th>
+        //   <th scope="col">Tên loại sản phẩm</th>
+        //       </tr>
+        //     </thead>
+        //     <tbody>';
+        //     for($i=0;$i<count($list);$i++){
+        //         $output .= '<tr>
+        //         <th>
+        //         <input type="checkbox" id="check'.$list[$i]->ma_khuyen_mai.'" class="checkbox-group" aria-label="Checkbox for following text input">
+        //         </th>
+        //         <td >'.$list[$i]->ma_khuyen_mai.'</td>
+        //         <td ><img src="'.url('/').'/'.$list[$i]->hinh_anh.'" height="80px"/></td>
+        //         <td >'.$list[$i]->ten_khuyen_mai.'</td>
+        //         <td >'.$list[$i]->noi_dung.'</td>
+        //         <td >'.$list[$i]->bat_dau.'</td>
+        //         <td >'.$list[$i]->ket_thuc.'</td>
+        //         <td >'.$list[$i]->ti_le_khuyen_mai.'</td>
+        //         <td >'.$list[$i]->ten_loai.'</td>
+        //         </tr>';
+        //     }
+        //     $output .= '</tbody></table>';
+        //     return $output;
+        // }
+        //Kết thúc if
     }
 }

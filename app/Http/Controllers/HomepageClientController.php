@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 
+
 class HomepageClientController extends Controller
 {
-    public function hienThiTopSanPhamBanChay(){
+    public function hienThiTopSanPhamBanChay(Request $request){
         //Xử lý hiển thị top các sản phẩm bán chạy
         $listSanPhamBanChay=DB::select('call hienThiSanPhamBanChay(?)',array(20));
-        return view('client/homepage',['listSanPhamBanChay'=>$listSanPhamBanChay]);
+        //Hiển thị list giỏ hàng của khách hàng tương ứng
+        $listGioHang=DB::select('call hienThiDonHangOnlineChuaThanhToan(?)',array($request->session()->get('ma_nhan_vien')));
+        return view('client/homepage',['listSanPhamBanChay'=>$listSanPhamBanChay,'listGioHang'=>$listGioHang]);
     }
 
     public function hienThiTopSanPhamBanChay_chuaDangNhap(){
@@ -43,6 +46,11 @@ class HomepageClientController extends Controller
 
     public function hienThiChiTietSanPham(){
         return view('client/full-view');
+    }
+
+    public function luuSanPhamKhachHangChonXuongHoaDon(Request $request){
+        DB::select('call datHangOnline(?,?,?)',array($request->makh,$request->masp,$request->sl));
+        return redirect()->back();
     }
 
 

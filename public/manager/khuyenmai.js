@@ -40,7 +40,7 @@ $(document).ready(function(){
                 $('#them_noidung').val("");
                 $('#them_batdau').val("");
                 $('#them_ngayketthuc').val("");
-                $('#them_tile').val("");
+                $('#them_file').val("");
                 $('#them_maloai').val("");
                 $('#them_file').val("");
                 $('#messagethem').fadeOut();
@@ -69,9 +69,9 @@ $(document).ready(function(){
         $('#them_noidung').val("");
         $('#them_batdau').val("");
         $('#them_ngayketthuc').val("");
-        $('#them_tile').val("");
-        $('#them_maloai').val("");
         $('#them_file').val("");
+        $('#them_maloai').val("");
+        $('#sua_tile').val("");
         $('#messagethem').fadeOut();
 
     });
@@ -102,7 +102,7 @@ $(document).ready(function(){
                         $('#sua_file').val(res[3]);
                         $('#sua_batdau').val(res[4]);
                         $('#sua_ngayketthuc').val(res[5]);
-                        $('#sua_tile').val(res[6]);
+                         $('#sua_tile').val(res[6]);
                         $('#sua_maloai').val(res[7]);
                     },
                     error: function(res){
@@ -138,14 +138,14 @@ $(document).ready(function(){
                 $('#background-popup').addClass('hide');
                 $('#popup-sua').addClass('hide');
 
-                $('#sua_tenkhuyenmai').val("");
-                $('#sua_noidung').val("");
-                $('#sua_batdau').val("");
-                $('#sua_ngayketthuc').val("");
-                $('#sua_tile').val("");
-                $('#sua_maloai').val("");
-                $('#sua_file').val("");
-                $('#messagesua').fadeOut();
+                // $('#sua_tenkhuyenmai').val("");
+                // $('#sua_noidung').val("");
+                // $('#sua_batdau').val("");
+                // $('#sua_ngayketthuc').val("");
+                // $('#sua_tile').val("");
+                // $('#sua_maloai').val("");
+                // $('#sua_file').val("");
+                // $('#messagesua').fadeOut();
                 }else{
                     $('#messagesua').fadeIn();
                     $('#messagesua').html("<div class=\"alert alert-danger\"><ul id=\"itemdiv\"></ul></div>");
@@ -173,7 +173,7 @@ $(document).ready(function(){
         $('#sua_ngayketthuc').val("");
         $('#sua_tile').val("");
         $('#sua_maloai').val("");
-        $('#sua_file').val("");
+        // $('#sua_file').val("");
         $('#messagesua').fadeOut();
     });
 
@@ -226,9 +226,10 @@ $(document).ready(function(){
         var keyWord=$('#timkiem').val();
         $.ajax({
             type:"GET",
-            url:'nhacungcap/timkiem',
+            url:'khuyenmai/timkiem',
             data:{'keyWord':keyWord,'loaiTimKiem':loaiTimKiem}
         }).done(function(res){
+            alert("hel")
             $('#tablediv').fadeOut();
                 $('#tablediv').fadeIn();
                 $('#tablediv').html(res);

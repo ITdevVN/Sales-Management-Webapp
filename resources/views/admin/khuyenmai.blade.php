@@ -112,8 +112,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file form-group row" name="sua_file" id="sua_file">
+                        <div class=" custom-file form-group row">
+                            <input type="file" class="custom-file " name="sua_file" id="sua_file">
                             <label class="custom-file-label" for="customFile">Chọn tệp hình ảnh</label>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
             <div class="my-1 col-4 d-inline-block">
 
                     <select class="custom-select mr-sm-2" id="SelectForm">
-                      <option selected value="tennhacungcap">Tên khuyến mãi</option>
+                      <option selected value="tenkhuyenmai">Tên khuyến mãi</option>
                       <option value="manhacungcap">Mã khuyến mãi</option>
                       <option value="sodienthoai">Nội dung</option>
                       <option value="email">Tỉ lệ</option>

@@ -96,6 +96,9 @@ Route::group(['prefix' => 'client','middleware'=>['checkLoginClient','web']], fu
     Route::get('homepage/list-item-popup','HomepageClientController@layChiTietSanPham');
     Route::get('full-view','HomepageClientController@hienThiChiTietSanPham')->name('client.full-view');
     Route::get('dangxuat','HomepageClientController@dangxuat')->name('client.dangxuat');
+
+    //Chuyển đến trang để nhập sản phẩm giỏ hàng của người dùng
+    Route::get('homepage/themvaogiohang/{makh}/{masp}/{sl}','HomepageClientController@luuSanPhamKhachHangChonXuongHoaDon')->name('Client.themgiohang');
 });
 
 
