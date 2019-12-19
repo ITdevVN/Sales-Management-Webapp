@@ -13,7 +13,8 @@ class HomepageClientController extends Controller
         $listSanPhamBanChay=DB::select('call hienThiSanPhamBanChay(?)',array(20));
         //Hiển thị list giỏ hàng của khách hàng tương ứng
         $listGioHang=DB::select('call hienThiDonHangOnlineChuaThanhToan(?)',array($request->session()->get('ma_nhan_vien')));
-        return view('client/homepage',['listSanPhamBanChay'=>$listSanPhamBanChay,'listGioHang'=>$listGioHang]);
+        $tienKhachHangCanThanhToan=DB::select('call hienThiSoTienCanThanhToanCuaKhachHang(?)',array($request->session()->get('ma_nhan_vien')));
+        return view('client/homepage',['listSanPhamBanChay'=>$listSanPhamBanChay,'listGioHang'=>$listGioHang,'tienKhachHangCanThanhToan'=>$tienKhachHangCanThanhToan]);
     }
 
     public function hienThiTopSanPhamBanChay_chuaDangNhap(){
@@ -53,5 +54,13 @@ class HomepageClientController extends Controller
         return redirect()->back();
     }
 
+    public function xuLyKhachHangNhanThanhToanDonHang(Request $request){
+        DB::select('call xuLyKhachHangNhanThanhToanDonHang(?)',array($request->makh));
+        return redirect()->back()->with('success', 'Đặt hàng thành công');
+    }
 
+    public function xoaSanPham(Request $request){
+        DB::select('call huySanPhamTuChiTietDatHang(?,?)',array($request->masp,$request->makh));
+        return redirect()->back();
+    }
 }

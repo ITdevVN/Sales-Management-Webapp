@@ -5,11 +5,32 @@
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @yield('header')
+    <style>
+        .alert{
+            position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    text-align: center;
+        }
+    </style>
 	<!-- favicon -->
 	<link rel="icon" href="favicon.ico">
     <title>TheCosmo | Trang chủ</title>
 </head>
 <body>
+    @if (Session::has('success'))
+    <div class="alert">
+        <ul>
+            <li>{{Session::get('success') }}</li>
+        </ul>
+    </div>
+@endif
+    <div hidden class="makh_hidden" id="makh{{Session::get('ma_nhan_vien')}}">Mã của khách hàng đang đăng nhập.</div>
 	<!-- HEADER -->
 	<header>
 		<div id="header-top-wrap">
@@ -161,7 +182,7 @@
                         <p class="cart-content-short">(3)</p>
                         @if (count($listGioHang)>=1)
 						<p class="cart-content-long">{{count($listGioHang)}} sản phẩm - </p>
-                        <p class="highlighted">{{number_format($listGioHang[0]->khach_can_tra)}} VND</p>
+                        <p class="highlighted">{{number_format($tienKhachHangCanThanhToan[0]->khach_can_tra)}} VND</p>
                         @endif
 					</div>
 					<!-- /CART CONTROL -->
@@ -200,9 +221,9 @@
 								<h6>{{$item->so_luong}}</h6>
 							</div>
 							<div class="price">
-								<p class="highlighted">{{number_format($item->gia_ban)}}</p>
+								<p class="highlighted">{{number_format($item->thanh_tien)}}</p>
 							</div>
-							<img src="images/items/remove.png" alt="remove">
+							<a class="button-remove" id="masanpham{{$item->ma_san_pham}}"><img src="images/items/remove.png" alt="remove"></a>
 						</li>
 						<!-- /CART ITEM -->
                         @endforeach
@@ -210,10 +231,10 @@
 						<!-- TOTAL -->
 						<li class="total clearfix">
 							<div>
-                                <h6>{{number_format($listGioHang[0]->tong_tien_hang)}}</h6>
-								<h6>{{number_format($listGioHang[0]->so_tien_giam)}}</h6>
-								<h6>0</h6>
-								<p class="highlighted">{{number_format($listGioHang[0]->khach_can_tra)}}</p>
+                                <h6>{{number_format($tienKhachHangCanThanhToan[0]->tong_tien_hang)}}</h6>
+								<h6>{{number_format($tienKhachHangCanThanhToan[0]->so_tien_giam)}}</h6>
+                                <h6>0</h6>
+								<p class="highlighted">{{number_format($tienKhachHangCanThanhToan[0]->khach_can_tra)}}</p>
 							</div>
 							<div>
                                 <h6>Tạm tính</h6>
@@ -226,7 +247,7 @@
 						<!-- /TOTAL -->
 						<!-- ORDER -->
 						<li class="order clearfix">
-							<a href="checkout.html" class="button">Thanh toán</a>
+							<a id="thanhtoan-client" href="checkout.html" class="button">Thanh toán</a>
 							<a href="cart.html" class="button secondary">Chi tiết</a>
 						</li>
                         <!-- /ORDER -->
@@ -520,158 +541,6 @@
 							</ul>
 						</article>
 						<!-- /SUBMENU LIST -->
-
-						<!-- SUBMENU LIST -->
-						<article class="submenu-list double">
-							<h6>Collections</h6>
-							<ul>
-								<li>
-									<a href="merchandising-shop.html">TV Collection
-									<!-- SVG ARROW -->
-									<svg class="svg-arrow">
-										<use xlink:href="#svg-arrow"></use>
-									</svg>
-									<!-- /SVG ARROW -->
-									</a>
-								</li>
-								<li>
-									<a href="merchandising-shop.html">Comics Collection
-									<!-- SVG ARROW -->
-									<svg class="svg-arrow">
-										<use xlink:href="#svg-arrow"></use>
-									</svg>
-									<!-- /SVG ARROW -->
-									</a>
-								</li>
-							</ul>
-							<h6>Spring Season</h6>
-							<ul>
-								<li>
-									<a href="women-shop.html">T-Shirts
-									<!-- SVG ARROW -->
-									<svg class="svg-arrow">
-										<use xlink:href="#svg-arrow"></use>
-									</svg>
-									<!-- /SVG ARROW -->
-									</a>
-								</li>
-								<li>
-									<a href="women-shop.html">Hoodies
-									<!-- SVG ARROW -->
-									<svg class="svg-arrow">
-										<use xlink:href="#svg-arrow"></use>
-									</svg>
-									<!-- /SVG ARROW -->
-									</a>
-								</li>
-							</ul>
-						</article>
-						<!-- /SUBMENU LIST -->
-
-						<!-- PRODUCT PREVIEW -->
-						<ul class="product-preview">
-							<li>
-								<a href="full-view.html">
-									<figure class="liquid">
-										<img src="images/items/02.png" alt="product1">
-									</figure>
-								</a>
-								<a href="women-shop.html"><p class="highlighted category">T-Shirts</p></a>
-								<a href="full-view.html"><h6>Crazy Bunny</h6></a>
-								<!-- RATING -->
-								<ul class="rating">
-									<li class="filled">
-										<!-- SVG STAR -->
-										<svg class="svg-star">
-											<use xlink:href="#svg-star"></use>
-										</svg>
-										<!-- /SVG STAR -->
-									</li>
-									<li class="filled">
-										<!-- SVG STAR -->
-										<svg class="svg-star">
-											<use xlink:href="#svg-star"></use>
-										</svg>
-										<!-- /SVG STAR -->
-									</li>
-									<li class="filled">
-										<!-- SVG STAR -->
-										<svg class="svg-star">
-											<use xlink:href="#svg-star"></use>
-										</svg>
-										<!-- /SVG STAR -->
-									</li>
-									<li class="filled">
-										<!-- SVG STAR -->
-										<svg class="svg-star">
-											<use xlink:href="#svg-star"></use>
-										</svg>
-										<!-- /SVG STAR -->
-									</li>
-									<li>
-										<!-- SVG STAR -->
-										<svg class="svg-star">
-											<use xlink:href="#svg-star"></use>
-										</svg>
-										<!-- /SVG STAR -->
-									</li>
-								</ul>
-								<!-- /RATING -->
-								<p class="highlighted current">86.00</p>
-							</li>
-
-							<li>
-								<a href="full-view.html">
-									<figure class="liquid">
-										<img src="images/items/25.png" alt="product2">
-									</figure>
-								</a>
-								<a href="women-shop.html"><p class="highlighted category">T-Shirts</p></a>
-								<a href="full-view.html"><h6>Happy Doughnut</h6></a>
-								<!-- RATING -->
-								<ul class="rating">
-									<li class="filled">
-										<!-- SVG STAR -->
-										<svg class="svg-star">
-											<use xlink:href="#svg-star"></use>
-										</svg>
-										<!-- /SVG STAR -->
-									</li>
-									<li class="filled">
-										<!-- SVG STAR -->
-										<svg class="svg-star">
-											<use xlink:href="#svg-star"></use>
-										</svg>
-										<!-- /SVG STAR -->
-									</li>
-									<li class="filled">
-										<!-- SVG STAR -->
-										<svg class="svg-star">
-											<use xlink:href="#svg-star"></use>
-										</svg>
-										<!-- /SVG STAR -->
-									</li>
-									<li class="filled">
-										<!-- SVG STAR -->
-										<svg class="svg-star">
-											<use xlink:href="#svg-star"></use>
-										</svg>
-										<!-- /SVG STAR -->
-									</li>
-									<li>
-										<!-- SVG STAR -->
-										<svg class="svg-star">
-											<use xlink:href="#svg-star"></use>
-										</svg>
-										<!-- /SVG STAR -->
-									</li>
-								</ul>
-								<!-- /RATING -->
-								<p class="highlighted current">49.00</p>
-								<p class="highlighted previous">61.25</p>
-							</li>
-						</ul>
-						<!-- /PRODUCT PREVIEW -->
 					</li>
 				</ul>
 				<!-- /SUBMENU MEDIUM -->

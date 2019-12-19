@@ -9,4 +9,16 @@ $(document).ready(function(){
     $('.themgiohang_hethang_quickview').click(function(){
         var IDD=parseInt($(this).attr("id").match(/\d+/));
     })
+
+    //Xử lý khi click nút thanh toán
+    $('#thanhtoan-client').click(function(){
+        var makh=parseInt($('.makh_hidden').attr("id").match(/\d+/));
+        $('#thanhtoan-client').attr('href','homepage/thanhtoan/'+makh);
+    })
+
+    $('.button-remove').click(function(){
+        var sanpham=parseInt($(this).attr("id").match(/\d+/));
+        var makh=parseInt($('.makh_hidden').attr("id").match(/\d+/));
+        $('.button-remove').attr('href','homepage/xoasanpham/'+sanpham+'/'+makh);
+    })
 })

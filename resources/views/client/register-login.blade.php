@@ -31,6 +31,13 @@
                         {{session('Thông báo')}}
                     </div>
                 @endif
+                @if (Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{{Session::get('success') }}</li>
+        </ul>
+    </div>
+@endif
         <div class="featured-form">
             <h3>Đăng ký tài khoản mới</h3>
             <form id="form-register" action="{{route('Client.Register')}}" method="POST" class="westeros-form">

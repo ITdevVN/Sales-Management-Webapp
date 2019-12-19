@@ -221,6 +221,13 @@
                                       <a class="dropdown-item" href="#">Separated link</a> --}}
                                     </div>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Đơn hàng Online</a>
+                                <div class="dropdown-menu">
+                                  <a class="dropdown-item" href="{{route('donhangchoxuly')}}">Đơn hàng chờ xử lý</a>
+                                  <a class="dropdown-item" href="{{route('donhangdanggiao')}}">Đơn hàng đang giao</a>
+                                </div>
+                        </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Hiển thị trên web</a>
                         </li>

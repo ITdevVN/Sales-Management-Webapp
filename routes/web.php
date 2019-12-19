@@ -81,7 +81,24 @@ Route::group(['prefix' => 'admin','middleware'=>['checkLogin','web']], function(
         Route::get('hoadon','HoaDonController@hienThiDanhSachHoaDon')->name('hoadon');
         Route::get('hoadon/setSession','DynamicPDFController@setSession')->name('hoadon.setSession');
         Route::get('hoadon/xuatpdftatca','DynamicPDFController@xuatPDFTatCa')->name('hoadon.xuatpdftatca');
+        //Đơn hàng chờ xử lý
+        Route::get('hoadon/hienthixuly','HoaDon_choxulyController@hienThiDanhSachHoaDon')->name('donhangchoxuly');
+        //Đơn hàng đang giao
+        Route::get('hoadon/hienthidanggiao','HoaDon_danggiaoController@hienThiDanhSachHoaDon')->name('donhangdanggiao');
 
+        Route::group(['prefix'=>'hoadon'],function(){
+     //Chuyển trang thái đơn hàng của khách hàng từ Chưa thanh toán sang Chờ xử lý
+     Route::get('hienthixuly/chuyentrangthai-choxuly/{mahd}','HoaDon_choxulyController@xuLyChoXuLy_DangGiaoHang')->name('admin.choxuly');
+     //Xử lý hủy đơn hàng khi đang xử lý
+     Route::get('hienthixuly/huydonhang/{mahd}','HoaDon_choxulyController@xuLyHuyDonHang')->name('admin.huydonhang');
+        });
+
+        Route::group(['prefix'=>'hoadon'],function(){
+            //Chuyển trang thái đơn hàng của khách hàng từ xử lý sang giao hàng
+            Route::get('hienthidanggiao/chuyentrangthai-thanhtoan/{mahd}','HoaDon_danggiaoController@xuLyDangGiaoHang_ThanhToan')->name('admin.choxuly');
+            //Xử lý hủy đơn hàng khi đang giao
+            Route::get('hienthidanggiao/huydonhang/{mahd}','HoaDon_danggiaoController@xuLyHuyDonHang')->name('admin.huydonhang');
+               });
 });
 
 
@@ -99,6 +116,9 @@ Route::group(['prefix' => 'client','middleware'=>['checkLoginClient','web']], fu
 
     //Chuyển đến trang để nhập sản phẩm giỏ hàng của người dùng
     Route::get('homepage/themvaogiohang/{makh}/{masp}/{sl}','HomepageClientController@luuSanPhamKhachHangChonXuongHoaDon')->name('Client.themgiohang');
+    Route::get('homepage/xoasanpham/{masp}/{makh}','HomepageClientController@xoaSanPham')->name('Client.xoaSanPham');
+    Route::get('homepage/thanhtoan/{makh}','HomepageClientController@xuLyKhachHangNhanThanhToanDonHang')->name('Client.xuLyThanhtoanGiohang');
+
 });
 
 

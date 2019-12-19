@@ -1,7 +1,7 @@
 @extends('layouts/admin/layout')
 
 @section('head')
-<link rel="stylesheet" href="{{URL::asset('manager/hoadon.css')}}"/>
+<link rel="stylesheet" href="{{URL::asset('manager/hoadon_choxuly.css')}}"/>
 @stop
 
 @section('body')
@@ -133,7 +133,7 @@
 
 <div id="thanhcongcu" class="d-flex align-items-center justify-content-center">
     <div class="d-inline-block ">
-        <h2 class="mr-5">Hóa đơn</h2>
+        <h2 class="mr-5">Đơn hàng chờ xử lý</h2>
     </div>
     <div class="form-group input-group-text col-lg-6 d-inline-block mr-5">
             <div class="my-1 col-4 d-inline-block">
@@ -150,10 +150,9 @@
         {{-- <small id="emailHelp" class="form-text text-muted">Tìm kiếm theo tên nhóm hàng</small> --}}
     </div>
     <div id="buttondiv">
-            <button type="button" class="btn btn-success" id="banhang">Bán hàng</button>
+        <a id="daxuly"><button type="button" class="btn btn-success">Đã xử lý</button></a>
 
-            <button type="button" class="btn btn-success" id="xuatfile">Xuất file</button>
-            <button type="button" class="btn btn-success" id="in">In</button>
+    <a id="huydonhang"><button type="button" class="btn btn-danger" >Hủy đơn hàng</button></a>
     </div>
 </div>
 
@@ -173,8 +172,7 @@
         <th scope="col">Số tiền giảm</th>
         <th scope="col">Khách cần trả</th>
         <th scope="col">Trạng thái</th>
-        <th scope="col">Hình thức mua</th>
-        <th scope="col">Thời gian thanh toán</th>
+        <th scope="col">Thời gian đặt mua</th>
       </tr>
     </thead>
     <tbody>
@@ -190,7 +188,6 @@
         <td >{{$list[$i]->so_tien_giam}}</td>
         <td >{{$list[$i]->khach_can_tra}}</td>
         <td >{{$list[$i]->trang_thai}}</td>
-        <td >{{$list[$i]->hinh_thuc_thanh_toan}}</td>
         <td >{{$list[$i]->thoigian}}</td>
     </tr>
     @endfor
@@ -202,6 +199,6 @@
 
 @section('footer')
 <script src="{{URL::asset('all/js/jquery.session.js')}}"></script>
-<script src="{{URL::asset('manager/hoadon.js')}}"></script>
+<script src="{{URL::asset('manager/hoadon_choxuly.js')}}"></script>
 @stop
 

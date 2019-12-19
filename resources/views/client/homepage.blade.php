@@ -8,7 +8,6 @@
 @stop
 
 @section('body')
-<p hidden class="makh_hidden" id="makh{{Session::get('ma_nhan_vien')}}">Mã của khách hàng.</p>
 <!-- BANNER -->
 <div id="banner-wrap">
 		<section id="banner">
@@ -286,12 +285,14 @@
             <li id="{{$listSanPhamBanChay[$i]->ma_san_pham}}" class="list-item">
 
                 <!-- PIN -->
+                    @if ($listSanPhamBanChay[$i]->phan_tram_giam !=null)
 					<div class="pin circle" id="giamgia">
                             <h6>Sale!</h6>
-                            <h6 class="percent important">20%</h6>
+                            <h6 class="percent important">{{$listSanPhamBanChay[$i]->phan_tram_giam}}</h6>
                             <h6>off</h6>
                         </div>
                         <!-- /PIN -->
+                    @endif
 
 
 					<!-- ACTIONS -->
@@ -550,19 +551,33 @@
 									<!-- /SVG STAR -->
 								</li>
 							</ul> --}}
-							<!-- /RATING -->
+                            <!-- /RATING -->
+                        @if ($listSanPhamBanChay[$i]->phan_tram_giam!=null)
 						</div>
 						<div class="clearfix">
                             <a href="#"><h6>{{$listSanPhamBanChay[$i]->ten_san_pham}}</h6></a>
-                            <p class="highlighted previous">{{number_format(5000)}}</p>
+                            <p class="highlighted previous">{{number_format($listSanPhamBanChay[$i]->gia_ban)}}</p>
 						</div>
 						<div class="clearfix">
                         <p>{{$listSanPhamBanChay[$i]->ten_loai}}</p>
                             {{-- Giá bán hiển thị ở ngoài --}}
-                        <p class="highlighted current">{{number_format($listSanPhamBanChay[$i]->gia_ban)}}</p>
+                        <p class="highlighted current">{{number_format($listSanPhamBanChay[$i]->tien_sau_khi_giam)}}</p>
 
 						</div>
+                        @else
+                    </div>
+                    <div class="clearfix">
+                        <a href="#"><h6>{{$listSanPhamBanChay[$i]->ten_san_pham}}</h6></a>
+                        <p class="highlighted previous"></p>
+                    </div>
 
+                    <div class="clearfix">
+                    <p>{{$listSanPhamBanChay[$i]->ten_loai}}</p>
+                        {{-- Giá bán hiển thị ở ngoài --}}
+                    <p class="highlighted current">{{number_format($listSanPhamBanChay[$i]->gia_ban)}}</p>
+
+                    </div>
+                        @endif
                         <!-- CART OPTIONS -->
                         @if ($listSanPhamBanChay[$i]->ton_kho==0)
                         <div class="cart-options">

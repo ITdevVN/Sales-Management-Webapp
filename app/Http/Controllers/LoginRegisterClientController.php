@@ -49,7 +49,7 @@ class LoginRegisterClientController extends Controller
             $request->matkhau
         ));
         // return Redirect::back()->withErrors(['Đăng nhập thất bại']);
-        return redirect()->route('Client.Homepage');
+        return redirect()->back()->with('success', 'Đăng ký thành công');
     }
 
     public function postLoginClient(Request $request){

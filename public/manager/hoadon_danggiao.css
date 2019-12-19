@@ -1,0 +1,104 @@
+input[type=checkbox] {
+    zoom: 1;
+}
+
+h2{
+    font-weight: bold;
+}
+
+
+#thanhcongcu{
+    margin-top: 10px;
+    margin-bottom: 30px;
+    width:100%;
+}
+
+thead{
+    background-color: #DCF4FC;
+}
+
+#tablediv{
+    background-color: #FFFFFF;
+    width: 100%;
+}
+
+#popup-them{
+    background-color: #FFFFFF;
+    z-index: 2;
+}
+
+#popup-them-header{
+    font-weight: bold;
+    background-color: #2E94DA;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+#popup-them-body{
+    background-color: #FFFFFF;
+    padding: 20px 80px 10px 80px;
+}
+
+#popup-body-button{
+    margin-right: 30px;
+}
+
+#popup-sua{
+    background-color: #FFFFFF;
+}
+
+#popup-sua-header{
+    font-weight: bold;
+    background-color: #2E94DA;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+#popup-sua-body{
+    background-color: #FFFFFF;
+    padding: 20px 80px 10px 80px;
+}
+
+#popup-body-button{
+    margin-right: 30px;
+}
+
+#background-popup{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,.5);
+    display: block;
+    position: fixed;
+    z-index:1;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+}
+
+.hide{
+    display: none;
+}
+
+.ScrollStyle
+{
+    max-height: 50px;
+    overflow-y: scroll;
+}
+
+#messagethem{
+    z-index: 3;
+    position: absolute;
+
+}
+
+
+#messagesua{
+    z-index: 3;
+    position: absolute;
+}
+
