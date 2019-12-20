@@ -157,26 +157,29 @@ class SanPhamController extends Controller
 
 
         if($validator->passes()){ //Nếu đã xét Validation thành công thì
-            if ($request->file('sua_file1')!=null){
+            $listHinhAnh=DB::select('call layThongTinURLHinhAnhSanPham(?)',$request->ID);
+            if ($request->file('sua_file3')!=null){
             $image1=$request->file('sua_file1');
             $new_name1=rand().'.'.$image1->getClientOriginalExtension();
             $image1->move(public_path('client/images/items/'),$new_name1);
             }else{
-                $new_name1=substring(DB::select('call layAnhSanPham1(?)',array($request->ma_san_pham)),21);
+                $new_name1=$listHinhAnh[0]->hinh_anh1;
             }
-            if ($request->file('sua_file2')!=null){
+
+            if ($request->file('sua_file3')!=null){
             $image2=$request->file('sua_file2');
             $new_name2=rand().'.'.$image2->getClientOriginalExtension();
             $image2->move(public_path('client/images/items/'),$new_name2);
-            }else{
-                $new_name1=substring(DB::select('call layAnhSanPham2(?)',array($request->ma_san_pham)),21);
-            }
+        }else{
+            $new_name2=$listHinhAnh[0]->hinh_anh2;
+        }
+
             if ($request->file('sua_file3')!=null){
             $image3=$request->file('sua_file3');
             $new_name3=rand().'.'.$image3->getClientOriginalExtension();
             $image3->move(public_path('client/images/items/'),$new_name3);
             }else{
-                $new_name1=substring(DB::select('call layAnhSanPham3(?)',array($request->ma_san_pham)),21);
+                $new_name3=$listHinhAnh[0]->hinh_anh3;
             }
             //Lưu xuống cơ sở dữ liệu
             DB::select('call suaThongTinSanPham(?,?,?,?,?,?,?,?,?,?,?)',array(
@@ -199,12 +202,13 @@ class SanPhamController extends Controller
                     'output' =>$output
                 ]);
 
-        }else{
-            return response()->json([
-                'flag' =>0,
-                'message' => $validator->errors()->all()
-            ]);
-        }
+
+            }else{
+                return response()->json([
+                    'flag' =>0,
+                    'message' => $validator->errors()->all()
+                ]);
+            }
 
     }
 

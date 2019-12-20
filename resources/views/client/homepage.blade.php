@@ -410,10 +410,9 @@
 									<!-- /RATING -->
                                 <p id="thongtinsanpham_quickview"></p>
                                 <p class="highlighted current" id="giaban_quickview"></p>
-									<p class="highlighted previous">90.25</p>
+									<p class="highlighted previous" id="gia_ban_thay_the_quickview"></p>
 									<h5 id="tonkho_quickview" class="stock">
-
-									</h5>
+                                    </h5>
 									{{-- <h5>Select Size:</h5>
 									<form class="westeros-form">
 										<input id="small1" type="radio" name="size" value="small">

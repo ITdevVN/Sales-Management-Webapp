@@ -191,7 +191,7 @@
         <td >{{$list[$i]->khach_can_tra}}</td>
         <td >{{$list[$i]->trang_thai}}</td>
         <td >{{$list[$i]->hinh_thuc_thanh_toan}}</td>
-        <td >{{$list[$i]->thoigian}}</td>
+        <td >{{$list[$i]->time_thanh_toan}}</td>
     </tr>
     @endfor
     </tbody>

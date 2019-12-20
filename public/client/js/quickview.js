@@ -9,7 +9,13 @@ $(document).ready(function(){
             //Lấy thông tin sản phẩm dưới database gán cho từng trường
             $('#tensanpham_quickview').html(res.ten_san_pham);
             $('#tennhomhang_quickview').html(res.ten_nhom_hang);
+            if (res.gia_sau_khi_giam==null){
             $('#giaban_quickview').html(res.gia_ban);
+            $('#gia_ban_thay_the_quickview').html("");
+            }else if (res.gia_sau_khi_giam!=null){
+                $('#giaban_quickview').html(res.gia_sau_khi_giam);
+                $('#gia_ban_thay_the_quickview').html(res.gia_ban);
+            }
             $('#thongtinsanpham_quickview').html(res.thong_tin_san_pham);
             $('#hinhanh1_popup').attr("src","http://localhost:82/DoAnWeb/public/" +res.hinh_anh1);
             $('#hinhanh1_figure').attr("style","background-position: center; background-image: url(\""+"http://localhost:82/DoAnWeb/public/"+res.hinh_anh1+"\"); background-repeat: no-repeat; background-size: cover;")
@@ -55,6 +61,8 @@ $(document).ready(function(){
                 $('.themgiohang_hethang_quickview').removeClass('no-stock');
                 $('.themgiohang_hethang_quickview').addClass('button cart-add');
             }
+
+
 
         })
     });

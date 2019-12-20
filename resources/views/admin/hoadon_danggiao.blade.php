@@ -172,7 +172,7 @@
         <th scope="col">Số tiền giảm</th>
         <th scope="col">Khách cần trả</th>
         <th scope="col">Trạng thái</th>
-        <th scope="col">Thời gian đặt mua</th>
+        <th scope="col">Thời gian đã xử lý</th>
       </tr>
     </thead>
     <tbody>
@@ -188,7 +188,7 @@
         <td >{{$list[$i]->so_tien_giam}}</td>
         <td >{{$list[$i]->khach_can_tra}}</td>
         <td >{{$list[$i]->trang_thai}}</td>
-        <td >{{$list[$i]->thoigian}}</td>
+        <td >{{$list[$i]->time_xu_ly}}</td>
     </tr>
     @endfor
     </tbody>

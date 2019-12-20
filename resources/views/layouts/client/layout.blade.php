@@ -221,7 +221,7 @@
 								<h6>{{$item->so_luong}}</h6>
 							</div>
 							<div class="price">
-								<p class="highlighted">{{number_format($item->thanh_tien)}}</p>
+								<p class="highlighted">{{number_format($item->thanh_tien+$item->so_tien_giam)}}</p>
 							</div>
 							<a class="button-remove" id="masanpham{{$item->ma_san_pham}}"><img src="images/items/remove.png" alt="remove"></a>
 						</li>

@@ -13,7 +13,7 @@ class HoaDon_choxulyController extends Controller
     }
 
     public function xuLyChoXuLy_DangGiaoHang(Request $request){
-        DB::select('call xuLyChoXuLy_DangGiaoHang(?)',array($request->mahd));
+        DB::select('call xuLyChoXuLy_DangGiaoHang(?,?)',array($request->mahd,$request->session()->get('ma_nhan_vien')));
         return redirect()->back();
     }
 

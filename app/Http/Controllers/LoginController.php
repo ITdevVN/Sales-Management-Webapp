@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
-use Session;
+
 use Redirect;
 
 class LoginController extends Controller
@@ -39,7 +39,6 @@ class LoginController extends Controller
         $request->session()->put('mat_khau',$mat_khau);
         $request->session()->put('ho_ten',$ho_ten);
         $request->session()->put('ma_nhan_vien',$ma_nhan_vien);
-
         }
         else{
             return Redirect::back()->withErrors(['Đăng nhập thất bại']);

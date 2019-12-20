@@ -16,7 +16,7 @@ class HomeController extends Controller
 
     public function layThongTinNguoiDung(Request $request){
 
-        $chitietnhanvien=DB::select('call hienThiThongTinNhanVienTrangChuAdmin(?)',array(1));
+        $chitietnhanvien=DB::select('call hienThiThongTinNhanVienTrangChuAdmin(?)',array($request->session()->get('ma_nhan_vien')));
         $list[0]=$chitietnhanvien[0]->ho_ten;
         $list[1]=$chitietnhanvien[0]->email;
         $list[2]=$chitietnhanvien[0]->cmnd;

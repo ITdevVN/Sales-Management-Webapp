@@ -35,7 +35,7 @@
                         <label class="col-4 font-weight-bold" for="them_trangthai">Trạng thái</label>
                             <div class="col-8">
                                 <select name="them_trangthai" class="custom-select mr-sm-2" id="them_trangthai">
-                                        <option value="Có thể kinh doanh">Có thể kinh doanh</option>
+                                        <option value="Được phép kinh doanh">Được phép kinh doanh</option>
                                         <option value="Không kinh doanh">Không kinh doanh</option>
                                 </select>
                             </div>

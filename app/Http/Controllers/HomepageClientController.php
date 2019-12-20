@@ -41,7 +41,8 @@ class HomepageClientController extends Controller
             'gia_ban'=>number_format($ChiTietSanPham[0]->gia_ban),
             'ton_kho'=>$ChiTietSanPham[0]->ton_kho,
             'trang_thai'=>$ChiTietSanPham[0]->trang_thai,
-            'thong_tin_san_pham'=>$ChiTietSanPham[0]->thong_tin_san_pham
+            'thong_tin_san_pham'=>$ChiTietSanPham[0]->thong_tin_san_pham,
+            'gia_sau_khi_giam'=>$ChiTietSanPham[0]->gia_sau_khi_giam
         ]);
     }
 
