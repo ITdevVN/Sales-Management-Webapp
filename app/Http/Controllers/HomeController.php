@@ -11,7 +11,9 @@ class HomeController extends Controller
 {
     //Admin
     public function getHomeAdmin(){
-        return view('admin/homepage');
+        $doanh_thu_thuan=DB::select('call doanhthuthuantrongngay()');
+        $tile=DB::select('call doanhThuSoVoiThangTruoc()');
+        return view('admin/homepage',['doanh_thu_thuan'=>$doanh_thu_thuan,'tile'=>$tile]);
     }
 
     public function layThongTinNguoiDung(Request $request){

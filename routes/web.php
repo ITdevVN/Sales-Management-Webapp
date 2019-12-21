@@ -117,6 +117,10 @@ Route::group(['prefix' => 'admin','middleware'=>['checkLogin','web']], function(
     Route::get('khachhang/xoa', 'KhachHangController@xoaKhachHang');
     Route::get('khachhang/xoatatca', 'KhachHangController@xoaTatCaKhachHang');
     Route::get('khachhang/timkiem', 'KhachHangController@timKiem');
+
+
+    //Doanh thu
+    Route::get('doanhthu/doanhthucuoingay', 'DynamicPDFController@baoCaoDoanhThuCuoiNgay')->name('doanhthu.cuoingay');
 });
 
 
@@ -139,6 +143,7 @@ Route::group(['prefix' => 'client','middleware'=>['checkLoginClient','web']], fu
 
     //Dat hang Online dung chung cho cac trang con lai
     Route::get('homepage/themvaogio','DatHangOnlineController@datHangOnline');
+
 
 });
 

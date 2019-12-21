@@ -210,7 +210,7 @@
                             <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Báo cáo</a>
                                     <div class="dropdown-menu">
-                                      <a class="dropdown-item" href="#">Cuối ngày</a>
+                                      <a class="dropdown-item" href="{{route('doanhthu.cuoingay')}}">Cuối ngày</a>
                                       <a class="dropdown-item" href="#">Hàng hóa</a>
                                       <a class="dropdown-item" href="#">Khách hàng</a>
                                       <a class="dropdown-item" href="#">Nhà cung cấp</a>

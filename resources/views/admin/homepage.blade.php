@@ -12,8 +12,8 @@
                                 <i class="fas fa-dollar-sign fa-2x"></i>
                             </div>
                             <div class="left_section_1_content">
-                                <span>0 hóa đơn</span></br>
-                                <span>0</span></br>
+                                <span>{{number_format($doanh_thu_thuan[0]->so_hoa_don)}} hóa đơn</span></br>
+                                <span>{{number_format($doanh_thu_thuan[0]->doanh_thu_thuan)}} VNĐ</span></br>
                                 <span>Doanh thu thuần</span>
                             </div>
                             <div class="vien"></div>
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="left_section_1_content">
                                     <span></span></br>
-                                    <span>-67.53%</span></br>
+                                    <span>40.6 %</span></br>
                                     <span>So với tháng trước</span>
                                 </div>
                                 <div class="vien"></div>
