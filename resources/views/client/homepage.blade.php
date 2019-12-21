@@ -285,7 +285,8 @@
             <li id="{{$listSanPhamBanChay[$i]->ma_san_pham}}" class="list-item">
 
                 <!-- PIN -->
-                    @if ($listSanPhamBanChay[$i]->phan_tram_giam !=null)
+                    @if ($listSanPhamBanChay[$i]->phan_tram_giam !=null && date('Y-m-d H:i:s')>=$listSanPhamBanChay[$i]->bat_dau
+                    && date('Y-m-d H:i:s')<=$listSanPhamBanChay[$i]->ket_thuc)
 					<div class="pin circle" id="giamgia">
                             <h6>Sale!</h6>
                             <h6 class="percent important">{{$listSanPhamBanChay[$i]->phan_tram_giam}}</h6>

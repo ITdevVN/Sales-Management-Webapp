@@ -70,7 +70,7 @@ Route::group(['prefix' => 'admin','middleware'=>['checkLogin','web']], function(
         //Sản phẩm
         Route::get('sanpham','SanPhamController@hienThiDanhSachSanPham')->name('sanpham'); //Hoàn thành
         Route::post('sanpham/them','SanPhamController@themSanPham')->name('sanpham.them');
-        Route::post('sanpham/sua','SanPhamController@suaSanPham')->name('sanpham.sua');
+        Route::post('sanpham/sua','SanPhamController@suaThongTinSanPham')->name('sanpham.sua');
         Route::get('sanpham/xoa','SanPhamController@xoaSanPham');
         Route::get('sanpham/xoatatca','SanPhamController@xoaTatCaSanPham');
         Route::get('sanpham/timkiem','SanPhamController@timKiemSanPham');
@@ -99,6 +99,24 @@ Route::group(['prefix' => 'admin','middleware'=>['checkLogin','web']], function(
             //Xử lý hủy đơn hàng khi đang giao
             Route::get('hienthidanggiao/huydonhang/{mahd}','HoaDon_danggiaoController@xuLyHuyDonHang')->name('admin.huydonhang');
                });
+
+
+        //nhân viên
+    Route::get('nhanvien', 'NhanVienController@hienThiDanhSachNhanVien')->name('nhanvien');
+    Route::POST('nhanvien/them', 'NhanVienController@themNhanVien')->name('nhanvien.them');
+    Route::post('nhanvien/sua', 'NhanVienController@suaNhanVien')->name('nhanvien.sua');
+    Route::get('nhanvien/xoa', 'NhanVienController@xoaNhanVien');
+    Route::get('nhanvien/xoatatca', 'NhanVienController@xoaTatCaNhanVien');
+    Route::get('nhanvien/timkiem', 'NhanVienController@timKiem');
+    Route::get('nhanvien/laychitietnhanvien', 'NhanVienController@layThongTinNhanVienTheoID')->name('nhanvien.layID');
+    //khách hàng
+    Route::get('khachhang', 'KhachHangController@hienThiDanhSachKhachHang')->name('khachhang');
+    Route::POST('khachhang/them', 'KhachHangController@themKhachHang')->name('khachhang.them');
+    Route::get('khachhang/laychitietkhachhang', 'KhachHangController@layThongTinKhachHangTheoID')->name('khachhang.layID');
+    Route::post('khachhang/sua', 'KhachHangController@suaKhachHang')->name('khachhang.sua');
+    Route::get('khachhang/xoa', 'KhachHangController@xoaKhachHang');
+    Route::get('khachhang/xoatatca', 'KhachHangController@xoaTatCaKhachHang');
+    Route::get('khachhang/timkiem', 'KhachHangController@timKiem');
 });
 
 

@@ -153,12 +153,12 @@ $(document).ready(function(){
                         $('#itemdiv').append("<li>"+value+"</li>");
                     });
                 }
-            },
+            }, // Đóng success
             error: function(res){
                 alert("Xuất hiện lỗi: "+res);
             }
 
-        });
+        }); //Đóng Ajax
         e.preventDefault();
     });
 

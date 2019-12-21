@@ -157,31 +157,33 @@ class SanPhamController extends Controller
 
 
         if($validator->passes()){ //Nếu đã xét Validation thành công thì
-            $listHinhAnh=DB::select('call layThongTinURLHinhAnhSanPham(?)',$request->ID);
-            if ($request->file('sua_file3')!=null){
+            $listHinhAnh=DB::select('call layThongTinURLHinhAnhSanPham(?)',array($request->sua_masanpham));
+
+            if ($request->file('sua_file1')!=null){
             $image1=$request->file('sua_file1');
             $new_name1=rand().'.'.$image1->getClientOriginalExtension();
             $image1->move(public_path('client/images/items/'),$new_name1);
-            }else{
-                $new_name1=$listHinhAnh[0]->hinh_anh1;
+            }
+            else{
+                $new_name1=substr($listHinhAnh[0]->hinh_anh1,20);
             }
 
-            if ($request->file('sua_file3')!=null){
+            if ($request->file('sua_file2')!=null){
             $image2=$request->file('sua_file2');
             $new_name2=rand().'.'.$image2->getClientOriginalExtension();
             $image2->move(public_path('client/images/items/'),$new_name2);
-        }else{
-            $new_name2=$listHinhAnh[0]->hinh_anh2;
-        }
+            }else{
+            $new_name2=substr($listHinhAnh[0]->hinh_anh2,20);
+            }
 
             if ($request->file('sua_file3')!=null){
             $image3=$request->file('sua_file3');
             $new_name3=rand().'.'.$image3->getClientOriginalExtension();
             $image3->move(public_path('client/images/items/'),$new_name3);
             }else{
-                $new_name3=$listHinhAnh[0]->hinh_anh3;
+                $new_name3=substr($listHinhAnh[0]->hinh_anh3,20);
             }
-            //Lưu xuống cơ sở dữ liệu
+           // Lưu xuống cơ sở dữ liệu
             DB::select('call suaThongTinSanPham(?,?,?,?,?,?,?,?,?,?,?)',array(
                 $request->sua_masanpham,
                 $request->sua_tensanpham,
@@ -201,7 +203,6 @@ class SanPhamController extends Controller
                     'flag' =>1,
                     'output' =>$output
                 ]);
-
 
             }else{
                 return response()->json([

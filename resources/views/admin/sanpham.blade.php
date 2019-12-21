@@ -99,7 +99,7 @@
     <div id="messagesua"></div>
     <div id="popup-sua" class="hide w-75">
             <div id="messagesua"></div>
-            <div id="popup-sua-header">Thêm sản phẩm</div>
+            <div id="popup-sua-header">Sửa sản phẩm</div>
                 <form id="formsua" data-route="{{route('sanpham.sua')}}" method="POST">
                     @csrf
                     <div id="popup-sua-body">
