@@ -133,9 +133,12 @@ Route::group(['prefix' => 'client','middleware'=>['checkLoginClient','web']], fu
     Route::get('dangxuat','HomepageClientController@dangxuat')->name('client.dangxuat');
 
     //Chuyển đến trang để nhập sản phẩm giỏ hàng của người dùng
-    Route::get('homepage/themvaogiohang/{makh}/{masp}/{sl}','HomepageClientController@luuSanPhamKhachHangChonXuongHoaDon')->name('Client.themgiohang');
-    Route::get('homepage/xoasanpham/{masp}/{makh}','HomepageClientController@xoaSanPham')->name('Client.xoaSanPham');
+    // Route::get('homepage/themvaogiohang/{makh}/{masp}/{sl}','HomepageClientController@luuSanPhamKhachHangChonXuongHoaDon')->name('Client.themgiohang');
+    Route::get('homepage/xoasanpham','DatHangOnlineController@xoaSanPham')->name('Client.xoaSanPham');
     Route::get('homepage/thanhtoan/{makh}','HomepageClientController@xuLyKhachHangNhanThanhToanDonHang')->name('Client.xuLyThanhtoanGiohang');
+
+    //Dat hang Online dung chung cho cac trang con lai
+    Route::get('homepage/themvaogio','DatHangOnlineController@datHangOnline');
 
 });
 
@@ -145,8 +148,7 @@ Route::prefix('client')->group(function(){
     Route::post('register','LoginRegisterClientController@clientRegister')->name('Client.Register'); //dang ky
     Route::post('login/post','LoginRegisterClientController@postLoginClient')->name('Client.login'); //dangnhap
     Route::get('homepage/c','HomepageClientController@hienThiTopSanPhamBanChay_chuaDangNhap')->name('Client.Homepage.chuadangnhap');
-    // Route::get('homepage/list-item-popup','HomepageClientController@layChiTietSanPham');
-    // Route::get('full-view','HomepageClientController@hienThiChiTietSanPham')->name('client.full-view');
+
 });
 
 

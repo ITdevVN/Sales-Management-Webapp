@@ -445,7 +445,7 @@
 										<div class="counter">
 											<div class="control left"></div>
 											<div class="value">
-												<h5>0</h5>
+												<h5 id="laysoluonghomepage">1</h5>
 											</div>
 											<div class="control right"></div>
 										</div>
@@ -606,7 +606,7 @@
 								</svg>
 								<!-- /SVG WISHLIST -->
 							</a>
-							<a href="#" class="button cart-add" id="cart-add{{$listSanPhamBanChay[$i]->ma_san_pham}}">
+							<a href="#" class="button cart-add popup-buttom-themgiohang" id="cart-add{{$listSanPhamBanChay[$i]->ma_san_pham}}">
 								<!-- SVG PLUS -->
 								<svg class="svg-plus">
 									<use xlink:href="#svg-plus"></use>

@@ -50,18 +50,19 @@ class HomepageClientController extends Controller
         return view('client/full-view');
     }
 
-    public function luuSanPhamKhachHangChonXuongHoaDon(Request $request){
-        DB::select('call datHangOnline(?,?,?)',array($request->makh,$request->masp,$request->sl));
-        return redirect()->back();
-    }
+    // public function luuSanPhamKhachHangChonXuongHoaDon(Request $request){
+    //     DB::select('call datHangOnline(?,?,?)',array($request->makh,$request->masp,$request->sl));
+    //     return redirect()->back();
+    // }
 
     public function xuLyKhachHangNhanThanhToanDonHang(Request $request){
         DB::select('call xuLyKhachHangNhanThanhToanDonHang(?)',array($request->makh));
         return redirect()->back()->with('success', 'Đặt hàng thành công');
     }
 
-    public function xoaSanPham(Request $request){
-        DB::select('call huySanPhamTuChiTietDatHang(?,?)',array($request->masp,$request->makh));
-        return redirect()->back();
-    }
+    // public function xoaSanPham(Request $request){
+    //     DB::select('call huySanPhamTuChiTietDatHang(?,?)',array($request->masp,$request->makh));
+    //     return redirect()->back();
+    // }
+
 }

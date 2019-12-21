@@ -1,9 +1,24 @@
 $(document).ready(function(){
     $('.cart-add').click(function(){
-        var ID=parseInt($(this).attr("id").match(/\d+/));
+
+        var masp=parseInt($(this).attr("id").match(/\d+/));
+        var soluong=1;
         var makh=parseInt($('.makh_hidden').attr("id").match(/\d+/));
-        //Truyền ID sản phẩm, id khách hàng lấy từ session, số lượng mặc định là 1
-        $('.cart-add').attr('href','homepage/themvaogiohang/'+makh+'/'+ID+'/1')
+        $.ajax({
+            type: "GET",
+            url: 'homepage/themvaogio',
+            data: {'masp':masp,'makh':makh,'soluong':soluong}, // gửi dữ liệu từ form qua controller
+
+            success: function(res){
+                //Trả về kết quả trên giỏ hàng
+                $('#thongtingiohang').html(res[0]);
+                $('#cart-online').html(res[1]);
+            },
+            error: function(res){
+                alert("Xuất hiện lỗi: "+res);
+            }
+
+        });
     })
 
     $('.themgiohang_hethang_quickview').click(function(){
@@ -16,9 +31,25 @@ $(document).ready(function(){
         $('#thanhtoan-client').attr('href','homepage/thanhtoan/'+makh);
     })
 
+    //Xử lý khi nhấn remove
     $('.button-remove').click(function(){
-        var sanpham=parseInt($(this).attr("id").match(/\d+/));
+
+        var masp=parseInt($(this).attr("id").match(/\d+/));
         var makh=parseInt($('.makh_hidden').attr("id").match(/\d+/));
-        $('.button-remove').attr('href','homepage/xoasanpham/'+sanpham+'/'+makh);
+        $.ajax({
+            type: "GET",
+            url: 'homepage/xoasanpham',
+            data: {'masp':masp,'makh':makh}, // gửi dữ liệu từ form qua controller
+
+            success: function(res){
+                //Trả về kết quả trên giỏ hàng
+                $('#thongtingiohang').html(res[0]);
+                $('#cart-online').html(res[1]);
+            },
+            error: function(res){
+                alert("Xuất hiện lỗi: "+res);
+            }
+
+        });
     })
 })

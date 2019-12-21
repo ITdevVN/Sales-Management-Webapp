@@ -180,10 +180,12 @@
 						<!-- /SVG ARROW -->
 						<h6>Giỏ hàng</h6>
                         <p class="cart-content-short">(3)</p>
+                        <div id="thongtingiohang">
                         @if (count($listGioHang)>=1)
 						<p class="cart-content-long">{{count($listGioHang)}} sản phẩm - </p>
                         <p class="highlighted">{{number_format($tienKhachHangCanThanhToan[0]->khach_can_tra)}} VND</p>
                         @endif
+                        </div>
 					</div>
 					<!-- /CART CONTROL -->
 

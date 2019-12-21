@@ -1,3 +1,17 @@
+function addCommas(nStr)
+{
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
+
+
 $(document).ready(function(){
     $('.list-item').click(function(){
         var ma_san_pham=$(this).attr("id");
@@ -13,8 +27,8 @@ $(document).ready(function(){
             $('#giaban_quickview').html(res.gia_ban);
             $('#gia_ban_thay_the_quickview').html("");
             }else if (res.gia_sau_khi_giam!=null){
-                $('#giaban_quickview').html(res.gia_sau_khi_giam);
-                $('#gia_ban_thay_the_quickview').html(res.gia_ban);
+                $('#giaban_quickview').html(addCommas(res.gia_sau_khi_giam));
+                $('#gia_ban_thay_the_quickview').html(addCommas(res.gia_ban));
             }
             $('#thongtinsanpham_quickview').html(res.thong_tin_san_pham);
             $('#hinhanh1_popup').attr("src","http://localhost:82/DoAnWeb/public/" +res.hinh_anh1);
@@ -66,4 +80,27 @@ $(document).ready(function(){
 
         })
     });
+
+    $('.themgiohang_hethang_quickview').click(function(){
+        var masp=parseInt($(this).attr("id").match(/\d+/));
+        var soluong=parseInt($('#laysoluonghomepage').html());
+        var makh=parseInt($('.makh_hidden').attr("id").match(/\d+/));
+        $.ajax({
+            type: "GET",
+            url: 'homepage/themvaogio',
+            data: {'masp':masp,'makh':makh,'soluong':soluong}, // gửi dữ liệu từ form qua controller
+
+            success: function(res){
+                //Trả về kết quả trên giỏ hàng
+                $('#thongtingiohang').html(res[0]);
+                $('#cart-online').html(res[1]);
+            },
+            error: function(res){
+                alert("Xuất hiện lỗi: "+res);
+            }
+
+        });
+
+    })
+
 })
