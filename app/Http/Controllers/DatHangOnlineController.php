@@ -111,7 +111,7 @@ class DatHangOnlineController extends Controller
         <li class="item clearfix">
             <div class="picture">
                 <figure class="liquid">
-                    <img src="http://localhost:82/DoAnWeb/public/'.$listGioHang[$i]->hinh_anh1.'" alt="product1">
+                    <img src="'.url('/').'/'.$listGioHang[$i]->hinh_anh1.'" alt="product1">
                 </figure>
             </div>
             <div class="description">
