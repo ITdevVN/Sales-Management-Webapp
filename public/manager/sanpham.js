@@ -106,8 +106,8 @@ $(document).ready(function(){
                         // $('#sua_file3').val(res[3]);
                         $('#sua_tensanpham').val(res[4]);
                         $('#sua_maloai').val(res[6]);
-                        $('#sua_giaban').val(res[7]);
-                        $('#sua_giavon').val(res[8]);
+                        $('#sua_giavon').val(res[7]);
+                        $('#sua_giaban').val(res[8]);
                         $('#sua_tonkho').val(res[9]);
                         $('#sua_trangthai').val(res[10]);
                         $('#sua_chitietsanpham').val(res[11]);

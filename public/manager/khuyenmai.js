@@ -229,7 +229,6 @@ $(document).ready(function(){
             url:'khuyenmai/timkiem',
             data:{'keyWord':keyWord,'loaiTimKiem':loaiTimKiem}
         }).done(function(res){
-            alert("hel")
             $('#tablediv').fadeOut();
                 $('#tablediv').fadeIn();
                 $('#tablediv').html(res);
