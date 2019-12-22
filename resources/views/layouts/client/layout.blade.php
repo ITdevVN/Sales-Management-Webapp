@@ -31,6 +31,7 @@
     </div>
 @endif
     <div hidden class="makh_hidden" id="makh{{Session::get('ma_nhan_vien')}}">Mã của khách hàng đang đăng nhập.</div>
+    @if (session()->has('mat_khau') && session()->has('email'))
 	<!-- HEADER -->
 	<header>
 		<div id="header-top-wrap">
@@ -125,7 +126,8 @@
 						</li>
 					</ul>
 					<!-- /WESTEROS DROPDOWN -->
-				</div>
+                </div>
+
 				<!-- /WESTEROS DROPDOWN CONTAINER-->
 			</section>
 			<!-- /HEADER TOP -->
@@ -225,7 +227,7 @@
 							<div class="price">
 								<p class="highlighted">{{number_format($item->thanh_tien+$item->so_tien_giam)}}</p>
 							</div>
-							<a class="button-remove" id="masanpham{{$item->ma_san_pham}}"><img src="images/items/remove.png" alt="remove"></a>
+							<a class="button-remove" id="masanpham{{$item->ma_san_pham}}"><img src="{{URL::asset('client/images/items/remove.png')}}" alt="remove"></a>
 						</li>
 						<!-- /CART ITEM -->
                         @endforeach
@@ -249,8 +251,8 @@
 						<!-- /TOTAL -->
 						<!-- ORDER -->
 						<li class="order clearfix">
-							<a id="thanhtoan-client" href="checkout.html" class="button">Thanh toán</a>
-							<a href="cart.html" class="button secondary">Chi tiết</a>
+							<a id="thanhtoan-client" href="{{route('client.checkout')}}" class="button">Thanh toán</a>
+
 						</li>
                         <!-- /ORDER -->
 					</ul>
@@ -274,7 +276,155 @@
 		</ul>
 		<!-- /WESTEROS SEPARATOR -->
 	</header>
+    <!-- /HEADER -->
+    @else
+      	<!-- HEADER -->
+	<header>
+		<div id="header-top-wrap">
+			<!-- HEADER TOP -->
+			<section id="header-top" class="clearfix">
+				<p class="contact">
+					Liên hệ quảng cáo:
+					<a href="mailto:tuantrananhit@gmail.com">tuantrananhit@gmail.com</a>
+				</p>
+
+				<!-- WESTEROS DROPDOWN CONTAINER-->
+				<div class="westeros-dropdown-container small">
+					<p>
+						<span>Tiếng Việt</span>
+						<!-- SVG ARROW -->
+						<svg class="svg-arrow westeros-dropdown-control">
+							<use xlink:href="#svg-arrow"></use>
+						</svg>
+						<!-- /SVG ARROW -->
+					</p>
+
+					<!-- WESTEROS DROPDOWN -->
+					<ul class="westeros-dropdown default hide-on-click">
+						<li class="selected"><a></a></li>
+						<li><a>English</a></li>
+						<li><a>Chinese</a></li>
+						<li><a>Japanese</a></li>
+					</ul>
+					<!-- /WESTEROS DROPDOWN -->
+				</div>
+				<!-- /WESTEROS DROPDOWN CONTAINER-->
+
+				<!-- WESTEROS DROPDOWN CONTAINER-->
+				<div class="westeros-dropdown-container small">
+					<p>
+						<span>VND</span>
+						<!-- SVG ARROW -->
+						<svg class="svg-arrow westeros-dropdown-control">
+							<use xlink:href="#svg-arrow"></use>
+						</svg>
+						<!-- /SVG ARROW -->
+					</p>
+
+					<!-- WESTEROS DROPDOWN -->
+					<ul class="westeros-dropdown default hide-on-click">
+						<li class="selected"><a>VND</a></li>
+						<li><a>EURO</a></li>
+						<li><a>PESOS</a></li>
+					</ul>
+					<!-- /WESTEROS DROPDOWN -->
+				</div>
+				<!-- /WESTEROS DROPDOWN CONTAINER-->
+
+				<p class="login">
+					Chào mừng bạn đến với TheCosmo nếu đã có tài khoản vui lòng
+					<a href="{{route('ClientLogin')}}">Đăng nhập</a>, hoặc
+					<a href="{{route('ClientLogin')}}">Đăng ký</a>
+				</p>
+			</section>
+			<!-- /HEADER TOP -->
+		</div>
+
+		<div id="header-bottom-wrap">
+			<!-- HEADER BOTTOM -->
+			<section id="header-bottom">
+				<!-- LOGO -->
+				<div class="logo-container">
+					<a href="{{route('Client.Homepage')}}">
+						<figure class="logo">
+							<img src="{{URL::asset('client/images/logo.png')}}" alt="logo">
+							<figcaption>Westeros</figcaption>
+						</figure>
+					</a>
+				</div>
+				<!-- /LOGO -->
+				<form class="westeros-form">
+					<label for="categories" class="select-block">
+						<select name="categories" id="categories">
+							<option value="0">Tất cả</option>
+							<option value="1">T-Shirts</option>
+							<option value="2">Pin Badges</option>
+							<option value="3">Custom Sneakers</option>
+							<option value="4">Phone Cases</option>
+						</select>
+						<!-- SVG ARROW -->
+						<svg class="svg-arrow select-arrow">
+							<use xlink:href="#svg-arrow"></use>
+						</svg>
+						<!-- /SVG ARROW -->
+					</label>
+					<input type="text" name="search" id="search" placeholder="Tìm kiếm...">
+					<input type="image" src="{{URL::asset('client/images/icons/search-icon.png')}}" alt="search-icon">
+				</form>
+
+				<!-- WESTEROS DROPDOWN CONTAINER-->
+				<div class="westeros-dropdown-container">
+					<!-- CART CONTROL -->
+					<div class="cart-control westeros-dropdown-control">
+						<!-- SVG ORDER BOX -->
+						<svg class="svg-order-box">
+							<use xlink:href="#svg-order-box"></use>
+						</svg>
+						<!-- /SVG ORDER BOX -->
+
+						<!-- SVG ARROW -->
+						<svg class="svg-arrow select-arrow">
+							<use xlink:href="#svg-arrow"></use>
+						</svg>
+						<!-- /SVG ARROW -->
+						<h6>Giỏ hàng</h6>
+						<p class="cart-content-short">(3)</p>
+						<p class="cart-content-long">0 sản phẩm -</p>
+						<p class="highlighted">0 VNĐ</p>
+					</div>
+					<!-- /CART CONTROL -->
+
+
+
+
+
+
+
+
+
+
+
+				</div>
+				<!-- /WESTEROS DROPDOWN CONTAINER -->
+			</section>
+			<!-- /HEADER BOTTOM -->
+		</div>
+
+		<!-- WESTEROS SEPARATOR -->
+		<ul class="westeros-separator small">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<!-- /WESTEROS SEPARATOR -->
+	</header>
 	<!-- /HEADER -->
+    @endif
 
 	<!-- MOBILE MENU COVER -->
 	<div class="mobile-menu-cover"></div>
@@ -415,7 +565,7 @@
 							<h6>Đồ dùng cá nhân</h6>
 							<ul>
 								<li>
-									<a href="men-shop.html">Dầu gội, dầu xả
+									<a href="{{route('client.main',1)}}">Dầu gội, dầu xả
 									<!-- SVG ARROW -->
 									<svg class="svg-arrow">
 										<use xlink:href="#svg-arrow"></use>
@@ -424,7 +574,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="men-shop.html">Sữa tắm
+									<a href="{{route('client.main',2)}}">Sữa tắm
 									<!-- SVG ARROW -->
 									<svg class="svg-arrow">
 										<use xlink:href="#svg-arrow"></use>
@@ -433,7 +583,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="men-shop.html">Sữa rửa mặt
+									<a href="{{route('client.main',3)}}">Sữa rửa mặt
 									<!-- SVG ARROW -->
 									<svg class="svg-arrow">
 										<use xlink:href="#svg-arrow"></use>
@@ -442,7 +592,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="men-shop.html">Kem, bàn chải đánh răng
+									<a href="{{route('client.main',4)}}">Kem, bàn chải đánh răng
 									<!-- SVG ARROW -->
 									<svg class="svg-arrow">
 										<use xlink:href="#svg-arrow"></use>
@@ -451,7 +601,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="men-shop.html">Băng vệ sinh
+									<a href="{{route('client.main',5)}}">Băng vệ sinh
 									<!-- SVG ARROW -->
 									<svg class="svg-arrow">
 										<use xlink:href="#svg-arrow"></use>
@@ -460,7 +610,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="men-shop.html">Khăn giấy
+									<a href="{{route('client.main',6)}}">Khăn giấy
 									<!-- SVG ARROW -->
 									<svg class="svg-arrow">
 										<use xlink:href="#svg-arrow"></use>
@@ -469,7 +619,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="men-shop.html">Vật dụng cá nhân khác
+									<a href="{{route('client.main',7)}}">Vật dụng cá nhân khác
 									<!-- SVG ARROW -->
 									<svg class="svg-arrow">
 										<use xlink:href="#svg-arrow"></use>
@@ -486,7 +636,7 @@
 							<h6>Vệ sinh nhà cửa</h6>
 							<ul>
 								<li>
-									<a href="women-shop.html">Nước giặt, bột giặt
+									<a href="{{route('client.main',8)}}">Nước giặt, bột giặt
 									<!-- SVG ARROW -->
 									<svg class="svg-arrow">
 										<use xlink:href="#svg-arrow"></use>
@@ -495,7 +645,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="women-shop.html">Nước xả vải
+									<a href="{{route('client.main',9)}}">Nước xả vải
 									<!-- SVG ARROW -->
 									<svg class="svg-arrow">
 										<use xlink:href="#svg-arrow"></use>
@@ -504,7 +654,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="women-shop.html">Nước rửa chén
+									<a href="{{route('client.main',10)}}">Nước rửa chén
 									<!-- SVG ARROW -->
 									<svg class="svg-arrow">
 										<use xlink:href="#svg-arrow"></use>
@@ -513,7 +663,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="women-shop.html">Tẩy rửa bồn cầu, nhà tắm
+									<a href="{{route('client.main',11)}}">Tẩy rửa bồn cầu, nhà tắm
 									<!-- SVG ARROW -->
 									<svg class="svg-arrow">
 										<use xlink:href="#svg-arrow"></use>
@@ -522,7 +672,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="women-shop.html">Nước lau sàn
+									<a href="{{route('client.main',12)}}">Nước lau sàn
 									<!-- SVG ARROW -->
 									<svg class="svg-arrow">
 										<use xlink:href="#svg-arrow"></use>
@@ -531,7 +681,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="women-shop.html">Vệ sinh nhà cửa khác
+									<a href="{{route('client.main',13)}}">Vệ sinh nhà cửa khác
 									<!-- SVG ARROW -->
 									<svg class="svg-arrow">
 										<use xlink:href="#svg-arrow"></use>
@@ -552,17 +702,17 @@
 				<!-- SUBMENU SMALL -->
 				<ul class="submenu-small">
 					<li>
-						<a href="register-login.html">Mì ăn liền</a>
+						<a href="{{route('client.main',14)}}">Mì ăn liền</a>
 					</li>
 					<li>
-						<a href="profile.html">Cháo ăn liền</a>
+						<a href="{{route('client.main',15)}}">Cháo ăn liền</a>
 					</li>
 
 					<li>
-						<a href="merchandising-shop.html">Phở ăn liền</a>
+						<a href="{{route('client.main',16)}}">Phở ăn liền</a>
 					</li>
 					<li>
-						<a href="no-banner-shop.html">Thực phẩm ăn liền khác</a>
+						<a href="{{route('client.main',17)}}">Thực phẩm ăn liền khác</a>
 					</li>
 
 
@@ -574,26 +724,26 @@
 				<!-- SUBMENU SMALL -->
 				<ul class="submenu-small">
 					<li>
-						<a href="register-login.html">Bia, nước uống có cồn</a>
+						<a href="{{route('client.main',18)}}">Bia, nước uống có cồn</a>
 					</li>
 					<li>
-						<a href="profile.html">Nước ngọt, giải khát</a>
+						<a href="{{route('client.main',19)}}">Nước ngọt, giải khát</a>
 					</li>
 
 					<li>
-						<a href="merchandising-shop.html">Nước suối</a>
+						<a href="{{route('client.main',20)}}">Nước suối</a>
 					</li>
 					<li>
-						<a href="no-banner-shop.html">Nước ép trái cây</a>
+						<a href="{{route('client.main',21)}}">Nước ép trái cây</a>
 					</li>
 					<li>
-						<a href="product-builder.html">Nước yến</a>
+						<a href="{{route('client.main',22)}}">Nước yến</a>
 					</li>
 					<li>
-						<a href="wishlist.html">Cà phê, trà</a>
+						<a href="{{route('client.main',23)}}">Cà phê, trà</a>
 					</li>
 					<li>
-						<a href="compare.html">Đồ uống khác</a>
+						<a href="{{route('client.main',24)}}">Đồ uống khác</a>
 					</li>
 
 				</ul>
@@ -603,20 +753,20 @@
 				<!-- SUBMENU SMALL -->
 				<ul class="submenu-small">
 					<li>
-						<a href="register-login.html">Dầu ăn</a>
+						<a href="{{route('client.main',25)}}">Dầu ăn</a>
 					</li>
 					<li>
-						<a href="profile.html">Nước tương</a>
+						<a href="{{route('client.main',26)}}">Nước tương</a>
 					</li>
 
 					<li>
-						<a href="merchandising-shop.html">Nước mắm</a>
+						<a href="{{route('client.main',27)}}">Nước mắm</a>
 					</li>
 					<li>
-						<a href="no-banner-shop.html">Tương ớt, tương cà, tương đen</a>
+						<a href="{{route('client.main',28)}}">Tương ớt, tương cà, tương đen</a>
 					</li>
 					<li>
-						<a href="product-builder.html">Đường, hạt nêm, bột ngọt, muối</a>
+						<a href="{{route('client.main',29)}}">Đường, hạt nêm, bột ngọt, muối</a>
 					</li>
 					</ul>
 
@@ -626,26 +776,23 @@
 				<!-- SUBMENU SMALL -->
 				<ul class="submenu-small">
 					<li>
-						<a href="register-login.html">Snack</a>
+						<a href="{{route('client.main',30)}}">Snack</a>
 					</li>
 					<li>
-						<a href="profile.html">Bánh quy, bánh trứng</a>
+						<a href="{{route('client.main',31)}}">Bánh quy, bánh trứng</a>
 					</li>
 
 					<li>
-						<a href="merchandising-shop.html">Bánh bông lan</a>
+						<a href="{{route('client.main',32)}}">Bánh bông lan</a>
 					</li>
 					<li>
-						<a href="no-banner-shop.html">Bánh xốp, bánh gạo</a>
+						<a href="{{route('client.main',33)}}">Bánh xốp, bánh gạo</a>
 					</li>
 					<li>
-						<a href="product-builder.html">Socola, trái cây sấy</a>
+						<a href="{{route('client.main',34)}}">Socola, trái cây sấy</a>
 					</li>
 					<li>
-							<a href="product-builder.html">Socola, trái cây sấy</a>
-					</li>
-					<li>
-							<a href="product-builder.html">Khô bò, hạt các loại</a>
+							<a href="{{route('client.main',35)}}">Khô bò, hạt các loại</a>
 					</li>
 				</ul>
 				<!-- SUBMENU SMALL -->

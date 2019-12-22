@@ -10,11 +10,13 @@ class HomepageClientController extends Controller
 {
     public function hienThiTopSanPhamBanChay(Request $request){
         //Xử lý hiển thị top các sản phẩm bán chạy
+        $listKhuyenMai=DB::select('call hienThiDanhSachKhuyenMai()',array());
         $listSanPhamBanChay=DB::select('call hienThiSanPhamBanChay(?)',array(20));
+        $listSanPhamMoiNhapVe=DB::select('call hienThiSanPhamMoiNhapve(?)',array(20));
         //Hiển thị list giỏ hàng của khách hàng tương ứng
         $listGioHang=DB::select('call hienThiDonHangOnlineChuaThanhToan(?)',array($request->session()->get('ma_nhan_vien')));
         $tienKhachHangCanThanhToan=DB::select('call hienThiSoTienCanThanhToanCuaKhachHang(?)',array($request->session()->get('ma_nhan_vien')));
-        return view('client/homepage',['listSanPhamBanChay'=>$listSanPhamBanChay,'listGioHang'=>$listGioHang,'tienKhachHangCanThanhToan'=>$tienKhachHangCanThanhToan]);
+        return view('client/homepage',['listKhuyenMai'=>$listKhuyenMai,'listSanPhamMoiNhapVe'=>$listSanPhamMoiNhapVe,'listSanPhamBanChay'=>$listSanPhamBanChay,'listGioHang'=>$listGioHang,'tienKhachHangCanThanhToan'=>$tienKhachHangCanThanhToan]);
     }
 
     public function hienThiTopSanPhamBanChay_chuaDangNhap(){
@@ -24,7 +26,7 @@ class HomepageClientController extends Controller
 
     public function dangxuat(Request $request){
         $request->session()->flush();
-        return redirect()->route('Client.Homepage.chuadangnhap');
+        return redirect()->route('Client.Homepage');
     }
 
     public function layChiTietSanPham(Request $request){
@@ -57,7 +59,7 @@ class HomepageClientController extends Controller
 
     public function xuLyKhachHangNhanThanhToanDonHang(Request $request){
         DB::select('call xuLyKhachHangNhanThanhToanDonHang(?)',array($request->makh));
-        return redirect()->back()->with('success', 'Đặt hàng thành công');
+        return redirect()->route('Client.Homepage')->with('success', 'Đặt hàng thành công');
     }
 
     // public function xoaSanPham(Request $request){

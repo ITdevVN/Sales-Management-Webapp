@@ -121,6 +121,10 @@ Route::group(['prefix' => 'admin','middleware'=>['checkLogin','web']], function(
 
     //Doanh thu
     Route::get('doanhthu/doanhthucuoingay', 'DynamicPDFController@baoCaoDoanhThuCuoiNgay')->name('doanhthu.cuoingay');
+    Route::get('baocaodoanhthu/{loai}','DynamicPDFController@baoCaoDoanhSo')->name('doanhthu');
+    Route::get('hienthicuaso/doanhthu/{loai}',function(){
+        return view('admin/baocaodoanhthu');
+    })->name('cuasodienngaythang');
 });
 
 
@@ -130,10 +134,18 @@ Route::group(['prefix' => 'admin','middleware'=>['checkLogin','web']], function(
 //     Route::get('logout','LoginController@logOut')->name('logout');
 // });
 
-Route::group(['prefix' => 'client','middleware'=>['checkLoginClient','web']], function() {
+Route::group(['prefix' => 'client'], function() {
     Route::get('homepage','HomepageClientController@hienThiTopSanPhamBanChay')->name('Client.Homepage');
-    Route::get('homepage/list-item-popup','HomepageClientController@layChiTietSanPham');
-    Route::get('full-view','HomepageClientController@hienThiChiTietSanPham')->name('client.full-view');
+      Route::get('full-view','HomepageClientController@hienThiChiTietSanPham')->name('client.full-view');
+
+      Route::get('homepage/main/{ma_loai}','ClientMainSectionController@getMainSection')->name('client.main');
+      Route::get('homepage/list-item-popup','HomepageClientController@layChiTietSanPham');
+
+});
+
+Route::group(['prefix' => 'client','middleware'=>['checkLoginClient']], function() {
+    // Route::get('homepage','HomepageClientController@hienThiTopSanPhamBanChay')->name('Client.Homepage');
+    //   Route::get('full-view','HomepageClientController@hienThiChiTietSanPham')->name('client.full-view');
     Route::get('dangxuat','HomepageClientController@dangxuat')->name('client.dangxuat');
 
     //Chuyển đến trang để nhập sản phẩm giỏ hàng của người dùng
@@ -144,7 +156,13 @@ Route::group(['prefix' => 'client','middleware'=>['checkLoginClient','web']], fu
     //Dat hang Online dung chung cho cac trang con lai
     Route::get('homepage/themvaogio','DatHangOnlineController@datHangOnline');
 
+    //Hiển thị chi tiết đơn hàng
+    Route::get('homepage/chitietdonhang','DatHangOnlineController@hienThiChiTietDonHang')->name('client.checkout');
 
+});
+
+Route::prefix('homepage')->group(function(){
+    Route::GET('quick-view-main','ClientMainSectionController@layChiTietSanPham')->name('quick-view-main');
 });
 
 

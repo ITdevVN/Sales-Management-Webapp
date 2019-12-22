@@ -6,7 +6,7 @@ $(document).ready(function(){
         var makh=parseInt($('.makh_hidden').attr("id").match(/\d+/));
         $.ajax({
             type: "GET",
-            url: 'homepage/themvaogio',
+            url: 'http://localhost:82/DoAnWeb/public/client/homepage/themvaogio',
             data: {'masp':masp,'makh':makh,'soluong':soluong}, // gửi dữ liệu từ form qua controller
 
             success: function(res){
@@ -26,10 +26,10 @@ $(document).ready(function(){
     })
 
     //Xử lý khi click nút thanh toán
-    $('#thanhtoan-client').click(function(){
-        var makh=parseInt($('.makh_hidden').attr("id").match(/\d+/));
-        $('#thanhtoan-client').attr('href','homepage/thanhtoan/'+makh);
-    })
+    // $('#thanhtoan-client').click(function(){
+    //     var makh=parseInt($('.makh_hidden').attr("id").match(/\d+/));
+    //     $('#thanhtoan-client').attr('href','http://localhost:82/DoAnWeb/public/client/homepage/thanhtoan/'+makh);
+    // })
 
     //Xử lý khi nhấn remove
     $('.button-remove').click(function(){
@@ -38,7 +38,7 @@ $(document).ready(function(){
         var makh=parseInt($('.makh_hidden').attr("id").match(/\d+/));
         $.ajax({
             type: "GET",
-            url: 'homepage/xoasanpham',
+            url: 'http://localhost:82/DoAnWeb/public/client/homepage/xoasanpham',
             data: {'masp':masp,'makh':makh}, // gửi dữ liệu từ form qua controller
 
             success: function(res){

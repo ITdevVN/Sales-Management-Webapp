@@ -112,8 +112,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class=" custom-file form-group row">
-                            <input type="file" class="custom-file " name="sua_file" id="sua_file">
+                        <div class="custom-file form-group row" >
+                            <input type="file" class="custom-file-input" name="sua_file" id="sua_file">
                             <label class="custom-file-label" for="customFile">Chọn tệp hình ảnh</label>
                         </div>
                     </div>

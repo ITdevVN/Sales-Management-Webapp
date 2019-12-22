@@ -210,11 +210,11 @@
                             <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Báo cáo</a>
                                     <div class="dropdown-menu">
-                                      <a class="dropdown-item" href="{{route('doanhthu.cuoingay')}}">Cuối ngày</a>
+                                      <a class="dropdown-item" href="{{route('doanhthu.cuoingay')}}">Doanh thu cuối ngày</a>
                                       <a class="dropdown-item" href="#">Hàng hóa</a>
-                                      <a class="dropdown-item" href="#">Khách hàng</a>
+                                      <a class="dropdown-item" href="{{route('cuasodienngaythang','khachhang')}}">Doanh số khách hàng</a>
                                       <a class="dropdown-item" href="#">Nhà cung cấp</a>
-                                      <a class="dropdown-item" href="#">Nhân viên</a>
+                                      <a class="dropdown-item" href="{{route('cuasodienngaythang','nhanvien')}}">Doanh số nhân viên</a>
                                       <a class="dropdown-item" href="#">Hóa đơn</a>
                                       {{-- <a class="dropdown-item" href="#">Something else here</a>
                                       <div class="dropdown-divider"></div>
@@ -227,9 +227,6 @@
                                   <a class="dropdown-item" href="{{route('donhangchoxuly')}}">Đơn hàng chờ xử lý</a>
                                   <a class="dropdown-item" href="{{route('donhangdanggiao')}}">Đơn hàng đang giao</a>
                                 </div>
-                        </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Hiển thị trên web</a>
                         </li>
 
 
@@ -269,9 +266,9 @@
         <div class="col-md-3 mb-md-0 mb-3">
 
           <!-- Links -->
-          <h5 class="text-uppercase">Links</h5>
+          {{-- <h5 class="text-uppercase">Links</h5> --}}
 
-          <ul class="list-unstyled">
+          {{-- <ul class="list-unstyled">
             <li>
               <a href="#!">Link 1</a>
             </li>
@@ -284,7 +281,7 @@
             <li>
               <a href="#!">Link 4</a>
             </li>
-          </ul>
+          </ul> --}}
 
         </div>
         <!-- Grid column -->
@@ -293,9 +290,9 @@
         <div class="col-md-3 mb-md-0 mb-3">
 
           <!-- Links -->
-          <h5 class="text-uppercase">Links</h5>
+          {{-- <h5 class="text-uppercase">Links</h5> --}}
 
-          <ul class="list-unstyled">
+          {{-- <ul class="list-unstyled">
             <li>
               <a href="#!">Link 1</a>
             </li>
@@ -308,7 +305,7 @@
             <li>
               <a href="#!">Link 4</a>
             </li>
-          </ul>
+          </ul> --}}
 
         </div>
         <!-- Grid column -->

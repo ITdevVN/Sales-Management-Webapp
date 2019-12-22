@@ -47,7 +47,7 @@ class DatHangOnlineController extends Controller
             <div class="price">
                 <p class="highlighted">'.number_format($listGioHang[$i]->thanh_tien+$listGioHang[$i]->so_tien_giam).'</p>
             </div>
-            <a class="button-remove" id="masanpham'.$listGioHang[$i]->ma_san_pham.'"><img src="images/items/remove.png" alt="remove"></a>
+            <a class="button-remove" id="masanpham'.$listGioHang[$i]->ma_san_pham.'"><img src="http://localhost:82/DoAnWeb/public/client/images/items/remove.png" alt="remove"></a>
         </li>
         <!-- /CART ITEM -->
         ';
@@ -124,7 +124,7 @@ class DatHangOnlineController extends Controller
             <div class="price">
                 <p class="highlighted">'.number_format($listGioHang[$i]->thanh_tien+$listGioHang[$i]->so_tien_giam).'</p>
             </div>
-            <a class="button-remove" id="masanpham'.$listGioHang[$i]->ma_san_pham.'"><img src="images/items/remove.png" alt="remove"></a>
+            <a class="button-remove" id="masanpham'.$listGioHang[$i]->ma_san_pham.'"><img src="http://localhost:82/DoAnWeb/public/client/images/items/remove.png" alt="remove"></a>
         </li>
         <!-- /CART ITEM -->
         ';
@@ -163,5 +163,11 @@ class DatHangOnlineController extends Controller
         return $output;
     }
 
-
+    public function hienThiChiTietDonHang(Request $request){
+        $thongTinKhachHang=DB::select('call layThongTinKhachHangTheoID(?)',array($request->session()->get('ma_nhan_vien')));
+        $listSanPham=DB::select('call hienThiListSanPhamTheoLoaiSanPham(?)',array($request->ma_loai));
+        $listGioHang=DB::select('call hienThiDonHangOnlineChuaThanhToan(?)',array($request->session()->get('ma_nhan_vien')));
+        $tienKhachHangCanThanhToan=DB::select('call hienThiSoTienCanThanhToanCuaKhachHang(?)',array($request->session()->get('ma_nhan_vien')));
+        return view('client/checkout',['thongTinKhachHang'=>$thongTinKhachHang,'listGioHang'=>$listGioHang,'tienKhachHangCanThanhToan'=>$tienKhachHangCanThanhToan,'listSanPham'=>$listSanPham]);
+    }
 }
